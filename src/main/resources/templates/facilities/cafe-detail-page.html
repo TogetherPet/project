@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+	
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/b836e111e4.js" crossorigin="anonymous"></script>
+
+  <!--구글 폰트-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+
+
+
+  <link href="assets/css/detail-page.css" rel="stylesheet" type="text/css" />
+  <link href="assets/css/modal.css" rel="stylesheet" type="text/css" />
+
+
+<!--리뷰 모달창-->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+
+</head>
+
+
+
+<!--하트 변경-->
+<script>
+  var cnt = 2;
+  function imgToggle() {
+    var img1 = document.getElementById("img1");
+    if (cnt%2== 1) {
+      img1.src = "assets/img/heart.png";
+    } else {
+      img1.src = "assets/img/lover.png";
+    }
+    cnt++;
+  }
+
+/*리뷰 모달창*/
+  const drawStar = (target) => {
+    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+  }
+
+
+</script>
+
+
+<body>
+  <section>
+    <div class="facilities-container" id="one">
+
+      <div class="facilities-img">
+        <img src="assets/img/example.jpeg" alt="임시">
+      </div>
+
+      <div class="facilities-info">
+        <br>
+        <p class="facilities-scmenu">홈 > 애견 동반 시설 > 카페 > 댕숲</p>
+
+        <h2 class="facilities-name">댕숲</h2>
+
+        <dl>
+          <dt class="facilites-address">주소</dt>
+          <dd>
+            <span id="facilites-address">강원 평창군 봉평면 석이바우길 92-34</span>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt class="facilites-address">문의처</dt>
+          <dd>
+            <span id="facilites-address">010-5535-2240</span>
+          </dd>
+        </dl>
+
+        <dl>
+          <dt class="facilites-address">이용시간</dt>
+          <dd>
+            <span id="facilites-address">15:00 ~ 다음날 11:00</span>
+          </dd>
+        </dl>
+
+
+        <dl>
+          <dt class="info-detail-icon">
+            <!--<a href="#"><img src="assets/img/heart.png" onmouseover="this.src='assets/img/lover.png'" class="icon-img01" ></a>-->
+            <img onclick="imgToggle()" id="img1" src="assets/img/heart.png" class="icon-img01" data-toggle="modal"
+              data-target="#exampleModal">
+
+            
+            <!-- 즐겨찾기 모달-->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+
+
+
+
+
+            <a href="#"><img src="assets/img/location.png" class="icon-img02"></a>
+            <a href="#"> <img src="assets/img/review.png" class="icon-img03" data-bs-toggle="modal" data-bs-target="#staticBackdrop"></a>
+
+            <!--리뷰 모달창-->
+           <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">리뷰작성</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form>  
+                <div class="modal-body">
+                  <span>어땠나요?</span>
+                  <span class="star">
+                    ★★★★★
+                    <span>★★★★★</span>
+                    <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+                  </span><br>
+        
+                  <span>후기를 써주세요</span><br>
+                  <textarea placeholder="방문하신 후기를 20자 이상 남겨주시면 다른 방문자들에게도 도움이 됩니다."></textarea><br>
+        
+                  <span>사진을 올려주세요 (선택)</span><br>
+                  <input type="file" multiple="multiple" name="file" id="file">
+                  <input type="submit" value="작성 완료">
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <a href="#"><img src="assets/img/reservation.png" class="icon-img04"></a>
+
+
+
+
+
+          </dt>
+        </dl>
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+  <section class="facilities-text-box">
+
+    <h4 class="facilities-text-box00"><img src="assets/img/bone.png" class="icon-img-detail" alt="..."> 리뷰</h4>
+
+    <div class="Allcomment">
+      <div class="comment">
+        <span class="id">tan</span>
+        <span class="ment">굿굿</span>
+        <button class="deletebutton">삭제</button>
+        <a href="#" class="commentheart"><i class="far fa-heart"></i></a>
+      </div>
+
+      <div class="comment">
+        <span class="id">탄2</span>
+        <span class="ment">오예</span>
+        <button class="deletebutton">삭제</button>
+        <a href="#" class="commentheart"><i class="far fa-heart hearts"></i></a>
+      </div>
+
+      <div class="comment">
+        <span class="id">탄3</span>
+        <span class="ment">오예에
+        </span>
+        <button class="deletebutton">삭제</button>
+        <a href="#" class="commentheart"><i class="far fa-heart"></i></a>
+      </div>
+    </div>
+
+    <input text="" placeholder="리뷰를 입력해주세요" class="reviewcomment" onkeyup="if(window.event.keyCode==13){test()}">
+    <button class="addbutton">등록</button>
+
+
+    <div class="facilities-text-box01">
+      <h4> <img src="assets/img/bone.png" class="icon-img-detail" alt="...">
+        상세정보</h4>
+      <p>임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는
+        글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글</p>
+    </div>
+    <div class="facilities-text-box02">
+      <h4> <img src="assets/img/bone.png" class="icon-img-detail" alt="...">
+        정책 및 주의사항 </h4>
+      <p>임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는
+        글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글</p>
+    </div>
+    <div class="facilities-text-box03">
+      <h4> <img src="assets/img/bone.png" class="icon-img-detail" alt="...">
+        위치보기</h4>
+      <p>지도칸</p>
+    </div>
+
+
+
+
+  </section>
+
+<!--리뷰 모달창-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+  crossorigin="anonymous"></script>
+
+
+</body>
+
+
+</html>ㅌ

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  매퍼 경로 설정  -->                   
+<mapper namespace="together.pet.domain.member.mapper.MemberMapper">
+
+<!--<select id="메소드 이름" parameterType="전달인자" resultType="리턴타입">
+	
+	</select>  -->
+	
+	<insert id="join" parameterType="Member">
+	INSERT into member
+	VALUES (#{id}, #{password}, #{name}, #{email}, TO_DATE(#{birth}, 'YYYYMMDD'), #{gender}, #{phonenum}, #{admin})
+	</insert> 
+	
+	<update id="update" parameterType="Member">
+      UPDATE member
+      SET id = #{id},
+      password=#{password}, name=#{name}, email=#{email}, phonenum=#{phonenum}
+   </update>
+
+   <update id="delete" parameterType="Member">
+      DELETE member
+      WHERE member_id = #{memberId}
+      #{memberId}
+   </update>
+
+   <select id="seeComment" parameterType="String">
+      SELECT Reply
+      WHERE
+      member_id = #{memberId}
+   </select>
+
+   <select id="seePost" parameterType="String">
+      SELECT Post
+      WHERE member_id = #{memberId}
+   </select>
+
+   <select id="bookmark" parameterType="String">
+      SELECT favorite
+      WHERE member_id = #{memberId}
+   </select>
+	
+	
+	
+	
+</mapper>

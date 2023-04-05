@@ -1,0 +1,129 @@
+/*즐겨찾기 모달창*/
+#favoriteModal{
+  color:#585858;
+}
+
+.close{
+  border:none;
+  background-color: white;
+}
+
+
+.favoriteMdb{
+  font-weight:normal;
+  font-size: 15px;
+  color:gray;
+}
+
+/*즐겨찾기 모달창 끝*/
+
+/*리뷰 모달창*/
+input:focus {
+  outline: none;
+}
+
+textarea:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  border-radius: 6px;
+  width: 100%;
+  height: 100px;
+  margin-bottom: 20px;
+  padding-left: 10px;
+  border: 1px solid #dddddd;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+span {
+  margin-bottom: 30px;
+}
+
+input[type="submit"] {
+  width: 100%;
+  height: 45px;
+  border: none;
+  border-radius: 6px;
+  background-color: #d8a899;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+input[type=file]::file-selector-button {
+width: 100px;
+height: 30px;
+color: white;
+border: none;
+background-color: #d8a899;
+margin-top: 10px;
+border-radius: 6px;
+cursor: pointer;
+}
+
+.star {
+  position: relative;
+  font-size: 2rem;
+  color: #ddd;
+}
+
+.star input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.star span {
+  width: 0;
+  position: absolute;
+  left: 0;
+  color: orange;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+
+/*리뷰 모달창 끝*/
+
+/*시설 예약 모달창*/
+.facility input:focus {
+  outline:none;
+}
+
+.facility img{
+  margin: auto;
+  display: block;
+  width: 200px;
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+.facility input{
+  padding-left:10px;
+  width: 100%;
+  height: 30px;
+  border: 1px solid #999999;
+  border-radius: 6px;
+  margin: 10px 0;
+}
+
+#reserve{
+  height: 40px;
+  border: none;
+  background-color: #d8a899;
+  color: white;
+  font-weight: bold;
+}
+
+.facility span{
+  font-weight: bold;
+}
+/*시설 예약 모달창 끝*/

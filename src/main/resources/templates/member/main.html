@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>펫투게더</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/assets/img/favicon.png" rel="icon">
+  <link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/assets/css/style.css" rel="stylesheet">
+
+
+  <!--애견 동반 시설 섹션 아이콘 js-->
+  <script src="https://kit.fontawesome.com/b836e111e4.js" crossorigin="anonymous"></script>
+
+  <!-- =======================================================
+  * Template Name: Rapid - v4.10.0
+  * Template URL: https://bootstrapmade.com/rapid-multipurpose-bootstrap-business-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo me-auto"> <a href="main.html"><img src="assets/img/TOGether_PEt_logo.png" alt="" class="logo-img">
+      </h1></a>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+      <nav id="navbar" class="navbar order-last order-lg-0">
+        <ul>
+          <li><a class="nav-link scrollto" href="#about">소개</a></li>
+          <li><a class="nav-link scrollto " href="#why-us">커뮤니티</a></li>
+          <li class="dropdown scrollto"><a href="#"><span>시설</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="#">식당</a></li>
+              <li><a href="#">카페</a></li>
+              <li><a href="#">쇼핑</a></li>
+              <li><a href="#">숙박시설</a></li>
+              <li><a href="#">관광시설</a></li>
+              <li><a href="#">캠핑장</a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav-link scrollto desc-left login" data-toggle="modal" data-target="#loginModal">로그인</a></li>
+          <li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+
+    </div>
+    </ul>
+    <i class="bi bi-list mobile-nav-toggle"></i>
+    </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+
+  <!-- ======= 메인창 섹션 ======= -->
+  <section id="hero" class="clearfix">
+    <div class="container d-flex h-100">
+      <div class="row justify-content-center align-self-center" data-aos="fade-up">
+        <div class="col-lg-6 intro-info order-lg-first order-last" data-aos="zoom-in" data-aos-delay="100">
+          <h2 style="color:#e9d0c4">24시간 당신 곁에,<br>for Your <span style="color:#a2c2b9">PET</span></h2>
+          <div>
+            <a href="#about" class="btn-get-started scrollto">Get Started</a>
+          </div>
+        </div>
+
+        <div class="col-lg-4 intro-img order-lg-last order-first" data-aos="zoom-out" data-aos-delay="200">
+          <img src="assets/img/first-main-img.PNG" alt="" class="img-fluid">
+        </div>
+      </div>
+
+    </div>
+  </section><!-- 메인 섹션 끝 -->
+
+  <main id="main">
+
+    <!-- ======= 산책 섹션 ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>애견과 함께, <i class="fa-solid fa-dog"></i></h3>
+          <p>더 이상 많은 시간을 투자하지 마세요, 지역별,분야별로 한눈에 찾아볼 수 있어요.</p>
+        </header>
+
+        <div class="row g-5">
+
+          <div class="col-mr-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <h4 class="title"><a href="">식당 </a></h4>
+              <div class="icon" style="background: #fceef3;"><i class="fa-solid fa-utensils"
+                  style="color: #ff689b;"></i>
+              </div>
+              <p>사랑하는 반려동물과<br> 함께 식사해요.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+            <div class="box">
+              <h4 class="title"><a href="">카페 </a></h4>
+              <div class="icon" style="background: #fff0da;"><i class="fa-solid fa-mug-saucer"
+                  style="color: #e98e06;"></i></div>
+              <p>사랑하는 반려동물과<br> 함께 힐링하며 보내요.</p>
+              <p class="description"></p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+            <div class="box">
+              <h4 class="title"><a href="">숙박시설 </a></h4>
+              <div class="icon" style="background: #e6fdfc;"><i class="fa-solid fa-hotel" style="color: #3fcdc7;"></i>
+              </div>
+              <p>사랑하는 반려동물과<br> 함께 여가시간을 보내고 힐링해요</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow" data-aos="zoom-in" data-aos-delay="100">
+            <div class="box">
+              <h4 class="title"><a href="">쇼핑 </a></h4>
+              <div class="icon" style="background: #eafde7;"><i class="fa-sharp fa-solid fa-bag-shopping"
+                  style="color:#41cf2e;"></i>
+              </div>
+              <p>사랑하는 반려동물과<br> 같이 옷을 입고 놀러가요.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+        <div class=" box">
+            <h4 class="title"><a href="">관광시설 </a></h4>
+            <div class="icon" style="background: #e1eeff;"><i class="fab fa-fort-awesome" style="color: #2282ff;"></i>
+            </div>
+            <p>사랑하는 반려동물과<br> 여행하고 추억을 쌓아요.</p>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+          <div class="box">
+            <h4 class="title"><a href="">캠핑장 </a></h4>
+            <div class="icon" style="background: #ecebff;"><i class="fas fa-campground" style="color: #8660fe;"></i>
+            </div>
+            <p>24시간 중에 30분만 신나게 놀아준다면<br> 23시 30분 기다릴 수 있어요.</p>
+            <p class="description"></p>
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+    </section><!-- 애견 동반 시설 섹션 끝-->
+
+
+    <!-- ======= 커뮤니티 섹션 ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <header class="section-header">
+          <h3>동물광장</h3>
+          <p>동물과 관련된 이야기라면 무엇이든,</p>
+        </header>
+
+        <div class="row">
+
+          <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="why-us-content">
+
+              <h4>최신글</h4>
+              <button class="plus-view"><a href="new-community-list-detail.html">더보기</a></button>
+
+              <ul class="new-letter">
+                <li class="new-letter-list">글번호</li>
+                <li>글제목</li>
+                <li>닉네임</li>
+                <li>작성일</li>
+                <li>조회수</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">2</li>
+                <li>2</li>
+                <li>2</li>
+                <li>2</li>
+                <li>2</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">3 </li>
+                <li>3</li>
+                <li>3 </li>
+                <li>3</li>
+                <li>3</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">4 </li>
+                <li>4</li>
+                <li>4 </li>
+                <li>4</li>
+                <li>4</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="why-us-content">
+
+              <h4>인기글</h4>
+              <button class="plus-view"><a href="#">더보기</a></button>
+
+              <ul class="new-letter">
+                <li class="new-letter-list">글번호</li>
+                <li>글제목</li>
+                <li>닉네임</li>
+                <li>작성일</li>
+                <li>조회수</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">2</li>
+                <li>2</li>
+                <li>2</li>
+                <li>2</li>
+                <li>2</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">3 </li>
+                <li>3</li>
+                <li>3 </li>
+                <li>3</li>
+                <li>3</li>
+              </ul>
+
+              <ul>
+                <li class="new-letter-list">4 </li>
+                <li>4</li>
+                <li>4 </li>
+                <li>4</li>
+                <li>4</li>
+              </ul>
+
+            </div>
+
+          </div>
+
+        </div>
+
+    </section><!-- 커뮤니티 섹션 끝 -->
+
+    <!-- ======= 병원 섹션 시작 ======= -->
+    <section id="features" class="services section-bg">
+      <header class="section-header">
+        <h3>동물 병원 <i class="fa-solid fa-shield-dog"></i></h3>
+        <p class="p-3">급할땐 당황하지 마세요, 24시간 운영중인 동물 병원들을 찾아보세요</p>
+        <nav class="row site-header py-1 pb-4 m-auto">
+          <div class="container d-flex flex-column flex-md-row justify-content-between col-12 hospital">
+            <a class="ps-lg-5 py-1 d-none d-md-inline-block" href="#">응급동물병원</a>
+            <a class="py-1 d-none d-md-inline-block" href="#">특수동물 병원</a>
+            <a class="py-1 d-none d-md-inline-block" href="#">고양이 전문병원</a>
+            <a class="py-1 d-none d-md-inline-block" href="#">강아지 동물병원</a>
+            <a class="pe-lg-5 py-1 d-none d-md-inline-block" href="#">일반 동물병원</a>
+          </div>
+        </nav>
+      </header>
+      <div id="carouselExampleIndicators" class="carousel slide w-100 m-auto" data-bs-ride="carousel" data-aos="fade-up"
+        data-aos-delay="100">
+        <div class="carousel-indicators p-0 m-0">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+            aria-label="Slide 4"></button>
+        </div>
+        <!--테두리 박스-->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row text-center mt-3" style="margin-left: 10%; text-align: center;">
+              <!--이미지-->
+              <div class="col-6">
+                <div class="about-img" data-aos="fade-right" data-aos-delay="100">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20160505_224%2F14624509600533ja86_JPEG%2F176455615259826_0.jpeg"
+                    class="w-100" alt="">
+                </div>
+              </div>
+              <!--텍스트-->
+              <div class="col-4 mt-3">
+                <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+                  <h2>노원구</h2>
+                  <p class="mt-5">이름 : 테스트</p>
+                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row text-center mt-3" style="margin-left: 10%; text-align: center;">
+              <!--이미지-->
+              <div class="col-6">
+                <div class="about-img" data-aos="fade-right" data-aos-delay="100">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20160505_224%2F14624509600533ja86_JPEG%2F176455615259826_0.jpeg"
+                    class="w-100" alt="">
+                </div>
+              </div>
+              <!--텍스트-->
+              <div class="col-4 mt-3">
+                <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+                  <h2>노원구</h2>
+                  <p class="mt-5">이름 : 테스트</p>
+                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row text-center mt-3" style="margin-left: 10%; text-align: center;">
+              <!--이미지-->
+              <div class="col-6">
+                <div class="about-img" data-aos="fade-right" data-aos-delay="100">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20160505_224%2F14624509600533ja86_JPEG%2F176455615259826_0.jpeg"
+                    class="w-100" alt="">
+                </div>
+              </div>
+              <!--텍스트-->
+              <div class="col-4 mt-3">
+                <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+                  <h2>노원구</h2>
+                  <p class="mt-5">이름 : 테스트</p>
+                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row text-center mt-3" style="margin-left: 10%; text-align: center;">
+              <!--이미지-->
+              <div class="col-6">
+                <div class="about-img" data-aos="fade-right" data-aos-delay="100">
+                  <img
+                    src="https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20160505_224%2F14624509600533ja86_JPEG%2F176455615259826_0.jpeg"
+                    class="w-100" alt="">
+                </div>
+              </div>
+              <!--텍스트-->
+              <div class="col-4 mt-3">
+                <div class="about-content" data-aos="fade-left" data-aos-delay="100">
+                  <h2>노원구</h2>
+                  <p class="mt-5">이름 : 테스트</p>
+                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+    </section><!-- 병원 섹션 끝 -->
+
+
+    <!-- ======= 유기동물공고 섹션 시작 ======= -->
+    <script defer>
+      fetch("https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20211201&endde=20211231&pageNo=1&numOfRows=3&serviceKey=P36LH6xMMWUnQZoYykW9tu1D59eQQB7BQtYI1PdGjZaUw0PBHdLMn0jtAcqemB3jLvEdSRKz9299iXtaEhQGYQ==&state=protect&neuter_yn=Y&_type=json")
+        .then(response => response.json())
+        .then(petObj => showMessage(petObj.response.body.items.item))
+        .catch(err => alert(err));
+
+      fetch("https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20211201&endde=20211231&pageNo=2&numOfRows=3&serviceKey=P36LH6xMMWUnQZoYykW9tu1D59eQQB7BQtYI1PdGjZaUw0PBHdLMn0jtAcqemB3jLvEdSRKz9299iXtaEhQGYQ==&state=protect&neuter_yn=Y&_type=json")
+        .then(response => response.json())
+        .then(petObj => showMessage2(petObj.response.body.items.item))
+        .catch(err => alert(err));
+
+      fetch("https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic?bgnde=20211201&endde=20211231&pageNo=3&numOfRows=3&serviceKey=P36LH6xMMWUnQZoYykW9tu1D59eQQB7BQtYI1PdGjZaUw0PBHdLMn0jtAcqemB3jLvEdSRKz9299iXtaEhQGYQ==&state=protect&neuter_yn=Y&_type=json")
+        .then(response => response.json())
+        .then(petObj => showMessage3(petObj.response.body.items.item))
+        .catch(err => alert(err));
+
+      function showMessage(petObj) {
+        let element = `<div class="swiper-wrapper">`;
+        for (const iterator of petObj) {
+          element +=
+            "<div class='card' style='margin-left:4%; float:left;'>"
+            + "<img src='" + iterator.popfile + "'class='card-img-top' alt='...' style='height: 320px;' >"
+            + "<div class='card-body'>"
+            + "<h5 class='card-title'><a href='https://map.naver.com/v5/search/" + iterator.happenPlace + "?c=15,0,0,0,dh'>" + iterator.happenPlace + "</a></h5>"
+            + "<p class='card-text'>" + "전화 번호 : " + iterator.careTel + "<br><br>"
+            + "몸무게 : " + iterator.weight + "<br><br>"
+            + "나이 : " + iterator.age + "</p>"
+            + "</div>"
+            + "</div>"
+        };
+        element += `<div>`;
+        document.querySelector('.include').innerHTML = element;
+      }
+      function showMessage2(petObj) {
+        let element = `<div class="swiper-wrapper">`;
+        for (const iterator of petObj) {
+          element +=
+            "<div class='card' style='margin-left:4%; float:left;'>"
+            + "<img src='" + iterator.popfile + "'class='card-img-top' alt='...' style='height: 320px;'>"
+            + "<div class='card-body'>"
+            + "<h5 class='card-title'><a href='https://map.naver.com/v5/search/" + iterator.happenPlace + "?c=15,0,0,0,dh'>" + iterator.happenPlace + "</a></h5>"
+            + "<p class='card-text'>" + "전화 번호 : " + iterator.careTel + "<br><br>"
+            + "몸무게 : " + iterator.weight + "<br><br>"
+            + "나이 : " + iterator.age + "</p>"
+            + "</div>"
+            + "</div>"
+        };
+        element += `<div>`;
+        document.querySelector('.include2').innerHTML = element;
+      }
+      function showMessage3(petObj) {
+        let element = `<div class="swiper-wrapper">`;
+        for (const iterator of petObj) {
+          element +=
+            "<div class='card' style='margin-left:4%; float:left;'>"
+            + "<img src='" + iterator.popfile + "'class='card-img-top' alt='...' style='height: 320px;'>"
+            + "<div class='card-body'>"
+            + "<h5 class='card-title'><a href='https://map.naver.com/v5/search/" + iterator.happenPlace + "?c=15,0,0,0,dh'>" + iterator.happenPlace + "</a></h5>"
+            + "<p class='card-text'>" + "전화 번호 : " + iterator.careTel + "<br><br>"
+            + "몸무게 : " + iterator.weight + "<br><br>"
+            + "나이 : " + iterator.age + "</p>"
+            + "</div>"
+            + "</div>"
+        };
+        element += `<div>`;
+        document.querySelector('.include3').innerHTML = element;
+      }
+    </script>
+    <section id="testimonials" class="testimonials">
+      <header class="section-header">
+        <h3>유기동물 보호센터&nbsp;<i class="fa-solid fa-dog"></i></h3>
+        <p>가족을 찾아주세요</p>
+      </header>
+      <!--배너 슬라이드 시작-->
+      <div class="container ">
+        <div id="myCarousel" class="carousel slide " data-ride="carousel">
+          <!-- Indicators -->
+          <ul class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+          </ul>
+          <!-- The slideshow -->
+          <div class="carousel-inner">
+            <div class="include carousel-item active text-center inc">
+
+            </div>
+            <div class="include2 carousel-item text-center inc">
+
+            </div>
+            <div class="include3 carousel-item text-center inc">
+            </div>
+            <!-- Left and right controls -->
+            <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+              <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#myCarousel" data-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </a>
+          </div>
+        </div>
+    </section><!-- End Testimonials Section -->
+
+
+    <footer class="footer-39201 foot" style="background-color: #e9d0c4;">
+      <div class="container w-75">
+        <div class="row">
+          <div class="col-md mb-4  mt-5 mb-md-0">
+            <h4 class="footer-title">커뮤니티</h4>
+            <ul class="list-unstyled nav-links footer-list">
+              <li><a href="#">공지사항</a></li>
+              <li><a href="#">게시판</a></li>
+              <li><a href="#">문의하기</a></li>
+            </ul>
+          </div>
+          <div class="col-md mb-4  mt-5 mb-md-0">
+            <h4 class="footer-title">시설</h4>
+            <ul class="list-unstyled nav-links footer-list">
+              <li><a href="#">식당</a></li>
+              <li><a href="#">카페</a></li>
+              <li><a href="#">숙박 시설</a></li>
+              <li><a href="#">쇼핑</a></li>
+              <li><a href="#">관광</a></li>
+              <li><a href="#">캠핑장</a></li>
+            </ul>
+          </div>
+          <div class="col-md mb-4 mt-5 mb-md-0">
+            <h4 class="footer-title">24시 운영지점</h4>
+            <ul class="list-unstyled nav-links footer-list">
+              <li><a href="#">카페</a></li>
+              <li><a href="#">병원</a></li>
+              <li><a href="#">특수병원</a></li>
+            </ul>
+          </div>
+          <div class="col-md-4 mb-4 mt-5 mx-5 mb-md-0">
+            <h4 style="color: #a2c2b9;" class="footer-title">시설을 검색해보세요.</h4>
+            <p class="mb-4 mt-xxl-5">지금 리뷰와 함께 반려동물과 함께할 장소를 찾아보세요.</p>
+            <form action="#" class="subscribe">
+              <input type="text" class="form-control mt-xxl-5" placeholder="지금 장소를 찾아보세요">
+              <button class="walk-mate-button mt-5 rounded-2 float-end"><a href="#">바로가기</a></button>
+            </form>
+          </div>
+        </div>
+        <div class="row align-items-center">
+          <div class="col-12">
+            <div class="border-top my-5"></div>
+          </div>
+          <div class="col-md-6">
+            <p><small>@ 2023 pettogether</small></p>
+          </div>
+          <div class="col-md-6 text-md-right">
+            <ul class="social list-unstyled">
+              <li><a href="#"><span class="icon-facebook"></span></a></li>
+              <li><a href="#"><span class="icon-twitter"></span></a></li>
+              <li><a href="#"><span class="icon-pinterest"></span></a></li>
+              <li><a href="#"><span class="icon-instagram"></span></a></li>
+              <li><a href="#"><span class="icon-behance"></span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal fade login" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="padding-bottom:50px;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="post" action="서버의url" id="login-form">
+            <div class="login-wrapper">
+              <h2><img src="assets/img/logo.png"></h2>
+              <input type="text" class="userName" name="userName" placeholder="Email">
+              <input type="password" name="userPassword" placeholder="Password"><br>
+              <input type="submit" value="Login"><br><br>
+              <label for="remember-check">
+                <input type="checkbox" id="remember-check">아이디 저장하기
+              </label><br>
+
+              <a href="#">아이디 찾기</a> |
+              <a href="#">비밀번호 찾기</a> |
+              <a href="#">회원가입</a><br><br>
+              <p>SNS계정으로 간편 로그인</p>
+              <img src="assets/img/naver.png" onclick="javascript:naverLogin();" id="naverIdLogin_loginButton">
+              <img src="assets/img/kakao.png" onclick="javascript:kakaoLogin();" id="kakaoLogin">
+              <img src="assets/img/facebook.png">
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="/assets/vendor/aos/aos.js"></script>
+    <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- login JS File-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <!--카카오톡-->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="kakaoAPI.js"></script>
+    <!--네이버-->
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <script src="naverAPI.js"></script>
+    <!--구글-->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="googleAPI.js"></script>
+
+</html>

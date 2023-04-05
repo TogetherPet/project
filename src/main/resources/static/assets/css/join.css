@@ -1,0 +1,68 @@
+#logo {
+  width: 200px;
+  cursor: pointer;
+}
+
+input:focus {
+  outline:none;
+}
+
+#header {
+  padding-top: 62px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+img{
+  width:100%;
+}
+
+/* 입력폼 */
+#wrapper{
+  width: 550px;
+  text-align: center;
+  border-radius: 6px;
+  padding: 60px 30px;
+ /* border: 1px solid #999999;*/
+  margin: 0 auto;
+  background-color: #f5f6f7;
+}
+
+input, select{
+  width: 450PX;
+  height: 40px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  border: 1px solid #999999;
+}
+
+#yy,#mm,#dd{
+  width: 146px;
+}
+
+input[type="checkbox"]{
+  text-align: left;
+  width: 20px;
+  cursor: pointer;
+  }
+
+label{
+  text-align: left;
+}
+
+/* 버튼 */
+#btnJoin {
+  width: 450px;
+  border: 0;
+  cursor: pointer;
+  color: white;
+  background-color:  #d8a899;
+  font-size: 16px;
+}
+
+
+
+
+

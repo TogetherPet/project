@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: 'Gothic A1', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.facilities-container {
+  width: 900px;
+  margin: 10px auto;
+} 
+
+
+.facilities-img {
+  width: 50%;
+  margin-right: 5px;
+  margin-top: 60px;
+} 
+
+.facilities-info {
+  width: 50%;
+} 
+
+
+#one {
+  display: flex;
+} 
+
+#one img {
+  width: 95%;
+}
+
+.facilities-scmenu {
+  text-align: right;
+  color: gray;
+  font-size: 12px;
+  font-style: bold;
+}
+
+.facilities-name {
+  font-size: 20px;
+  padding-bottom: 5px;
+  border-bottom: 3px solid black;
+}
+
+
+
+
+.facilites-address{
+  font-weight: bold;
+  display: flex;
+  text-align: justify;
+  margin: 0;
+}
+
+#facilites-address {
+  font-size: 15px;
+  margin-bottom: 0;
+  color:gray;
+}
+
+
+
+/*아이콘 세개*/
+
+.info-detail-icon {
+  display: flex;
+  margin-top:30px;
+  margin-left:70px;
+}
+
+.info-detail-icon img{
+  max-width: 50px;
+  margin:0px 10px;
+}
+
+/*하부 페이지 시작*/
+.facilities-text-box{
+  width: 900px;
+  margin:10px auto;
+}
+
+
+.facilities-text-box h4 {
+
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 1px solid lightgray;
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.facilities-text-box img{
+  width:20px;
+}
+
+.comment{
+  margin-bottom:10px;
+}
+
+.id {
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.ment {
+  font-size: 13px;
+  margin-left: 5px;
+}
+
+.deletebutton, .addbutton{
+  font-size:13px;
+  border:none;
+}
+
+.reviewcomment {
+  font-size: 13px;
+  font-weight: bold;
+  color: rgb(151, 143, 143);
+  background-color: rgb(243, 240, 240);
+  margin-top: 20px;
+  padding: 7px;
+  width: 90%;
+  border: 1px solid rgb(243, 240, 240);
+} /* 리뷰 입력창을 위한 CSS*/
+

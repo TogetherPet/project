@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  매퍼 경로 설정  -->                   
+<mapper namespace="together.pet.domain.board.mapper.BoardMapper">
+
+<!--<select id="메소드 이름" parameterType="전달인자" resultType="리턴타입">
+	
+	</select>  -->
+	
+	<insert id="write" parameterType="Post">
+	INSERT INTO post(post_num,post_title,post_content,post_type,id)
+	VALUES (seq_post.nextval, #{postTitle}, #{postContent}, #{postType}, #{id})
+	</insert>
+	
+	<select id="getPostAll" resultType="Post">
+	SELECT POST_NUM, POST_TITLE, POST_TYPE, TO_CHAR(POST_DATE, 'YY"년"MM"월"DD"일" HH:MI'), POST_DATE,ID
+	FROM post
+	</select>
+	
+	<select id="postDetail" resultType="Post">
+	SELECT POST_NUM, POST_CONTENT,POST_TITLE, POST_TYPE, TO_CHAR(POST_DATE, 'YY"년"MM"월"DD"일" HH:MI'), POST_DATE,ID
+	FROM post
+	WHERE post_num = #{value}
+	</select>
+
+</mapper>

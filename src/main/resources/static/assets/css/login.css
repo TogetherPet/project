@@ -1,0 +1,117 @@
+/*e9d0c4-연핑 #d8a899-진핑 #a2c2b9-민트*/
+/* login modal css*/
+.login *{
+  padding: 0;
+  margin: 0;
+  border: none;
+  text-decoration : none;
+}
+
+.login-wrapper body{
+  font-size: 14px;
+}
+
+.login-wrapper input:focus {
+  outline:none;
+}
+
+.login-wrapper{
+  width: 500px;
+  height: 400px;
+  box-sizing: border-box;
+  margin: 30px 0px;
+}
+
+.login-wrapper > h2{
+  text-align: center;
+}
+
+.login-wrapper > h2 > img{ /*로고사진 넣기*/
+  width: 170px;
+}
+
+#login-form{
+  text-align: center;
+  padding-bottom: 50px;
+}  
+
+#login-form > input{ /*아이디, 비밀번호*/
+  width: 300PX;
+  height: 48px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  border: 1px solid #999999;
+}
+
+.userName{
+  border-bottom: none;
+}
+
+#login-form > input::placeholder{
+  color: #999999;
+}
+
+#login-form > input[type="submit"]{ /*로그인버튼*/
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #d8a899;
+  margin-top: 10px;
+}
+
+#login-form > input[type="checkbox"]{
+  display: none;
+}
+
+#login-form > label{ /*아이디저장*/
+  color: gray;
+}
+
+#login-form input[type="checkbox"] + label{
+  cursor: pointer;
+  padding-left: 26px;
+  background-image: url("checkbox.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#login-form input[type="checkbox"]:checked + label{
+  background-image: url("checkbox-active.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  color:white;
+}
+
+#remember-check{
+  padding-top: 20px;
+  accent-color: #d8a899;
+}
+
+.login-wrapper > a:link {
+  text-decoration: none;
+  color: #999999; 
+}
+
+.login-wrapper > :visited{
+  text-decoration: none;
+  color: #999999; 
+}
+
+.login-wrapper > a:hover{ 
+  text-decoration: none;
+  color: #d8a899;
+  font-weight: bold;
+}
+
+.login-wrapper > :active{
+  text-decoration: none;
+  color:#d8a899;
+}
+
+.login-wrapper > img{
+  width: 30px;
+  margin: 0px 10px;
+}

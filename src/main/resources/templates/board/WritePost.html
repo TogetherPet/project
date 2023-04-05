@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>게시판 글쓰기</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+
+<!-- Favicons -->
+<link href="/assets/img/favicon.png" rel="icon">
+<link href="/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap"
+	rel="stylesheet">
+
+<!-- Vendor CSS Files -->
+<link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+<link href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
+<link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+	rel="stylesheet">
+<link href="/assets/vendor/glightbox/css/glightbox.min.css"
+	rel="stylesheet">
+<link href="/assets/vendor/swiper/swiper-bundle.min.css"
+	rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/assets/css/style.css" rel="stylesheet">
+
+
+<!--애견 동반 시설 섹션 아이콘 js-->
+<script src="https://kit.fontawesome.com/b836e111e4.js"
+	crossorigin="anonymous"></script>
+
+<!-- summernote 사용 라이브러리 libraries(jQuery, bootstrap) -->
+<link
+	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<!-- include summernote css/js -->
+<link
+	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/lang/summernote-ko-KR.js"></script>
+
+<!--서머노트 한글화-->
+<script
+	src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+
+</head>
+
+<body>
+<!-- ======= Header ======= -->
+	<header id="header"
+		class="fixed-top d-flex align-items-center header-transparent">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo me-auto">
+				<a href="/pet"><img src="/assets/img/TOGether_PEt_logo.png"
+					alt="" class="logo-img"> </a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			<!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar order-last order-lg-0">
+				<ul>
+					<li><a class="nav-link scrollto" href="#about">소개</a></li>
+					<li><a class="nav-link scrollto " href="#why-us">커뮤니티</a></li>
+					<li class="dropdown scrollto"><a href="#"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="#">식당</a></li>
+							<li><a href="#">카페</a></li>
+							<li><a href="#">쇼핑</a></li>
+							<li><a href="#">숙박시설</a></li>
+							<li><a href="#">관광시설</a></li>
+							<li><a href="#">캠핑장</a></li>
+						</ul></li>
+						
+						<th:block th:if="${session.member == null}">
+						<li><a class="nav-link scrollto desc-left login"
+							data-toggle="modal" data-target="#loginModal">로그인</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+						</th:block>
+						
+						<th:block th:if="${session.member != null}">
+						<li><a class="nav-link scrollto desc-left" th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
+						</th:block>
+						
+						<!-- 오류시 스크립트 창 출력 -->
+						<th:block th:if="${err != null}">
+						<input type="hidden" th:value="${err}" id="err">
+						<script>
+						let err = document.querySelector("#err").value
+						alert(err);
+						</script>
+						</th:block>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav>
+			<!-- .navbar -->
+
+		</div>
+	</header>
+	<!-- End Header -->
+
+	<!-- ======= 글쓰기 섹션 ======= -->
+	<section id="about" class="about m-5 p-0">
+		<div class="row">
+			<div class="col-md-8 m-auto">
+				<h2 class="text-left mb-5" style="margin-top: 100px;">
+					<i class="fa-solid fa-pen"></i> 게시글 쓰기
+				</h2>
+				<form action="/post/write" method="post">
+					<select name="postType" id="type" class="text-center mb-4 fw-bold">
+						<option value="">게시글 타입</option>
+						<option value="hi">공지사항</option>
+						<option value="share">꿀팁공유</option>
+						<option value="share">꿀팁요청</option>
+						<option value="share">자랑</option>
+					</select> <input type="text" placeholder="제목을 입력해주세요"
+						class=" form-control mb-4" name="postTitle">
+					<textarea id="summernote" name="postContent"></textarea>
+					<script>
+						$(document)
+								.ready(
+										function() {
+											$('#summernote')
+													.summernote(
+															{
+																height : 300, // 에디터 높이
+																minHeight : 300, // 최소 높이
+																maxHeight : 300, // 최대 높이
+																focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+																lang : "ko-KR", // 한글 설정
+																placeholder : '최대 2048자까지 작성 가능합니다<br><br><br><br>1.게시판 규칙에 맞게 게시글을 작성해주세요<br>2.규칙이나 게시글 타입이 일치하지 않으면 삭제될 수 있습니다' //placeholder 설정
+															});
+										});
+					</script>
+					<input type="submit" class="walk-mate-button float-end rounded-2"
+						value="글 작성">
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- 애견 동반 시설 섹션 끝-->
+
+
+
+
+	<!-- Vendor JS Files -->
+	<script src="/assets/vendor/purecounter/purecounter_vanilla.js"></script>
+	<script src="/assets/vendor/aos/aos.js"></script>
+	<script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+	<script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+	<script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+	<script src="/assets/vendor/php-email-form/validate.js"></script>
+
+	<!-- Template Main JS File -->
+	<script src="/assets/js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="/assets/css/join.css">
+
+</head>
+<body>
+  <form action="/pet/join" method="post">
+    <div id="header">
+      <a href="main.html" target="_blank" title="네이버 회원가입 페이지 보러가기"><img src="/assets/img/logo.png" id="logo"></a>
+  </div>
+    
+    <!-- wrapper -->
+      <div id="wrapper">
+        <!--id-->
+        <input type="text" name="id" id="id" class="int" value="id" placeholder="아이디"><br>
+        <!--pw-->
+        <input type="password" name="password" id="pswd1" class="int" value="a"  placeholder="비밀번호"><br>
+        <!--pw check-->
+        <input type="password" name="password2" id="pswd2" class="int" value="a" placeholder="비밀번호 확인"><br>
+        <!--name-->
+        <input type="text" name="name" id="name" class="int" value="ㄴ" placeholder="이름"><br>
+        <!--birth-->
+        <input type="text" name="year" id="yy" class="int" placeholder="년(4자)" value="1996">
+        <input type="text" name="month" id="mm" class="int" placeholder="월" value="01">              
+        <input type="text" name="date" id="dd" class="int" placeholder="일" value="04"><br>
+        <select name="gender" id="gender" class="int">
+          <option value="">성별을 선택하세요.</option>
+          <option value="male">남자</option>
+          <option value="female">여자</option>
+        </select><br>
+        <!-- EMAIL -->
+           <input type="email" name="email" id="email" class="int" placeholder="이메일" value="a@naver.com"><br>
+        <!-- MOBILE -->
+            <input type="text" name="phonenum" oninput="phone(this)" maxlength="13" id="mobile" class="int" placeholder="휴대전화"><br>
+        <!-- JOIN BTN-->
+            <input id="btnJoin" type="submit" value="가입하기"></input>
+        </div> 
+       
+  </form>
+
+<script>
+  document.querySelector('form').addEventListener('submit', submitServer)
+
+  function submitServer(event){
+  
+     
+    const form = event.target;
+    let id = form.userId.value;
+    let pwd = form.password.value;
+    let pwd2 = form.password2.value;
+    let name = form.name.value;
+    let yy = form.year.value;
+    let mm = form.month.value;
+    let dd = form.date.value;
+    let email = form.email.value;
+    let mob = form.mobile.value;
+    
+     
+    if(!id){
+      alert("아이디 입력하세요");
+      event.prevenDefault();
+      return false;
+    }
+
+    if(!pwd){
+      alert("비밀번호를 입력하세요");
+      event.prevenDefault();
+      return false;
+    }
+    if(!pwd2 && pwd2 != pwd){
+      alert("비밀번호가 일치하지 않습니다.");
+      event.prevenDefault();
+      return false;
+    }
+  //if(!reg.test(pwd.value)){
+  //  alert("비밀번호는 영문자, 숫자, 특수문자 조합으로 8~25자리 사용해야합니다.");
+  //  return false;
+  //}
+    if(!name){
+      alert("이름을 입력하세요");
+      event.prevenDefault();
+      return false;
+    }
+    if(!mm || !yy || !dd){
+      alert("생년월일를 선택하세요.");
+      event.prevenDefault();
+      return false;
+    }
+    if(yy > 2023){
+      alert("2023 이하의 숫자만 가능합니다.");
+      event.prevenDefault();
+      return false;
+    }
+    if(mm < 1 || mm > 12){
+      alert("1 ~ 12 사이의 숫자여야합니다.");
+      event.prevenDefault();
+      return false;
+    }
+    if(dd < 1 || dd > 31){
+      alert("1 ~ 31 사이의 숫자여야합니다.");
+      event.prevenDefault();
+      return false;
+    }
+
+    if(!email){
+      alert("이메일을 입력하세요.");
+      event.prevenDefault();
+      return false;
+    }
+
+    if(!mob){
+      alert("전화번호를 입력하세요");
+      event.prevenDefault();
+      return false;
+    }
+
+  }
+
+  const phone = (target) => {
+    target.value = target.value
+      .replace(/[^0-9]/g, '')
+      .replace(/^(\d{2,3})(\d{3,4})(\d{4})$/, `$1-$2-$3`);
+   }
+  </script>
+</script>
+    </body>
+</html>
+</body>
+</html>

@@ -1,0 +1,56 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.why-us-content{
+  width:60%;
+  margin:0 auto;
+  position:relative;
+  border:1px solid white;
+  overflow: hidden;
+  padding:10px;
+}
+
+.plus-view{
+  position:absolute;
+  top:20px;
+  right:20px;
+  border:none;
+  color:white;
+  background-color: gray;
+  padding:10px;
+  
+}
+
+.plus-view a{
+  text-decoration:none;
+  color:white;
+}
+
+
+.plus-view a:hover{
+  color:white;
+}
+
+.new-letter li{
+  width:100%;
+  background-color:#d8a899;
+  color:white;
+  padding:2%;
+  margin-top:40px;
+  
+}
+
+
+.why-us-content ul li {
+  width:20%;
+  list-style:none;
+  padding:2%;
+  text-align: center;
+  float: left;
+  border-bottom:1px solid #d8a899;
+  color:gray;
+}
+

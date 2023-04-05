@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  매퍼 경로 설정  -->                   
+<mapper namespace="together.pet.domain.facilities.mapper.FacilitiesMapper">
+
+<!--<select id="메소드 이름" parameterType="전달인자" resultType="리턴타입">
+	
+	</select>  -->
+	
+	<select id="findAll" resultType="Facilities">
+		SELECT *
+		FROM facilities
+		WHERE fac_name LIKE '%24%' AND fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+	</select>
+	<select id="findDetail" parameterType="int" resultType="Facilities">
+		SELECT *
+		FROM facilities
+		WHERE fac_num IN #{num}
+	</select>
+	
+	<select id ="findByretail" parameterType="string" resultType="Facilities">
+		SELECT parking,with_in,with_out,surcharge,admission_fee,pet_size,pet_limit
+		FROM facilities
+		WHERE fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+	</select>
+	
+	<select id ="findByReserveall" resultType="Reserve">
+		SELECT res_num,res_date,res_peoples,fac_num
+		FROM reserve
+		WHERE id = #{value}
+	</select>
+	
+	<insert id ="addReserve" parameterType="Reserve">
+		INSERT INTO reserve(res_num,res_date,res_peoples,fac_num)
+		VALUES(#{resNum},#{resDate},#{resPeoples},#{facNum})
+		WHERE id = #{value}
+	</insert>
+	
+	
+	<delete id ="deleteReserve" parameterType="Reserve">
+		DELETE FROM reserve WHERE ID = 'gmldnjs0060'
+	</delete>
+	
+	
+	
+	<delete id ="editReserve" parameterType="Reserve">
+		 UPDATE reserve
+		 SET res_num = 2
+		 WHERE id = 'gmldnjs0060'
+	 </delete>
+	 
+	 <select id ="findByReviewall" resultType="Facilities">
+		SELECT id,review_date,review_info
+		FROM review
+		WHERE id = 'test'
+	</select>
+
+	
+</mapper>
