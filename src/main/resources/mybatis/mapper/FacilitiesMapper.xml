@@ -10,22 +10,175 @@
 	
 	</select>  -->
 	
-	<select id="findAll" resultType="Facilities">
-		SELECT *
-		FROM facilities
-		WHERE fac_name LIKE '%24%' AND fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+   <!-- 시설 -->
+   		
+   		
+    <!--시설 목록 전체 불러오기(검색 옵션별 적용 전)  --> 
+	<select id="getListPage" parameterType="int" resultType="Facilities">
+	select num,
+	FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+	from(
+	select CEIL(ROWNUM / 9) as num
+	,FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+	from facilities
+	where fac_categories not like '%병원%' and fac_categories not like '%약국%'
+	order by fac_name desc 
+	)
+	where num = #{num}
 	</select>
+	
+	
+	<!--시설 목록 전체 불러오기 페이징 수(검색 옵션별 적용 전) -->
+	<select id="getListCount" resultType="int">
+	select count(*) as totalCount from facilities
+	WHERE fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+	</select>
+   
+   
+   		<!-- 검색 옵션별 클릭 시 목록 불러오기 --> 
+		<select id="findByCity2" parameterType="RequestParams"
+		resultType="Facilities">
+		select num,
+		FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		from(
+		select CEIL(ROWNUM / 9) as num
+		,FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		FROM facilities
+		WHERE
+		fac_city LIKE '%' || #{city} || '%'
+		AND fac_county LIKE '%' || #{county} || '%'
+		AND fac_categories LIKE '%' || #{kind} || '%'
+		AND fac_name LIKE '%' || #{search} || '%'
+		AND fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+		)
+		where num = #{requestPage}
+		</select>
+   
+   
+       <!--검색 옵션별 적용시 목록 페이징 수-->
+		<select id="getListCount2" parameterType="RequestParams"
+		resultType="int">
+		select count(*) 
+		from(
+		select CEIL(ROWNUM / 9) as num
+		,FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		FROM facilities
+		WHERE
+		fac_city LIKE '%' || #{city} || '%'
+		AND fac_county LIKE '%' || #{county} || '%'
+		AND fac_categories LIKE '%' || #{kind} || '%'
+		AND fac_name LIKE '%' || #{search} || '%'
+		AND fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+		)
+		</select>
+   
+   
+	<!--시설 상세 페이지에서 시설의 세부정보를 보여줍니다  --> 	
 	<select id="findDetail" parameterType="int" resultType="Facilities">
 		SELECT *
 		FROM facilities
 		WHERE fac_num IN #{num}
 	</select>
-	
-	<select id ="findByretail" parameterType="string" resultType="Facilities">
-		SELECT parking,with_in,with_out,surcharge,admission_fee,pet_size,pet_limit
-		FROM facilities
-		WHERE fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+
+
+
+	<!-- 병원 -->
+
+	<!--검색 옵션별 적용 전 병원 목록 전체 값 불러오기 -->
+
+	<select id="getListPageHospital" parameterType="int"
+		resultType="Facilities">
+		select num,
+		FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		from(
+		select CEIL(ROWNUM / 9) as num
+		,FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		from facilities
+		where fac_categories like '%병원%' or fac_categories like
+		'%약국%'
+		order by fac_name desc )
+		where num = #{num}
 	</select>
+
+
+	<!-- 검색 옵션별 적용 전 병원 목록 페이징 수 불러오기 -->
+	<select id="getListCountHospital" resultType="int">
+		select count(*) as
+		totalCount from facilities
+		WHERE fac_categories LIKE '%병원%' OR
+		fac_categories LIKE '%약국%'
+	</select>
+
+
+	<!--병원 검색 옵션별 목록 불러오기 -->
+	<select id="findByCityHospital2" parameterType="RequestParams"
+		resultType="Facilities">
+		select num,
+		FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		from(
+		select CEIL(ROWNUM / 9) as num
+		,FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		FROM facilities
+		WHERE
+		fac_city LIKE '%' || #{city} || '%'
+		AND fac_county
+		LIKE '%' || #{county} || '%'
+		<if test="'일반'.equalsIgnoreCase(kind)">
+			AND categories LIKE '%일반%'
+		</if>
+		<if test="'특수'.equalsIgnoreCase(kind)">
+			AND categories LIKE '%가축%' or categories LIKE '%축산%'
+		</if>
+		<if test="'24'.equalsIgnoreCase(kind)">
+			AND fac_name LIKE '%병원%' AND runningtime LIKE '%24%'
+		</if>
+		<if test="'약국'.equalsIgnoreCase(kind)">
+			AND categories LIKE '%약국%'
+		</if>
+		AND fac_name LIKE '%' || #{search} || '%'
+		)
+		where num = #{requestPage}
+	</select>
+
+
+	<!--병원 목록 전체 불러오기 페이징 수(검색 옵션별 적용시) -->
+	<select id="getListCountHospital2" parameterType="RequestParams"
+		resultType="int">
+		select count(*)
+		from(
+		select CEIL(ROWNUM / 9) as num
+		,FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		FROM facilities
+		WHERE
+		fac_city LIKE '%' || #{city} || '%'
+		AND fac_county
+		LIKE '%' || #{county} || '%'
+		<if test="'일반'.equalsIgnoreCase(kind)">
+			AND categories LIKE '%일반%'
+		</if>
+		<if test="'특수'.equalsIgnoreCase(kind)">
+			AND categories LIKE '%가축%' or categories LIKE '%축산%'
+		</if>
+		<if test="'24'.equalsIgnoreCase(kind)">
+			AND fac_name LIKE '%병원%' AND runningtime LIKE '%24%'
+		</if>
+		<if test="'약국'.equalsIgnoreCase(kind)">
+			AND categories LIKE '%약국%'
+		</if>
+		AND fac_name LIKE '%' || #{search} || '%'
+		)
+	</select>
+		
+		
+	<!--병원 상세 페이지에서 시설의 세부정보를 보여줍니다--> 
+	<select id="findHospitalDetail" parameterType="int" resultType="Facilities">
+		SELECT *
+		FROM facilities
+		WHERE fac_num IN #{num}
+	</select>
+
+
+	<!--예약  -->
 	
 	<select id ="findByReserveall" resultType="Reserve">
 		SELECT res_num,res_date,res_peoples,fac_num
@@ -34,10 +187,16 @@
 	</select>
 	
 	<insert id ="addReserve" parameterType="Reserve">
-		INSERT INTO reserve(res_num,res_date,res_peoples,fac_num)
-		VALUES(#{resNum},#{resDate},#{resPeoples},#{facNum})
-		WHERE id = #{value}
+		INSERT INTO reserve(res_num, res_date, res_peoples, id, fac_num)
+		VALUES (seq_res.nextval, #{resDate}, #{resPeoples}, #{id}, #{facNum})
 	</insert>
+	
+	
+	<select id="reserveList" resultType="Reserve">
+		SELECT *
+		FROM reserve
+		WHERE id=#{id} AND fac_num=#{facNum}
+	</select>
 	
 	
 	<delete id ="deleteReserve" parameterType="Reserve">
@@ -45,18 +204,127 @@
 	</delete>
 	
 	
-	
-	<delete id ="editReserve" parameterType="Reserve">
+	<update id ="editReserve" parameterType="Reserve">
 		 UPDATE reserve
 		 SET res_num = 2
 		 WHERE id = 'gmldnjs0060'
-	 </delete>
+	 </update>
 	 
-	 <select id ="findByReviewall" resultType="Facilities">
-		SELECT id,review_date,review_info
+	 <!--리뷰-->
+	 
+	 <!-- 리뷰 전체 모달창에서 받기 -->
+	 <select id ="findByReviewall" resultType="Review">
+		SELECT review_num,id,review_date,review_info,review_grade
 		FROM review
-		WHERE id = 'test'
+		WHERE fac_num = #{value}
 	</select>
+
+	<!-- 상세 페이지에서 리뷰 추가 -->
+	<insert id ="addReview" parameterType = "Review">
+	insert into review(review_num, review_info, review_grade, id, fac_num)
+    VALUES(seq_review.nextVal,#{reviewInfo},#{reviewGrade},#{id},#{facNum})
+
+	</insert>
+   
+    <!-- 리뷰 삭제 -->
+	<delete id ="deleteReview" parameterType="string">
+		DELETE FROM review WHERE id  = #{value}
+	</delete>
+
+
+	<!-- 리뷰 수정 -->
+	<update id="editReview" parameterType="Review">
+		UPDATE review
+		SET review_info = #{reviewInfo}
+		WHERE review_num = #{reviewNum}
+	</update>
+	
+	
+	<!-- 즐찾 등록 -->
+	<insert id="addFavorite">
+		INSERT INTO favorite
+		(id, fac_num)
+		VALUES
+		(#{id}, #{facNum})
+	</insert>
+	
+	
+	<!-- 즐찾 아이디로 검색 -->
+	<select id="findFavoriteById" resultType="favorite">
+		SELECT *
+		FROM favorite
+		WHERE id=#{id} AND fac_num=#{facNum}
+	</select>
+	
+	
+	<!-- 즐찾 삭제 -->
+	<delete id="deleteFavorite">
+		DELETE FROM favorite
+		WHERE id=#{id} AND fac_num=#{facNum}
+	</delete>
+	
+	<select id="hospitalSlide" resultType="Facilities">
+		select num,
+		FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		from(
+		select CEIL(ROWNUM / 4) as num
+		,FAC_NAME,FAC_CATEGORIES,FAC_CITY,FAC_COUNTY,LATITUTE,LONGITUTE,ADD_ROAD,ADD_BASIC,FAC_TEL,FAC_WEBSITE,FAC_HOLIDAY,RUNNINGTIME,PARKING,ADMISSION_FEE,PET_INFO,PET_SIZE,PET_LIMIT,WITH_IN,WITH_OUT,CATEGORIES,SURCHARGE,FAC_NUM
+		from(
+            select *
+            from  facilities
+            order by DBMS_RANDOM.RANDOM
+        ) 
+		where fac_categories like '%병원%'
+		)
+		where num = 1
+	</select>
+	
+		<!--  
+	<select id="findAll" resultType="Facilities">
+		SELECT *
+		FROM facilities
+		WHERE fac_name LIKE #{value} AND fac_categories NOT LIKE '%병원%' AND fac_categories NOT LIKE '%약국%'
+	</select>
+	
+		<select id="findHospitalall" resultType="Facilities">
+		SELECT *
+		FROM facilities
+  		WHERE fac_categories LIKE '%병원%'
+	</select>-->
+	
+		
+	<!-- 
+	<select id="findByCity" parameterType="string" resultType="Facilities">
+      SELECT *
+      FROM facilities
+      WHERE
+	  <!<if test="!'병원'.equalsIgnoreCase(facCatagory)"> -->
+      <!--  
+      fac_city LIKE '%' || #{facCity} || '%' 
+      AND fac_county LIKE '%' || #{facCounty} || '%' 
+      AND fac_categories LIKE '%' || #{facCatagory} || '%' 
+      AND fac_name LIKE '%' || #{search} || '%'—>
+    <!— </if> —>
+  <!— </select>—>
+	
+	
+		<!— 
+	  <select id="findByCityhospital" parameterType="string" resultType="Facilities">
+      SELECT *
+      FROM facilities
+      WHERE
+      <! <if test="'병원'.equalsIgnoreCase(facCatagory)"> —>
+      <!—   fac_city LIKE '%' || #{facCity} || '%' 
+      AND fac_county LIKE '%' || #{facCounty} || '%' 
+      <if test="'축산/가축'.equalsIgnoreCase(facCatagory)">
+       AND categories LIKE '%가축%' or categories LIKE '%축산%'
+      </if>
+      <if test="!'축산/가축'.equalsIgnoreCase(facCatagory)">
+       AND categories LIKE '%' || #{facCatagory} || '%' 
+      </if>
+      AND fac_name LIKE '%' || #{search} || '%'
+      <!</if> —>
+  <!—   </select>—>-->
 
 	
 </mapper>

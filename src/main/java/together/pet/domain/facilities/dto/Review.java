@@ -9,11 +9,10 @@ import lombok.Data;
  */
 @Data
 public class Review {
-	private int review_num ;
-	private String review_info;
-	private Date review_date ;
-	private int	review_grade ;
+	private int reviewNum ;
+	private String reviewInfo;
+	private Date reviewDate ;
+	private int	reviewGrade ;
 	private String 	id ;
-	private int	fac_num ;
-	
+	private int	facNum ;
 }

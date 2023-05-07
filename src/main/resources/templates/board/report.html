@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>community-list</title>
+
+
+
+<!--배너 슬라이드 부트스트랩 링크-->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--슬라이드 부트스트랩 링크 끝-->
+
+
+
+<!--font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap"
+	  rel="stylesheet">
+
+
+<!--헤더 제어 -->
+<link href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+	  rel="stylesheet">
+<link href="/assets/css/community-list-detail.css" rel="stylesheet">
+
+<!-- Template Main CSS File -->
+<link href="/assets/css/style.css" rel="stylesheet">
+
+<style>
+/* 슬라이드 사이즈 */
+.carousel-inner img {
+	width: 100%;
+	height: 100%;
+}
+
+.post_box{
+width:100%;
+margin:0;
+}
+
+#postReportModal img{
+max-width: 400px;
+max-height: 400px;
+}
+
+#postReportModal iframe{
+max-width: 400px;
+max-height: 400px;
+}
+</style>
+
+</head>
+
+<body>
+
+	<!-- ======= Header ======= -->
+	<header id="header"
+		class="fixed-top d-flex align-items-center header-transparent">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo me-auto">
+				<a href="/pet"><img src="/assets/img/TOGether_PEt_logo.png"
+					alt="" class="logo-img"> </a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			 <!--  <a href="index.html" class="logo me-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar order-last order-lg-0">
+				<ul>
+				
+					<li class="dropdown scrollto"><a href="#features"><span>병원</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/hospital/1">병원/약국 전체보기</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
+						</ul></li>
+					
+					
+					
+					
+					<li class="dropdown scrollto"><a href="#why-us"><span>커뮤니티</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+						
+							<li><a href="/board/1">최신글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=인기글">인기글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
+						</ul></li>
+					
+					<li class="dropdown scrollto"><a href="#services"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/1">시설 전체보기</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
+						</ul></li>
+
+					<th:block th:if="${session.member == null}">
+						<li><a class="nav-link scrollto desc-left login"
+							data-toggle="modal" data-target="#loginModal">로그인</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+					</th:block>
+
+					<th:block th:if="${session.member != null}">
+						<li><a class="nav-link scrollto desc-left"
+						href="/pet/mypage"
+							th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
+					</th:block>
+
+					<!-- 오류시 스크립트 창 출력 -->
+					 <th:block th:if="${err != null}">
+						<input type="hidden" th:value="${err}" id="err">
+						<script>
+							let err = document.querySelector("#err").value
+							alert(err);
+						</script>
+					</th:block>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav>
+		
+
+		</div>
+	</header>
+	<!-- End Header -->
+
+
+
+
+
+
+	<div class="community-main" style="margin-top: 200px;">
+	   <div class="why-us-content" style="width: 100%;">
+	<!-- 게시글 신고 시작 -->
+		  <h4>게시글 신고</h4>
+			<label class="row">
+				<table>
+					<tr>
+						<th>게시글번호</th>
+						<th>제목/상세내용</th>
+						<th>신고내용</th>
+						<th>신고자아이디</th>
+						<th>신고 날짜</th>
+					</tr>
+					<tr th:each="list : ${post}">
+						<td th:text="${list.postNum}">12</td>
+						<td class="PostTitle">
+						<a class="nav-link scrollto desc-left login" data-toggle="modal"
+							data-target="#postReportModal"
+							th:data-type="${list.postType}"
+							th:data-title="${list.postTitle}"
+							th:data-id="${list.id}"
+							th:data-date="${list.postDate}"
+							th:data-content="${list.postContent}"
+							th:data-postNum="${list.postNum}"
+							th:data-reportNum="${list.reportNum}"
+							th:onclick="'postReportModal(this)'"
+							th:text="${list.postTitle}">
+							</a>
+						</td>
+						<td th:text="${list.reportReason}">유해성</td>
+						<td th:text="${list.reportId}">ysw7109</td>
+						<td th:text="${list.reportDate}">ysw7109</td>
+					</tr>
+				</table>
+			</label>
+		<!-- 게시글 신고 종료 -->
+		
+		<!-- 댓글 신고 시작 -->
+			<h4>댓글 신고</h4>
+			<label class="row">
+				<table>
+					<tr>
+						<th>댓글번호</th>
+						<th>댓글내용</th>
+						<th>신고내용</th>
+						<th>신고자아이디</th>
+						<th>신고 날짜</th>
+					</tr>
+					<tr th:each="list : ${reply}">
+						<td th:text="${list.commentNum}">12</td>
+						<td class="PostTitle"><a
+							class="nav-link scrollto desc-left login" 
+							data-toggle="modal"
+							th:data-id="${list.id}"
+							th:data-date="${list.commentDate}"
+							th:data-content="${list.commentContent}"
+							th:data-commentNum="${list.commentNum}"
+							th:data-reportNum="${list.reportNum}"
+							th:onclick="'replyReportModal(this)'"
+							data-target="#replyReportModal"
+							>상세내용보기</a></td>
+						<td th:text="${list.reportReason}">상세 내용 확인</td>
+						<td th:text="${list.reportId}">신고자 아이디</td>
+						<td th:text="${list.reportDate}"}>신고 날짜</td>
+					</tr>
+				</table>
+			</label>
+		 <!-- 댓글 신고 종료 -->
+		</div>
+	</div>
+	<!-- 메인 섹션 종료 -->
+
+
+	<!-- 게시글 모달 사용 스크립트 -->
+    <script>
+    //버튼을 눌러 모달창을 호출할때, onclick 속성으로 해당 함수를 호출합니다
+    //타입, 제목, 아이디, 작성일자, 게시글 내용
+    function postReportModal(button) {
+    	//th:data ~ 속성의 값을 호출하여, 데이터를 가져옵니다
+        const type = button.dataset.type;
+        const title = button.dataset.title;
+        const id = button.dataset.id;
+        const date = button.dataset.date;
+        const content = button.dataset.content;
+        const postNum = button.dataset.postnum;
+        const reportNum = button.dataset.reportnum;
+    
+    //가져온 데이터를 입력합니다
+    document.querySelector("#postType").innerHTML = type+"게시판";
+
+    document.querySelector("#postTitle").innerHTML = title;
+
+    document.querySelector("#postId").innerHTML = id;
+
+    document.querySelector("#postDate").innerHTML = "작성 일자 : "+date;
+
+    document.querySelector("#postContent").innerHTML = content;
+	
+    //게시글 삭제 경로를 지정합니다
+    document.querySelector("#deletePost").setAttribute('action', "/board/delet/post/"+postNum);
+    
+    //신고 삭제 경로를 지정합니다
+    document.querySelector("#deletePostReport").setAttribute('action', "/board/delet/report/"+reportNum);
+    }
+    </script>
+	<!-- 게시글 신고 모달 -->
+	<div class="modal fade login" id="postReportModal" tabindex="-1"
+		role="dialog" aria-labelledby="postReportModal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content" style="padding-bottom: 50px;">
+				<!-- 모달 헤더 시작 -->
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<!-- 모달 헤더 종료 -->
+				<label for="post">
+					<div class="post_box row">
+						<!-- 헤더 시작-->
+						<div class="post_header">
+							<p class="post_category" id="postType">@@@게시판</p>
+							<p class="post_title" id="postTitle">게시글 제목</p>
+							<hr>
+							<p class="post_writer" id="postId">아이디</p>
+							<hr>
+							<p class="post_date">
+								<span id="postDate">작성일자</span>
+							</p>
+							<hr>
+						</div>
+						<!-- 헤더 종료 -->
+						<div>
+							<p id="postContent">게시글 내용</p>
+						</div>
+					</div>
+				</label> 
+				<label class="text-center mt-3" for="form">
+				<!-- 게시글과 댓글 삭제 링크는, 스크립트에서 데이터를 받아와 입력합니다-->
+					<form method="post"
+							id="deletePost"
+							style="width:40%; float: left;"
+							onclick="return confirm('해당 게시글을 삭제하시겠습니까? 삭제시, 게시글의 댓글이 모두 삭제됩니다.')"> 
+							<input type="hidden" name="_method" value="delete" />
+						<button>게시글 삭제하기</button>
+					</form> 
+					<form method="post" 
+						 	action="/pet/login" id="deletePostReport"
+					 		style="width:40%; float: left;"
+							onclick="return confirm('해당 게시글 신고를 취소하시겠습니까?')"> 
+							<input type="hidden" name="_method" value="delete"> 
+						<button>신고 접수 취소</button>
+					</form>
+				</label>
+			</div>
+		</div>
+	</div>
+	<!-- 게시글 신고 모달 종료 -->
+	
+	
+	<!-- 댓글 신고 스크립트 -->
+	<script>
+   function replyReportModal(button) {
+  	//데이터를 받아옴
+ 	 //변환시 소분자로 일괄 변경됩니다. 주의할것
+    const id = button.dataset.id;
+    const date = button.dataset.date;
+    const content = button.dataset.content;
+    const commentNum = button.dataset.commentnum;
+    const reportNum = button.dataset.reportnum;
+    console.log(commentNum);
+
+//텍스트 추가
+document.querySelector("#commentId").innerHTML = "아이디 : "+id;
+
+document.querySelector("#commentContent").innerHTML = "댓글 내용 : "+content;
+
+document.querySelector("#commentDate").innerHTML = "작성 일자 : "+date;
+
+document.querySelector("#deleteReply").setAttribute('action', "/board/delet/reply/"+commentNum);
+
+document.querySelector("#deleteRepltReport").setAttribute('action', "/board/delet/report/"+reportNum);
+}
+</script>
+	<!-- 댓글 신고 모달 -->
+	<div class="modal fade login" id="replyReportModal" tabindex="-1"
+		role="dialog" aria-labelledby="replyReportModal" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content" style="padding-bottom: 50px;">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"></h5>
+					<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<label>
+					<div class="post_box row">
+						<div class="post_header">
+							<p class="post_writer" id="commentId">아이디</p>
+							<hr>
+							<p class="post_writer" id="commentContent">댓글내용</p>
+							<hr>
+							<p class="post_writer" id="commentDate">작성일자</p>
+						</div>
+					</div>
+				</label> 
+				<label class="text-center mt-3"> 
+				<form method="post"
+					  id="deleteReply"
+					  style="width:40%; float: left;"
+					  onclick="return confirm('해당 댓글을 삭제하시겠습니까?')"> 
+						<input type="hidden" name="_method" value="delete"> 
+					<button>댓글 삭제하기</button>
+				</form> 
+				<form method="post" 
+					  action="/pet/login" 
+					  id="deleteRepltReport"
+					  style="width:40%; float: left;"
+					  onclick="return confirm('해당 댓글 신고를 취소하시겠습니까?')"> 
+						<input type="hidden" name="_method" value="delete"> 
+					<button>신고 접수 취소</button>
+				</form>
+				</label>
+			</div>
+		</div>
+	</div>
+	<!--댓글 신고 모달 종료-->
+
+</body>
+</html>

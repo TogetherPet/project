@@ -50,21 +50,27 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="/text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-
-</head>
-
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 
 <!--하트 변경-->
-<script>
+<script defer>
+  /*시설 예약 섹션 스크립트*/
+  $(function() {
+  $('input[name="daterange"]').daterangepicker({
+    opens: 'left'
+  }, function(start, end, label) {
+    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+  });
+});
+  
   var cnt = 2;
   function imgToggle() {
     var img1 = document.getElementById("img1");
     if (cnt % 2 == 1) {
-      img1.src = "assets/img/heart.png";
+      img1.src = "/assets/img/heart.png";
     } else {
-      img1.src = "assets/img/lover.png";
+      img1.src = "/assets/img/lover.png";
     }
     cnt++;
   }
@@ -74,18 +80,94 @@
     document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
   }
 
-  /*시설 예약 섹션 스크립트*/
-  $(function() {
-  $('input[name="daterange"]').daterangepicker({
-    opens: 'left'
-  }, function(start, end, label) {
-    console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-  });
-});
 </script>
+</head>
 
 
-<body>
+<body style="margin-top: 100px;">
+
+	<!-- ======= Header ======= -->
+	<header id="header"
+		class="fixed-top d-flex align-items-center header-transparent">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo me-auto">
+				<a href="/pet"><img src="/assets/img/TOGether_PEt_logo.png"
+					alt="" class="logo-img"> </a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			 <!--  <a href="index.html" class="logo me-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar order-last order-lg-0">
+				<ul>
+				
+					<li class="dropdown scrollto"><a href="#features"><span>병원</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/hospital/1">병원/약국 전체보기</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
+						</ul></li>
+					
+					
+					
+					
+					<li class="dropdown scrollto"><a href="#why-us"><span>커뮤니티</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+						
+							<li><a href="/board/1">최신글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=인기글">인기글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
+						</ul></li>
+					
+					<li class="dropdown scrollto"><a href="#services"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/1">시설 전체보기</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
+						</ul></li>
+
+					<th:block th:if="${session.member == null}">
+						<li><a class="nav-link scrollto desc-left login"
+							data-toggle="modal" data-target="#loginModal">로그인</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+					</th:block>
+
+					<th:block th:if="${session.member != null}">
+						<li><a class="nav-link scrollto desc-left"
+						
+							th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
+					</th:block>
+
+					<!-- 오류시 스크립트 창 출력 -->
+					 <th:block th:if="${err != null}">
+						<input type="hidden" th:value="${err}" id="err">
+						<script>
+							let err = document.querySelector("#err").value
+							alert(err);
+						</script>
+					</th:block>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav>
+		
+
+		</div>
+	</header>
+	<!-- End Header -->
+
 
   <section>
 
@@ -97,8 +179,9 @@
 
       <div class="facilities-info">
         <br>
-        <p class="facilities-scmenu">홈 > 애견 동반 시설 > 미용 > 미용시설이름</p>
-
+        <div>
+          <p class="facilities-scmenu">홈 > 애견 동반 시설 > <span th:text="${facilityNum.facCategories}">미용</span> > <span th:text="${facilityNum.facName}">미용시설이름</span></p>
+        </div>
        <h2 class="facilities-name" th:text=${facilityNum.facName}>미용시설이름</h2>
 
         <dl>
@@ -126,8 +209,29 @@
         <dl>
           <dt class="info-detail-icon">
             <!--<a href="#"><img src="assets/img/heart.png" onmouseover="this.src='assets/img/lover.png'" class="icon-img01" ></a>-->
-            <img onclick="imgToggle()" id="img1" src="/assets/img/heart.png" class="icon-img01" data-toggle="modal"
+            <th:block th:if="${existId.equals('existId')}" >
+            
+            <th:block th:if="${isExist.equals('noExist')}">
+            <a th:href="@{/facilities/favorite/{num}(num=${facilityNum.facNum})}">
+            <img id="img1" src="/assets/img/heart.png" class="icon-img01" data-toggle="modal"
               data-target="#favoriteModal">
+              </a>
+             </th:block>
+             
+             <th:block th:if="${isExist.equals('exist')}">
+            <a th:href="@{/facilities/favorite/delete/{num}(num=${facilityNum.facNum})}">
+            <img id="img1" src="/assets/img/lover.png" class="icon-img01" data-toggle="modal"
+              data-target="#favoriteModal">
+              </a>
+             </th:block>
+             
+             </th:block>
+             
+           <th:block th:if="${existId.equals('noId')}" >
+             <img id="img1" src="/assets/img/heart.png" class="icon-img01" data-toggle="modal"
+              data-target="#favoriteModal">
+             </th:block>
+              
               <!-- 즐겨찾기 모달-->
             <div class="modal fade align-items-center" id="favoriteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
               aria-hidden="true">
@@ -140,56 +244,83 @@
                     </button>
                   </div>
                   <div class="favoriteMdb modal-body p-4">
-                   목록에 추가되었습니다 ! 즐겨찾기 목록으로 이동하시겠어요?
+                   로그인 후 이용 가능합니다. 로그인하시겠습니까?
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="favoriteMf btn btn-primary" style=" background-color: #d8a899; border:none;">예</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">아니오</button>
+                    <button type="button" class="favoriteMf btn btn-primary" style=" background-color: #d8a899; border:none;">
+                    <a class="nav-link scrollto desc-left login" data-toggle="modal" data-target="#loginModal">예</a>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><a href="/facilities/list">아니오</a></button>
                   </div>
                 </div>
               </div>
             </div>
 
-            <a href="#"><img src="/assets/img/location.png" class="icon-img02"></a>
+            <a href="#map"><img src="/assets/img/location.png" class="icon-img02"></a>
+            
+            
             <a href="#"> <img src="/assets/img/review.png" class="icon-img03" data-bs-toggle="modal"
                 data-bs-target="#staticBackdrop"></a>
 
-            <!--리뷰 모달창-->
+                    <!--리뷰 모달창-->
             <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
               aria-labelledby="staticBackdropLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg modal-dialog-centered">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h1 class="modal-title fs-5" id="staticBackdropLabel">리뷰작성</h1>
+                   
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
-                  <form>
-                    <div class="modal-body">
-                      <span>어땠나요?</span>
-                      <span class="star">
-                        ★★★★★
-                        <span>★★★★★</span>
-                        <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
-                      </span><br>
-
-                      <span>후기를 써주세요</span><br>
-                      <textarea placeholder="방문하신 후기를 20자 이상 남겨주시면 다른 방문자들에게도 도움이 됩니다."></textarea><br>
-
-                      <span>사진을 올려주세요 (선택)</span><br>
-                      <input type="file" multiple="multiple" name="file" id="file">
-                      <input type="submit" value="작성 완료">
-                  </form>
+                  
+                  
+                  <form method="post" action="/facilities/detail/review" id=review-form>
+                <div class="modal-body">
+                <input type="hidden" name="facNum" th:value="${facilityNum.facNum}"> 
+                  <span>어땠나요?</span>
+                  <span class="star">
+                    ★★★★★
+                    <span>★★★★★</span>
+                    <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10" name="reviewGrade">
+                  </span><br>
+                <!--   	<span class="star">
+  					<span class="id" th:text="${review.reviewGrade}">
+    				<script>
+     				 // 이 부분에서 별점 데이터를 읽어서 별 모양을 그립니다.
+     			 drawStar(document.querySelector('input[name="reviewGrade"]'));
+   				 </script>
+  				</span>
+  				<span>0/5</span>
+				</span>  -->
+        
+                  <span>후기를 써주세요</span><br>
+                  <textarea placeholder="방문하신 후기를 20자 이상 남겨주시면 다른 방문자들에게도 도움이 됩니다." name="reviewInfo"></textarea><br>
+        
+                  <span>사진을 올려주세요 (선택)</span><br>
+                  <input type="file" multiple="multiple" name="file" id="file">
+                  <input type="submit" value="작성 완료">
+                </form>
+                  
+                  
                 </div>
               </div>
             </div>
           </div>
+          
 
 
-      <!-- 예약 아이콘 -->
-      <a href="#"> <img src="/assets/img/reservation.png" class="icon-img03" data-bs-toggle="modal"
+          <th:block th:if="${session.member == null}">
+            
+          </th:block>
+
+          <th:block th:if="${session.member != null}">
+         
+        <!-- 예약 아이콘 -->
+         <a><img src="/assets/img/reservation.png" class="icon-img03" data-bs-toggle="modal"
           data-bs-target="#facilityModal"></a>
 
       <!-- 시설 예약 -->
+      <form th:action="@{/facilities/reserve/{num}(num=${facilityNum.facNum})}">
       <div class="modal fade facility" id="facilityModal" tabindex="-1" aria-labelledby="facilityModal" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -200,14 +331,21 @@
             <!--body-->
             <div class="modal-body">
               <img src="/assets/img/logo.png" style="width: 150px;"><br><br>
-              <span>예약자</span><input type="text" name="name" id="name" placeholder="홍길동"><br><br>
-              <span>예약 인원 수</span><input type="number" name="count" id="count" min="0" max="10" placeholder="1"><br><br>
-              <span>예약일자</span><input type="text" name="daterange" id="date" value="04/01/2023" placeholder="날짜선택" />
-              <input type="submit" id="reserve" value="예약하기"><br><br>
+              <span>예약 아이디</span><input type="text" name="name2" id="name" th:value="${session.member.id}" readonly><br><br>
+              <span>예약 인원 수</span><input type="number" name="count" id="count" min="0" max="10" placeholder="인원선택"><br><br>
+              <span>예약일자</span><input type="text" name="daterange" id="date" value="04/01/2023" placeholder="날짜선택" readonly/>
+              <input type="hidden" name="num2" th:value="${facilityNum.facNum}">
+              <input type="submit" id="reserve" value="예약하기" class="reserve"><br><br>
+              
             </div>
+            
           </div>
         </div>
       </div>
+      </form>
+              
+      
+ </th:block>
 
       </dt>
       </dl>
@@ -217,54 +355,100 @@
 
 
 
-  <section class="facilities-text-box">
+  	<section class="facilities-text-box">
 
-    <h4 class="facilities-text-box00"><img src="/assets/img/bone.png" class="icon-img-detail" alt="..."> 리뷰</h4>
+		<h4 class="facilities-text-box00">
+			<img src="/assets/img/bone.png" class="icon-img-detail" alt="...">
+			리뷰
+		</h4>
 
-    <div class="Allcomment">
-      <div class="comment">
-        <span class="id">tan</span>
-        <span class="ment">굿굿</span>
-        <button class="deletebutton">삭제</button>
-        <a href="#" class="commentheart"><i class="far fa-heart"></i></a>
-      </div>
 
-      <div class="comment">
-        <span class="id">탄2</span>
-        <span class="ment">오예</span>
-        <button class="deletebutton">삭제</button>
-        <a href="#" class="commentheart"><i class="far fa-heart hearts"></i></a>
-      </div>
-
-      <div class="comment">
-        <span class="id">탄3</span>
-        <span class="ment">오예에
-        </span>
-        <button class="deletebutton">삭제</button>
-        <a href="#" class="commentheart"><i class="far fa-heart"></i></a>
-      </div>
+<div class="Allcomment" th:each="review : ${reviewList}">
+    <div class="comment">
+        <span class="id" th:text="${review.id}">tan</span> 
+        <span class="id" th:text="${review.reviewDate}">00.00.00</span>
+         <span class="id" th:text="|${review.reviewGrade}점|"> ★★★★★</span>
+        
+        
+        <div th:if="${session.member != null and session.member.id == review.id}">
+            <!-- 사용자가 작성한 리뷰일 경우 -->
+            <form th:action="@{/facilities/edit/review/{reviewNum}(reviewNum = ${review.reviewNum})}"
+                  method="post">
+                <input class="ment" th:value="${review.reviewInfo}" name="reviewInfo"></input>
+                <button class="editbutton" type="submit">수정</button>
+            </form>
+            
+            <form th:action="@{/facilities/delete/review/{id}(id = ${review.id})}" method="post">
+                <input type="hidden" name="_method" value="delete" />
+                <button class="deletebutton" >삭제</button>
+            </form>
+        </div>
+        
+        <div th:if="${session.member == null}">
+            <!-- 로그인하지 않은 경우  --> 
+            <form th:action="@{/facilities/edit/review/{reviewNum}(reviewNum = ${review.reviewNum})}"
+                  method="post">
+                <input class="ment" th:value="${review.reviewInfo}" name="reviewInfo" readonly></input>
+            </form>
+        </div>
+        
+        <div th:if="${session.member != null and session.member.id != review.id}">
+            <!--  다른 사용자가 작성한 리뷰일 경우 -->
+            <form th:action="@{/facilities/edit/review/{reviewNum}(reviewNum = ${review.reviewNum})}"
+                  method="post">
+                <input class="ment" th:value="${review.reviewInfo}" name="reviewInfo" readonly></input>
+            </form>
+        </div>
     </div>
-
-    <input text="" placeholder="리뷰를 입력해주세요" class="reviewcomment" onkeyup="if(window.event.keyCode==13){test()}">
-    <button class="addbutton">등록</button>
+</div>
 
 
     <div class="facilities-text-box01">
       <h4> <img src="/assets/img/bone.png" class="icon-img-detail" alt="...">
         상세정보</h4>
-      <p>임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는
-        글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글</p>
+      <p>주소 : <span th:text="${facilityNum.addBasic}"></span></p>
+      <p>분류 : <span th:text="${facilityNum.facCategories}"></span></p>
+      <p>연락처 : <span th:text="${facilityNum.facTel}"></span></p>
+      <p>홈페이지 : <a th:href="@{facilityNum.facWebsite}"><span th:text="${facilityNum.facWebsite}"></span></a></p>
+      <p>공휴일 : <span th:text="${facilityNum.facHoliday}"></span></p>
+      <p>영업시간 : <span th:text="${facilityNum.runningtime}"></span></p>
+      <p>주차여부 : <span th:text="${facilityNum.parking}"></span></p>
+      <p>출입가능 반려견 크기 : <span th:text="${facilityNum.petSize}"></span></p>
+      <p>petinfo : <span th:text="${facilityNum.petInfo}"></span></p>
+      <p>제한사항 : <span th:text="${facilityNum.petLimit}"></span></p>
+      <p>이용요금 : <span th:text="${facilityNum.admissionFee}"></span></p>
+      <p><span th:text="${facilityNum.withIn}"></span>, <span th:text="${facilityNum.withOut}"></span></p>
+    	<input type="hidden" id="latitute" th:value="${facilityNum.latitute}">
+      <input type="hidden" id="longitute" th:value="${facilityNum.longitute}">
     </div>
     <div class="facilities-text-box02">
       <h4> <img src="/assets/img/bone.png" class="icon-img-detail" alt="...">
-        정책 및 주의사항 </h4>
-      <p>임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는
-        글임시로 넣는 글임시로 넣는 글임시로 넣는 글임시로 넣는 글</p>
-    </div>
-    <div class="facilities-text-box03">
-      <h4> <img src="/assets/img/bone.png" class="icon-img-detail" alt="...">
         위치보기</h4>
-      <p>지도칸</p>
+      <p style="height:400px;" id="map">지도칸
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9db95ba29e36e955f6985e728a7b2636"></script>
+        <script defer>
+        let latitute = document.getElementById('latitute').value;
+        let longitute =  document.getElementById('longitute').value;
+        var container = document.getElementById('map');
+        var options = {
+          center: new kakao.maps.LatLng(latitute, longitute),
+          level: 3
+        };
+        var map = new kakao.maps.Map(container, options);
+        
+           // 마커가 표시될 위치입니다 
+        var markerPosition  = new kakao.maps.LatLng(latitute, longitute); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+    
+     </script>
+      </p>
     </div>
 
 
@@ -277,6 +461,42 @@
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
   
+
+
+
+ <!-- Modal -->
+    <div class="modal fade login" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="padding-bottom:50px;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="post" action="/pet/login" id="login-form">
+            <div class="login-wrapper">
+              <h2><img src="assets/img/logo.png"></h2>
+              <input type="text" class="userName" name="id" placeholder="Email">
+              <input type="password" name="password" placeholder="Password"><br>
+              <input type="submit" value="Login"><br><br>
+              <label for="remember-check">
+                <input type="checkbox" id="remember-check">아이디 저장하기
+              </label><br>
+
+              <a href="#">아이디 찾기</a> |
+              <a href="#">비밀번호 찾기</a> |
+              <a href="#">회원가입</a><br><br>
+              <p>SNS계정으로 간편 로그인</p>
+              <img src="assets/img/naver.png" onclick="javascript:naverLogin();" id="naverIdLogin_loginButton">
+              <img src="assets/img/kakao.png" onclick="javascript:kakaoLogin();" id="kakaoLogin">
+              <img src="assets/img/facebook.png">
+          </form>
+
+        </div>
+      </div>
+    </div>
 
 
 </body>

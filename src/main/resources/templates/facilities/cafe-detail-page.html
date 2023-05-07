@@ -73,6 +73,88 @@ integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG
 
 
 <body>
+	<!-- ======= Header ======= -->
+	<header id="header"
+		class="fixed-top d-flex align-items-center header-transparent">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo me-auto">
+				<a href="/pet"><img src="/assets/img/TOGether_PEt_logo.png"
+					alt="" class="logo-img"> </a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			 <!--  <a href="index.html" class="logo me-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar order-last order-lg-0">
+				<ul>
+				
+					<li class="dropdown scrollto"><a href="#features"><span>병원</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/hospital/1">병원/약국 전체보기</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
+						</ul></li>
+					
+					
+					
+					
+					<li class="dropdown scrollto"><a href="#why-us"><span>커뮤니티</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+						
+							<li><a href="/board/1">최신글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=인기글">인기글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
+						</ul></li>
+					
+					<li class="dropdown scrollto"><a href="#services"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/1">시설 전체보기</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
+						</ul></li>
+
+					<th:block th:if="${session.member == null}">
+						<li><a class="nav-link scrollto desc-left login"
+							data-toggle="modal" data-target="#loginModal">로그인</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+					</th:block>
+
+					<th:block th:if="${session.member != null}">
+						<li><a class="nav-link scrollto desc-left"
+						href="/pet/mypage"
+							th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
+					</th:block>
+
+					<!-- 오류시 스크립트 창 출력 -->
+					 <th:block th:if="${err != null}">
+						<input type="hidden" th:value="${err}" id="err">
+						<script>
+							let err = document.querySelector("#err").value
+							alert(err);
+						</script>
+					</th:block>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav>
+		
+
+		</div>
+	</header>
+	<!-- End Header -->
+	
   <section>
     <div class="facilities-container" id="one">
 

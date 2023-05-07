@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -63,8 +63,9 @@
 
 </head>
 
+
 <body>
-<!-- ======= Header ======= -->
+	<!-- ======= Header ======= -->
 	<header id="header"
 		class="fixed-top d-flex align-items-center header-transparent">
 		<div class="container d-flex align-items-center">
@@ -73,67 +74,97 @@
 					alt="" class="logo-img"> </a>
 			</h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+			 <!--  <a href="index.html" class="logo me-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
 			<nav id="navbar" class="navbar order-last order-lg-0">
 				<ul>
-					<li><a class="nav-link scrollto" href="#about">소개</a></li>
-					<li><a class="nav-link scrollto " href="#why-us">커뮤니티</a></li>
-					<li class="dropdown scrollto"><a href="#"><span>시설</span>
+				
+					<li class="dropdown scrollto"><a href="#features"><span>병원</span>
 							<i class="bi bi-chevron-down"></i></a>
 						<ul>
-							<li><a href="#">식당</a></li>
-							<li><a href="#">카페</a></li>
-							<li><a href="#">쇼핑</a></li>
-							<li><a href="#">숙박시설</a></li>
-							<li><a href="#">관광시설</a></li>
-							<li><a href="#">캠핑장</a></li>
+							<li><a href="/facilities/listpage/hospital/1">병원/약국 전체보기</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
 						</ul></li>
+					
+					
+					
+					
+					<li class="dropdown scrollto"><a href="#why-us"><span>커뮤니티</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
 						
-						<th:block th:if="${session.member == null}">
+							<li><a href="/board/1">최신글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=인기글">인기글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
+						</ul></li>
+					
+					<li class="dropdown scrollto"><a href="#services"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/1">시설 전체보기</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
+						</ul></li>
+
+					<th:block th:if="${session.member == null}">
 						<li><a class="nav-link scrollto desc-left login"
 							data-toggle="modal" data-target="#loginModal">로그인</a></li>
 						<li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
-						</th:block>
-						
-						<th:block th:if="${session.member != null}">
-						<li><a class="nav-link scrollto desc-left" th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
+					</th:block>
+
+					<th:block th:if="${session.member != null}">
+						<li><a class="nav-link scrollto desc-left"
+						href="/pet/mypage"
+							th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
 						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
-						</th:block>
-						
-						<!-- 오류시 스크립트 창 출력 -->
-						<th:block th:if="${err != null}">
+					</th:block>
+
+					<!-- 오류시 스크립트 창 출력 -->
+					 <th:block th:if="${err != null}">
 						<input type="hidden" th:value="${err}" id="err">
 						<script>
-						let err = document.querySelector("#err").value
-						alert(err);
+							let err = document.querySelector("#err").value
+							alert(err);
 						</script>
-						</th:block>
+					</th:block>
 				</ul>
 				<i class="bi bi-list mobile-nav-toggle"></i>
 			</nav>
-			<!-- .navbar -->
+		
 
 		</div>
 	</header>
 	<!-- End Header -->
 
 	<!-- ======= 글쓰기 섹션 ======= -->
-	<section id="about" class="about m-5 p-0">
+	<!-- 수정 정보가 없을경우, 해당 기능이 동작합니다 -->
+	<section id="about" class="about m-5 p-0" th:if="${postDetail == null}">
 		<div class="row">
 			<div class="col-md-8 m-auto">
 				<h2 class="text-left mb-5" style="margin-top: 100px;">
-					<i class="fa-solid fa-pen"></i> 게시글 쓰기
+				   <i class="fa-solid fa-pen"></i> 게시글 쓰기
 				</h2>
-				<form action="/post/write" method="post">
+				<form action="/board/write" method="post">
 					<select name="postType" id="type" class="text-center mb-4 fw-bold">
-						<option value="">게시글 타입</option>
-						<option value="hi">공지사항</option>
-						<option value="share">꿀팁공유</option>
-						<option value="share">꿀팁요청</option>
-						<option value="share">자랑</option>
-					</select> <input type="text" placeholder="제목을 입력해주세요"
-						class=" form-control mb-4" name="postTitle">
+						<option value="자유게시판">자유게시판</option>
+						<option value="공지사항">공지사항</option>
+						<option value="꿀팁공유">꿀팁공유</option>
+						<option value="꿀팁요청">꿀팁요청</option>
+						<option value="자랑">자랑</option>
+					</select> 
+					<input type="text" placeholder="제목을 입력해주세요"
+						   class=" form-control mb-4" name="postTitle">
 					<textarea id="summernote" name="postContent"></textarea>
 					<script>
 						$(document)
@@ -147,9 +178,36 @@
 																maxHeight : 300, // 최대 높이
 																focus : true, // 에디터 로딩후 포커스를 맞출지 여부
 																lang : "ko-KR", // 한글 설정
-																placeholder : '최대 2048자까지 작성 가능합니다<br><br><br><br>1.게시판 규칙에 맞게 게시글을 작성해주세요<br>2.규칙이나 게시글 타입이 일치하지 않으면 삭제될 수 있습니다' //placeholder 설정
+																placeholder : '최대 2048자까지 작성 가능합니다<br><br><br><br>1.게시판 규칙에 맞게 게시글을 작성해주세요<br>2.규칙이나 게시글 타입이 일치하지 않으면 삭제될 수 있습니다', //placeholder 설정
+																callbacks: {
+																		onImageUpload: function(files, editor, welEditable) {
+																            for (var i = files.length - 1; i >= 0; i--) {
+																            	sendFile(files[i], this);
+																            }
+																        }
+																	}
 															});
 										});
+						
+					   
+						function sendFile(file, el) {
+							var form_data = new FormData();
+					      	form_data.append('file', file);
+					      	console.log("파일업로드가 실행됩니다")
+					      	$.ajax({
+					        	data: form_data,
+					        	type: "POST",
+					        	enctype: 'multipart/form-data',
+					        	url: '/uploadImg',
+					        	cache: false,
+					        	contentType: false,
+					        	processData: false,
+					        	success: function(data) {
+					        		 console.log("저장 성공->"+data.url);
+						          	 $(el).summernote('editor.insertImage', data.url);
+					        	}
+					      	});
+					    }
 					</script>
 					<input type="submit" class="walk-mate-button float-end rounded-2"
 						value="글 작성">
@@ -157,8 +215,77 @@
 			</div>
 		</div>
 	</section>
-	<!-- 애견 동반 시설 섹션 끝-->
-
+	<!-- 글쓰기 끝 -->
+	
+	
+	<!-- 수정하는경우 해당 기능이 동작합니다 -->
+	<section id="about" class="about m-5 p-0" th:if="${postDetail != null}">
+		<div class="row">
+			<div class="col-md-8 m-auto">
+				<h2 class="text-left mb-5" style="margin-top: 100px;">
+					<i class="fa-solid fa-pen"></i> 게시글 수정
+				</h2>
+				<form th:action="@{/board/update/post/{postNum}(postNum = ${postDetail.postNum})}" method="post">
+					<select name="postType" id="type" class="text-center mb-4 fw-bold">
+						<option value="자유게시판">자유게시판</option>
+						<option value="공지사항">공지사항</option>
+						<option value="꿀팁공유">꿀팁공유</option>
+						<option value="꿀팁요청">꿀팁요청</option>
+						<option value="자랑">자랑</option>
+					</select> 
+					<input type="text" placeholder="제목을 입력해주세요"
+						   class=" form-control mb-4" name="postTitle" th:value="${postDetail.postTitle}">
+					<textarea id="summernote" name="postContent" th:text="${postDetail.postContent}"></textarea>
+					<script>
+					$(document)
+					.ready(
+							function() {
+								$('#summernote')
+										.summernote(
+												{
+													height : 300, // 에디터 높이
+													minHeight : 300, // 최소 높이
+													maxHeight : 300, // 최대 높이
+													focus : true, // 에디터 로딩후 포커스를 맞출지 여부
+													lang : "ko-KR", // 한글 설정
+													placeholder : '최대 2048자까지 작성 가능합니다<br><br><br><br>1.게시판 규칙에 맞게 게시글을 작성해주세요<br>2.규칙이나 게시글 타입이 일치하지 않으면 삭제될 수 있습니다', //placeholder 설정
+													callbacks: {
+															onImageUpload: function(files, editor, welEditable) {
+													            for (var i = files.length - 1; i >= 0; i--) {
+													            	sendFile(files[i], this);
+													            }
+													        }
+														}
+												});
+							});
+			
+		   
+			function sendFile(file, el) {
+				var form_data = new FormData();
+		      	form_data.append('file', file);
+		      	console.log("파일업로드가 실행됩니다")
+		      	$.ajax({
+		        	data: form_data,
+		        	type: "POST",
+		        	enctype: 'multipart/form-data',
+		        	url: '/uploadImg',
+		        	cache: false,
+		        	contentType: false,
+		        	processData: false,
+		        	success: function(data) {
+		        		 console.log("저장 성공->"+data.url);
+			          	 $(el).summernote('editor.insertImage', data.url);
+		        	}
+		      	});
+		    }
+					</script>
+					<input type="submit" class="walk-mate-button float-end rounded-2"
+						   value="수정하기">
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- 수정하기 끝 -->
 
 
 

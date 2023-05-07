@@ -5,23 +5,24 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import together.pet.domain.facilities.dto.Facilities;
 import together.pet.domain.facilities.dto.Reserve;
 import together.pet.domain.facilities.dto.Review;
 import together.pet.domain.facilities.mapper.FacilitiesMapper;
+import together.pet.domain.member.dto.Favorite;
+import together.pet.web.common.RequestParams;
 
 @Service
+@Transactional(readOnly = true) 
 public class FacilitiesServiceImpl implements FacilitiesService {
 	
 	@Autowired
 	FacilitiesMapper facilitiesMapper;
 	
-	@Override
-	public List<Facilities> findAll() {
-		return facilitiesMapper.findAll();
-	}
+
 	
 	@Override
 	public Facilities findDetail(@PathVariable("num") int num) {
@@ -40,23 +41,6 @@ public class FacilitiesServiceImpl implements FacilitiesService {
 		}
 
 		
-		//이름으로 찾기
-		@Override
-		public Facilities findFacilityByName(String facName) {
-		    return facilitiesMapper.findByName(facName);
-		}
-
-		//지역으로 찾기
-		@Override
-		public Facilities getFacilityByCity(String facCity, String facCounty, String facCatagory, String search) {
-		    return facilitiesMapper.findByCity(facCity, facCounty, facCatagory, search);
-		}
-
-		//통합 검색 
-		@Override
-		public List<Facilities> getFacilitiesBySearchAll() {
-		    return facilitiesMapper.findBySearchAll();
-		}
 
 		// 예약 목록 전부 
 		@Override
@@ -95,12 +79,15 @@ public class FacilitiesServiceImpl implements FacilitiesService {
 	    }
 
 		//리뷰 추가
+	    //모달창 값 받아서 리뷰 추가
 		@Override
-		public void addReview(String id) {
-		    facilitiesMapper.addReview(id);
+		public void addReview(Review review) {
+			facilitiesMapper.addReview(review);
+			
 		}
 
 		//리뷰 삭제
+		@Transactional 
 		@Override
 		public void deleteReview(String id) {
 		    facilitiesMapper.deleteReview(id);
@@ -108,7 +95,98 @@ public class FacilitiesServiceImpl implements FacilitiesService {
 
 		//리뷰 수정
 		@Override
-		public void editReview(String id) {
-		    facilitiesMapper.editReview(id);
+		public void editReview(Review review) {
+		    facilitiesMapper.editReview(review);
 		}
+		
+	
+		
+		@Override
+		//병원 상세페이지 내용 출력
+		public Facilities findHospitalDetail(@PathVariable("num") int num) {
+			return facilitiesMapper.findHospitalDetail(num);
+		};
+		
+	
+	
+		// 예약목록 리스트
+		@Override
+		public List<Reserve> reserveList(String id, int facNum) {
+			return facilitiesMapper.reserveList(id, facNum);
+		}
+
+		
+
+		// 즐겨찾기 등록
+		@Override
+		public void addFavorite(String id, int facNum) {
+			facilitiesMapper.addFavorite(id, facNum);
+		}
+		// 즐찾 아이디로 찾기(등록 여부 확인)
+		public List<Favorite> findFavoriteById(String id, int facNum) {
+			return facilitiesMapper.findFavoriteById(id, facNum);
+		}
+		// 즐찾 삭제
+		@Override
+		public void deleteFavorite(String id, int facNum) {
+			facilitiesMapper.deleteFavorite(id, facNum);
+			
+		}
+		
+		
+		
+
+		@Override
+		public int getListCount() {
+		
+			return facilitiesMapper.getListCount();
+		}
+
+		@Override
+		public int getListCount2(RequestParams requestParams) {
+	
+			return facilitiesMapper.getListCount2(requestParams);
+		}
+		
+		@Override
+		public int getListCountHospital(){
+			return facilitiesMapper.getListCountHospital();
+		}
+		
+		
+		@Override
+		public int getListCountHospital2(RequestParams requestParams){
+			return facilitiesMapper.getListCountHospital2(requestParams);
+		}
+		
+		
+		@Override
+	    //페이지 처리
+	    public List<Facilities> getListPage(int num){
+	    	return facilitiesMapper.getListPage(num);
+	    
+	    }
+		
+		
+		@Override
+		public List<Facilities> findByCityHospital2(RequestParams requestparams) {
+			return facilitiesMapper.findByCityHospital2(requestparams);
+		}
+		
+		@Override	
+		public List<Facilities> getListHospital(int num) {
+			return facilitiesMapper.getListPageHospital(num);
+		}
+		
+		@Override
+		public List<Facilities> findByCity2(RequestParams requestparams) {
+		
+			return facilitiesMapper.findByCity2(requestparams);
+		}
+
+		@Override
+		public List<Facilities> hospitalSlide() {
+			return facilitiesMapper.hospitalSlide();
+		}
+		
 }

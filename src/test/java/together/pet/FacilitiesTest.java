@@ -27,10 +27,10 @@ class FacilitiesTest {
 	@Test
 	@Disabled
 	void findAll() {
-		List<Facilities> facilities = facilitiesMapper.findAll();
-		for(Facilities list : facilities) {
-			System.out.println(list);
-		}
+//		List<Facilities> facilities = facilitiesMapper.findAll();
+//		for(Facilities list : facilities) {
+//			System.out.println(list);
+//		}
 	}
 	
 }

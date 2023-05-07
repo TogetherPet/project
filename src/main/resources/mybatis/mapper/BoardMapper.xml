@@ -3,27 +3,351 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!--  매퍼 경로 설정  -->                   
+<!-- 매퍼 경로 설정 -->
 <mapper namespace="together.pet.domain.board.mapper.BoardMapper">
 
-<!--<select id="메소드 이름" parameterType="전달인자" resultType="리턴타입">
+	<!--<select id="메소드 이름" parameterType="전달인자" resultType="리턴타입"> </select> -->
 	
-	</select>  -->
-	
+	<!-- 게시글 작성 -->
 	<insert id="write" parameterType="Post">
-	INSERT INTO post(post_num,post_title,post_content,post_type,id)
-	VALUES (seq_post.nextval, #{postTitle}, #{postContent}, #{postType}, #{id})
+		INSERT INTO
+		post(post_num,post_title,post_content,post_type,id)
+		VALUES
+		(seq_post.nextval, #{postTitle}, #{postContent}, #{postType}, #{id})
 	</insert>
 	
-	<select id="getPostAll" resultType="Post">
-	SELECT POST_NUM, POST_TITLE, POST_TYPE, TO_CHAR(POST_DATE, 'YY"년"MM"월"DD"일" HH:MI'), POST_DATE,ID
-	FROM post
+	<!-- 신고기능 -->
+	<insert id="report" parameterType="Report">
+	INSERT INTO report(report_num, report_reason, report_id, post_num, comment_num)
+	VALUES
+	<if test="commentNum != null and commentNum != ''">
+	(SEQ_REPORT.nextval, #{reportReason}, #{reportId}, null, #{commentNum})
+	</if>
+	<if test="postNum != null and postNum != ''">
+	(SEQ_REPORT.nextval, #{reportReason}, #{reportId}, #{postNum}, null)
+	</if>
+	</insert>
+
+
+	<!-- 게시글 모두 가져오기 / 페이징 처리-->
+	<select id="getPostAll" resultType="Post"
+		parameterType="RequestParams">
+		SELECT page, POST_NUM,
+		POST_TITLE, POST_TYPE,
+		POST_DATE,ID,POST_VIEWS
+		FROM ( SELECT CEIL(ROWNUM / #{elementSize})
+		page,
+		POST_NUM, POST_TITLE,
+		POST_TYPE,
+		TO_CHAR(POST_DATE,
+		'YY"년"MM"월"DD"일"
+		HH24:MI') POST_DATE,ID,
+		POST_VIEWS
+		FROM (
+               SELECT *
+               FROM post
+               <if test="'인기글'.equalsIgnoreCase(search)" >
+               ORDER BY POST_views DESC
+               </if>
+               <if test="type == null">
+               ORDER BY POST_DATE DESC
+               </if>
+				)
+	)
+	WHERE page = #{requestPage}
+	<if test="'인기글'.equalsIgnoreCase(search)">
+		ORDER BY POST_views DESC
+	</if>
+	<if test="type == null">
+		ORDER BY POST_DATE DESC
+	</if>
 	</select>
 	
+	<!-- 게시글 상세정보 -->
 	<select id="postDetail" resultType="Post">
-	SELECT POST_NUM, POST_CONTENT,POST_TITLE, POST_TYPE, TO_CHAR(POST_DATE, 'YY"년"MM"월"DD"일" HH:MI'), POST_DATE,ID
-	FROM post
-	WHERE post_num = #{value}
+		SELECT POST_NUM,
+		POST_CONTENT,POST_TITLE, POST_TYPE,
+		TO_CHAR(POST_DATE,'YY"년"MM"월"DD"일"
+		HH24:MI') POST_DATE,ID,POST_VIEWS
+		FROM post
+		WHERE post_num = #{value}
+	</select>
+	
+	
+	<!-- 댓글 쓰기 -->
+	<insert id="writeReply" parameterType="Reply">
+		insert into reply
+		(comment_num, comment_content,post_num, id)
+		VALUES (SEQ_REPLY.nextval,
+		#{commentContent}, #{postNum}, #{id})
+	</insert>
+	
+	
+	<!-- 댓글 전체보기 -->
+	<select id="getReplyAll" resultType="Reply">
+		select comment_num,
+		comment_content, TO_CHAR(comment_date, 'YY"년"MM"월"DD"일"
+		HH24:MI')
+		comment_date, post_num,id
+		from reply
+		where post_num = #{value}
+		ORDER BY
+		comment_date DESC
+	</select>
+	
+	<!-- 게시글 신고 가져오기 -->
+	<select id="getReplyReport" resultType="Report">
+	SELECT r.report_num report_num, r.report_reason report_reason, r.REPORT_ID REPORT_ID ,r.report_date report_date ,r.comment_num comment_num,
+       c.comment_content comment_content, c.comment_date comment_date, c.id id
+	FROM report r 
+	JOIN reply c 
+	ON c.comment_num = r.comment_num
+	ORDER BY comment_num
+	</select>
+	
+	<!-- 댓글 신고 가져오기 -->
+	<select id="getPostReport" resultType="Report">
+	SELECT r.report_num report_num, r.report_reason report_reason, r.REPORT_ID REPORT_ID, r.report_date report_date, r.post_num post_num,
+       p.post_title post_title, p.post_content post_content, p.post_type post_type, p.post_date post_date, p.id id
+	FROM report r
+	JOIN post p
+	ON p.post_num = r.post_num
+	ORDER BY post_num
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deletePost" parameterType="int">
+		DELETE FROM post
+		where
+		post_num = #{postNum}
+	</delete>
+	
+	<!--  댓글 삭제 -->
+	<delete id="deleteReply" parameterType="int">
+		DELETE FROM reply
+		where
+		COMMENT_num = #{value}
+	</delete>
+	
+	<!-- 신고 삭제 -->
+	<delete id="deleteReport" parameterType="int">
+		DELETE FROM report
+		where 
+		report_num = #{value}
+	</delete>
+	
+	<!-- 조회수 추가 -->
+	<update id="addViews" parameterType="int">
+		UPDATE POST SET
+		POST_VIEWS =
+		POST_VIEWS+1
+		WHERE POST_NUM = #{value}
+	</update>
+
+	<!-- 게시글 수정 -->
+	<update id="updatePost" parameterType="Post">
+		UPDATE POST
+		SET
+		POST_CONTENT = #{postContent},
+		POST_TITLE = #{postTitle},
+		POST_TYPE =
+		#{postType}
+		WHERE
+		POST_NUM = #{postNum}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateReply" parameterType="Reply">
+	UPDATE Reply
+	set COMMENT_CONTENT = #{commentContent}
+	where comment_num = #{commentNum}
+	</update>
+	
+	<!-- 게시글 검색 -->
+	<select id="searchPost" parameterType="RequestParams"
+		resultType="Post">
+		SELECT page, POST_NUM, POST_TITLE, POST_TYPE, POST_DATE,ID,POST_VIEWS
+		FROM ( SELECT CEIL(ROWNUM / #{elementSize}) page, p.post_num,
+		p.post_title,
+		p.post_type, TO_CHAR(p.post_date,'YY"년"MM"월"DD"일"
+		HH24:MI') post_date,
+		p.post_views, p.post_great, p.id
+				FROM  (
+              			 SELECT *
+              			 FROM post
+             		     ORDER BY POST_DATE DESC
+              		   ) p
+				WHERE 	EXISTS (
+						SELECT 1
+						FROM reply r
+		<where>
+			<!-- 타입이 all 인 경우, 댓글,게시글,제목 모두 검색합니다 -->
+			<if test="'all'.equalsIgnoreCase(type)">
+				(r.post_num = p.post_num
+				AND r.comment_content LIKE '%' ||
+				#{search} || '%'
+				OR
+				p.post_content LIKE '%' || #{search} || '%'
+				OR
+				p.post_title LIKE '%'
+				|| #{search} || '%')
+			</if>
+			<!-- title+content : 제목,내용으로 검색합니다 -->
+			<if test="'title+content'.equalsIgnoreCase(type)">
+				(p.post_content LIKE '%' || #{search} || '%'
+				OR
+				p.post_title LIKE '%' || #{search} || '%')
+			</if>
+			<!-- title : 제목만 검색합니다 -->
+			<if test="'title'.equalsIgnoreCase(type)">
+				p.post_title LIKE '%' || #{search} || '%'
+			</if>
+			<!-- id 검색을 실행합니다 -->
+			<if test="'id'.equalsIgnoreCase(type)">
+				p.id LIKE '%' || #{search} || '%'
+			</if>
+			<!-- 게시글 타입을 검색합니다. 카테고리 이동에서 사용합니다 -->
+			<if test="'postType'.equalsIgnoreCase(type)">
+				p.post_type LIKE '%' || #{search} || '%'
+			</if>
+			<!-- 날짜 검색이 선택된경우, 실행됩니다 -->
+			<if test="day != null and day != ''">
+				<!-- 일 검색이 null이 아닌경우, 일 검색으로 실행됩니다 -->
+				<if test="date != null and date != ''">
+					AND p.post_date > (SYSDATE-#{date})
+				</if>
+				<!-- 월 검색이 null이 아닌경우 -->
+				<if test="month != null and date != ''">
+					AND p.post_date > add_months(SYSDATE, -#{month})
+				</if>
+			</if>
+		</where>
+			)
+			ORDER BY p.post_date DESC
+		)
+		WHERE page = #{requestPage}
+	</select>
+	
+	<!-- 검색에 따른 동적 검색 결과 출력 쿼리 -->
+	<select id="getPostCount" resultType="int">
+		SELECT COUNT(*) cnt
+		FROM ( SELECT CEIL(ROWNUM / #{elementSize})
+		page, p.post_num, p.post_title,
+		p.post_type,
+		TO_CHAR(p.post_date,'YY/MM/DD HH24:MI') post_date,
+		p.post_views,
+		p.post_great, p.id
+		FROM post p
+		WHERE EXISTS (
+		SELECT 1
+		FROM reply r
+		<where>
+			<if test="'all'.equalsIgnoreCase(type)">
+				(r.post_num = p.post_num
+				AND r.comment_content LIKE '%' ||
+				#{search} || '%'
+				OR
+				p.post_content LIKE '%' || #{search} || '%'
+				OR
+				p.post_title LIKE '%'
+				|| #{search} || '%')
+			</if>
+			<if test="'title+content'.equalsIgnoreCase(type)">
+				(p.post_content LIKE '%' || #{search} || '%'
+				OR
+				p.post_title LIKE '%' || #{search} || '%')
+			</if>
+			<if test="'title'.equalsIgnoreCase(type)">
+				p.post_title LIKE '%' || #{search} || '%'
+			</if>
+			<if test="'id'.equalsIgnoreCase(type)">
+				p.id LIKE '%' || #{search} || '%'
+			</if>
+			<if test="'postType'.equalsIgnoreCase(type)">
+				p.post_type LIKE '%' || #{search} || '%'
+			</if>
+			<if test="day != null and day != ''">
+				<if test="date != null and date != ''">
+					AND p.post_date > (SYSDATE-#{date})
+				</if>
+				<if test="month != null and date != ''">
+					AND p.post_date > add_months(SYSDATE, -#{month})
+				</if>
+			</if>
+		</where>
+		)
+	)
+	</select>
+	
+	<!-- 최신글 -->
+	<select id="recentPost" resultType="Post">
+	SELECT page, POST_NUM,
+		POST_TITLE, POST_TYPE,
+		POST_DATE,ID,POST_VIEWS
+		FROM ( SELECT CEIL(ROWNUM / 5)
+		page,
+		POST_NUM, POST_TITLE,
+		POST_TYPE,
+		TO_CHAR(POST_DATE,
+		'YY"년"MM"월"DD"일"
+		HH24:MI') POST_DATE,ID,
+		POST_VIEWS
+		FROM (
+               SELECT *
+               FROM post
+               ORDER BY POST_DATE DESC
+               )
+		)
+		WHERE page = 1
+		ORDER BY POST_DATE DESC
+	</select>
+	
+	<!-- 인기글 -->
+	<select id="popularityPost" resultType="Post">
+	SELECT page, POST_NUM,
+		POST_TITLE, POST_TYPE,
+		POST_DATE,ID,POST_VIEWS
+		FROM ( SELECT CEIL(ROWNUM / 5)
+		page,
+		POST_NUM, POST_TITLE,
+		POST_TYPE,
+		TO_CHAR(POST_DATE,
+		'YY"년"MM"월"DD"일"
+		HH24:MI') POST_DATE,ID,
+		POST_VIEWS
+		FROM (
+               SELECT *
+               FROM post
+               ORDER BY POST_VIEWS DESC
+               )
+		)
+		WHERE page = 1
+		ORDER BY POST_VIEWS DESC
+	</select>
+	
+	<!-- 공지 3개 가져오는 쿼리문
+		 헤더 슬라이드에서 사용합니다. -->
+	<select id="notice" resultType="Post">
+	SELECT page, POST_NUM,
+		POST_TITLE, POST_TYPE,
+		POST_DATE,ID,POST_VIEWS
+		FROM ( SELECT CEIL(ROWNUM / 3)
+		page,
+		POST_NUM, POST_TITLE,
+		POST_TYPE,
+		TO_CHAR(POST_DATE,
+		'YY"년"MM"월"DD"일"
+		HH24:MI') POST_DATE,ID,
+		POST_VIEWS
+		FROM (
+               SELECT *
+               FROM post
+               ORDER BY post_date DESC
+               )
+        WHERE POST_TYPE = '공지사항'
+		)
+		WHERE page = 1
+		ORDER BY post_date DESC
 	</select>
 
 </mapper>

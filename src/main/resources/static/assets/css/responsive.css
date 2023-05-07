@@ -28,60 +28,83 @@
 
 @media (max-width: 200px){
 	
-.single_special_img img{
+/*시설 내용*/
+/*시설 정보 */
+
+.fcl-info{
+  width:80%;
+  margin:0 auto;
+}
+
+/*사진 오버레이*/
+
+.all:hover .overlay{
+  opacity:1;
+}
+
+
+.all{
+	position:relative;
+    box-sizing:border-box;
+    width:33.333%;
+    float:left;
+}
+
+.overlay{
+	content: "";
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .3s;
+    background:rgba(221, 221, 221, 0.8);
+    opacity:0;
+
+}
+
+.overlay p{
+  margin:0 auto;
+  text-align:center;
+  margin-top:160px;
+}
+
+
+.fcl-body{
+	text-align:center;
+}
+
+.h5-img{
+	width: 12px;
+}
+
+
+
+
+.pagination{
 	width:100%;
+	margin-top:30px;
 }
 
-.single_contact{
-	text-align:center;
-	color:#3c3c3c;
-}
-.contact_form_area{
-	color:#3c3c3c;
-}
-.contact_form_area h3{
-	text-align:center;
-	margin-bottom:0;
-	color:#3c3c3c;
-}
-.form-control {
-    border: 0px solid transparent;
-    font-size: 16px;
-    font-family: 'Merriweather', serif;
-    height: 45px;
-    border-bottom: 1px solid #ddd;
-    background-color: rgba(255, 255, 255, 0);
-    border-radius: 0;
-    -webkit-box-shadow: 0;
-    box-shadow: inset 0 0px 0px rgba(0,0,0,0.075);
+.pagination button{
+	background:white;
+	border:none;
+	border-radius: 3px;
+	padding:5px;
 }
 
-
-.single_contact {
-    margin-bottom: 40px;
-    margin-left: 10px;
-}
-.single_contact h5{
-	color:#3c3c3c;
-}
-
-.single_footer{
-	text-align:center;
-}
-
-		
-}
-
-/* Mobile Phone Screen Media */
-
-@media screen (min-width: 320px) and (max-width: 480px){
+.pagination button:hover{
+	background:#d8a899;
+	border-radius: 3px;
+	padding:5px;
+	color:white;
 	
-
-.main_contact_content .form-control {
-    height: 45px;
-	display:inline-block;
 }
 
 
 		
 }
+

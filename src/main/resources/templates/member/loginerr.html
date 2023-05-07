@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>Rapid Bootstrap Template - Index</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+
+</head>
+
+<body>
+	<!-- 오류시 스크립트 창 출력 -->
+	<th:block th:if="${err != null}">
+		<input type="hidden" th:value="${err}" id="err">
+		<input type="hidden" th:value="${referer}" id="referer">
+		<script>
+			let err = document.querySelector("#err").value
+			let referer = document.querySelector("#referer").value
+			alert(err);
+
+			location.href = `${referer}`;
+		</script>
+	</th:block>
+	<script>
+		let referer1 = document.querySelector("#referer").value
+		location.href = `${referer1}`;
+	</script>
+</body>
+</html>

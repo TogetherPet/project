@@ -1,0 +1,457 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>병원 목록 상세 페이지</title>
+
+
+     <!--구글 폰트-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
+
+
+<!-- 모바일 아이콘 -->
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  
+  <!--헤더제어 -->
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+	<link rel="stylesheet" href="/assets/css/list-hospital.css">
+	<link rel="stylesheet" href="/assets/css/responsive.css">
+	
+	
+	<script>
+
+		//fetch("https://api.odcloud.kr/api/15111389/v1/uddi:41944402-8249-4e45-9e9d-a52d0a7db1cc?page=1&perPage=100&serviceKey=wgEpazA4adJUsEbbNdAFoSgZQwnqjFz7rjBWXasSoEz3H0tpc3j%2FRMgcyk2poT0OOespsnugSKo1%2BFDQPzS6Ug%3D%3D")
+		//	.then(response => response.json())
+		//.then(response => show(response.data))
+		//.catch(err => console.log(err));
+	
+   		//	function show(response){
+		//	let element ='<section>';
+		//	for (const i of response) {
+		//		element+= `<div class="col">`
+		//			+`<div class="single_special_img card text-center h-100">`
+		//			+`<img src="/assets/img/noimage.jpg" class="card-img-top" alt="...">`
+		//			+`<div class="single_special_overlay text-center ">`
+		//				+`<p><img class="hospital_img" src="/assets/img/report.png" alt="" /></p>`
+		//				+`</div>`
+		//				+`<div class="card-body">`
+		//					+`<h5 class="card-title"> <i class="fa-solid fa-hospital h5-img"></i>${i.시설명}</h5>`
+		//					+`<p class="card-text">${i.전화번호}</p>`
+		//					+`<p class="card-text">${i.도로명주소}</p>`
+		//					+`</div></div></div>`
+		//	}
+		//	element += '</section>';
+		//	document.querySelector("#favorite_box").innerHTML= element;
+		//}
+		</script>
+	
+	
+
+	<!--시군 바꾸기-->
+	<script>
+	function categoryChange(e) {
+		const state = document.getElementById("state");
+
+		const gangwon = [ "강릉시", "동해시", "삼척시", "속초시", "원주시", "춘천시", "태백시",
+				"고성군", "양구군", "양양군", "영월군", "인제군", "정선군", "철원군", "평창군", "홍천군",
+				"화천군", "횡성군" ];
+		const gyeonggi = [ "고양시", "과천시", "광명시", "광주시", "구리시", "군포시", "김포시",
+				"남양주시", "동두천시", "부천시", "성남시", "수원시", "시흥시", "안산시", "안성시",
+				"안양시", "양주시", "오산시", "용인시", "의왕시", "의정부시", "이천시", "파주시", "평택시",
+				"포천시", "하남시", "화성시", "가평군", "양평군", "여주군", "연천군" ];
+		const gyeongsangnam = [ "거제시", "김해시", "마산시", "밀양시", "사천시", "양산시",
+				"진주시", "진해시", "창원시", "통영시", "거창군", "고성군", "남해군", "산청군", "의령군",
+				"창녕군", "하동군", "함안군", "함양군", "합천군" ];
+		const gyeongsangbuk = [ "경산시", "경주시", "구미시", "김천시", "문경시", "상주시",
+				"안동시", "영주시", "영천시", "포항시", "고령군", "군위군", "봉화군", "성주군", "영덕군",
+				"영양군", "예천군", "울릉군", "울진군", "의성군", "청도군", "청송군", "칠곡군" ];
+		const gwangju = [ "광산구", "남구", "동구", "북구", "서구" ];
+		const daegu = [ "남구", "달서구", "동구", "북구", "서구", "수성구", "중구", "달성군" ];
+		const daejeon = [ "대덕구", "동구", "서구", "유성구", "중구" ];
+		const busan = [ "강서구", "금정구", "남구", "동구", "동래구", "부산진구", "북구", "사상구",
+				"사하구", "서구", "수영구", "연제구", "영도구", "중구", "해운대구", "기장군" ];
+		const seoul = [ "강남구", "강동구", "강북구", "강서구", "관악구", "광진구", "구로구", "금천구",
+				"노원구", "도봉구", "동대문구", "동작구", "마포구", "서대문구", "서초구", "성동구",
+				"성북구", "송파구", "양천구", "영등포구", "용산구", "은평구", "종로구", "중구", "중랑구" ];
+		const ulsan = [ "남구", "동구", "북구", "중구", "울주군" ];
+		const incheon = [ "계양구", "남구", "남동구", "동구", "부평구", "서구", "연수구", "중구",
+				"강화군", "옹진군" ];
+		const jeonnam = [ "광양시", "나주시", "목포시", "순천시", "여수시", "강진군", "고흥군",
+				"곡성군", "구례군", "담양군", "무안군", "보성군", "신안군", "영광군", "영암군", "완도군",
+				"장성군", "장흥군", "진도군", "함평군", "해남군", "화순군" ];
+		const jeonbuk = [ "군산시", "김제시", "남원시", "익산시", "전주시", "정읍시", "고창군",
+				"무주군", "부안군", "순창군", "완주군", "임실군", "장수군", "진안군" ];
+		const jeju = [ "서귀포시", "제주시", "남제주군", "북제주군" ];
+		const chungnam = [ "천안시", "아산시", "서산시", "당진시", "논산시", "공주시", "홍성군",
+				"보령시", "예산군", "부여군", "태안군", "서천군", "금산군", "계룡시", "청양군" ];
+		const chungbuk = [ "제천시", "청주시", "충주시", "괴산군", "단양군", "보은군", "영동군",
+				"옥천군", "음성군", "증평군", "진천군", "청원군" ];
+
+		if (e.value == "강원") {
+			add = gangwon;
+		} else if (e.value == "경기") {
+			add = gyeonggi;
+		} else if (e.value == "경남") {
+			add = gyeongsangnam;
+		} else if (e.value == "경북") {
+			add = gyeongsangbuk;
+		} else if (e.value == "광주") {
+			add = gwangju;
+		} else if (e.value == "대구") {
+			add = daegu;
+		} else if (e.value == "대전") {
+			add = daejeon;
+		} else if (e.value == "부산") {
+			add = busan;
+		} else if (e.value == "서울") {
+			add = seoul;
+		} else if (e.value == "울산") {
+			add = ulsan;
+		} else if (e.value == "인천") {
+			add = incheon;
+		} else if (e.value == "전남") {
+			add = jeonnam;
+		} else if (e.value == "전북") {
+			add = jeonbuk;
+		} else if (e.value == "제주") {
+			add = jeju;
+		} else if (e.value == "충남") {
+			add = chungnam;
+		} else if (e.value == "충북") {
+			add = chungbuk;
+		}
+
+		state.options.length = 1;
+		// 군/구 갯수;
+
+		for (property in add) {
+			let opt = document.createElement("option");
+			opt.value = add[property];
+			opt.innerHTML = add[property];
+			state.appendChild(opt);
+		}
+	}
+</script>
+</head>
+<body>
+
+	<!-- ======= Header ======= -->
+	<header id="header"
+		class="fixed-top d-flex align-items-center header-transparent">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo me-auto">
+				<a href="/pet"><img src="/assets/img/TOGether_PEt_logo.png"
+					alt="" class="logo-img"> </a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			 <!--  <a href="index.html" class="logo me-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+			<nav id="navbar" class="navbar order-last order-lg-0">
+				<ul>
+				
+					<li class="dropdown scrollto"><a href="#features"><span>병원</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/hospital/1">병원/약국 전체보기</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
+						</ul></li>
+					
+					
+					
+					
+					<li class="dropdown scrollto"><a href="#why-us"><span>커뮤니티</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+						
+							<li><a href="/board/1">최신글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=인기글">인기글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
+						</ul></li>
+					
+					<li class="dropdown scrollto"><a href="#services"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/1">시설 전체보기</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
+						</ul></li>
+
+					<th:block th:if="${session.member == null}">
+						<li><a class="nav-link scrollto desc-left login"
+							data-toggle="modal" data-target="#loginModal">로그인</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+					</th:block>
+
+					<th:block th:if="${session.member != null}">
+						<li><a class="nav-link scrollto desc-left"
+							href="/pet/mypage"
+							th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
+					</th:block>
+
+					<!-- 오류시 스크립트 창 출력 -->
+					 <th:block th:if="${err != null}">
+						<input type="hidden" th:value="${err}" id="err">
+						<script>
+							let err = document.querySelector("#err").value
+							alert(err);
+						</script>
+					</th:block>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav>
+		
+
+		</div>
+	</header>
+	<!-- End Header -->
+
+
+
+
+	<div class="s21" style="margin-top: 100px;">
+    <div class="s21_custom-select">
+    <form action="/facilities/list/all/hospital/1">
+      <select name="city" id="city" onchange="categoryChange(this)">
+        <option value="" data-key="2">지역선택</option>
+        <option value="경기" data-key="2">경기</option>
+        <option value="서울" data-key="2">서울</option>
+        <option value="인천" data-key="2">인천</option>
+        <option value="강원" data-key="3">강원</option>
+        <option value="충남" data-key="4">충남</option>
+        <option value="세종" data-key="4">세종</option>
+        <option value="대전" data-key="4">대전</option>
+        <option value="충북" data-key="5">충북</option>
+        <option value="경북" data-key="6">경북</option>
+        <option value="대구" data-key="6">대구</option>
+        <option value="전북" data-key="7">전북</option>
+        <option value="전남" data-key="8">전남</option>
+        <option value="광주" data-key="8">광주</option>
+        <option value="경남" data-key="9">경남</option>
+        <option value="부산" data-key="9">부산</option>
+        <option value="울산" data-key="9">울산</option>
+        <option value="제주" data-key="10">제주</option>
+      </select> <select name="county" id="state">
+        <option value="">시군선택</option>
+      </select> <select name="kind" id="sch_ar_kind"
+        xnchange="display_sel_food(this.value);">
+        <option value="">업종선택</option>
+        <option value="일반">일반</option>
+        <option value="특수">특수</option>
+        <option value="약국">약국</option>
+         <option value="24">24시</option>
+
+      </select> <input type="text" class="s21_SearchInput search_text"
+        name="search" id="sch_text" placeholder="" title="">
+        
+      <button type="submit" class="s21_place_search_button search_btn"
+        onclick="Store.del('h_sch_text'); Store.del('ar_scroll');Store.set('ar_page',1);search_go()">검색</button>
+     </form>
+    </div>
+    <!--// search -->
+
+  </div>
+<!--// search box -->
+
+
+
+
+
+     <h3 th:if="${#lists.size(hospitalList) == 0}" class="mt-5 text-center m-auto">검색 결과가 없습니다</h3>
+  <div class="hos_box" th:block th:each="hospitals:${hospitalList}">
+    <div class="hos_img" >
+    <a th:href="@{/facilities/detail/hospital/{num}(num=${hospitals.facNum})}">
+      <img src="/assets/img/banner2.jpeg" alt="a">
+   
+    </div>
+    <div class="hos_text">
+      <h3 th:text="${hospitals.facName}">@@동물병원</h3>
+      <p th:text="${hospitals.facTel}">연락처 : 010-5035-0104</p>
+      <p th:text="${hospitals.addRoad}">주소 : 서울시 중랑구</p>
+      <p th:text="${hospitals.runningtime}">영업시간 : 00:00 ~ 24:00</p>
+       </a>
+    </div>
+ </th:block>
+  </div>
+
+
+     <!-- 페이징처리 버튼 -->
+   <nav aria-label="cld Page navigation example mt-5">
+      <ul class="cld pagination justify-content-center">
+      
+         <!-- 처음으로 버튼 출력 여부를 Pagination의 정보를 통해 결정합니다 -->
+         <li class="cld page-item" th:if="${Pagination.showFirst}">
+            <!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+            <a  class="cld page-link" 
+               aria-label="Previous"
+               th:href="@{/facilities/listpage/hospital/1}" 
+               th:if="${Params.search == null}"
+               >처음으로 </a>
+            <!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->
+            <a  class="cld page-link" 
+               aria-label="Previous"
+               th:href="@{/facilities/list/all/hospital/{page}(page=1, city=${Params.city != null ? Params.city : ''}, county=${Params.county != null ? Params.county : ''}, kind=${Params.kind != null ? Params.kind : ''}, search=${Params.search != null ? Params.search : ''})}"
+               th:unless="${Params.search == null}"
+               >처음으로 </a>
+         </li>
+         
+         <!-- 이전으로 버튼 출력 여부를 Pagination의 정보를 통해 결정합니다 -->
+         <li class="cld page-item" th:if="${Pagination.showPrevious}">
+            <!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+            <a class="cld page-link" 
+               aria-label="Previous"
+               th:href="@{/facilities/listpage/hospital/{page}(page = ${Pagination.previousStartPage})}" 
+               th:if="${Params.search == null}">이전</a>
+                <!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->
+             <a class="cld page-link" 
+               aria-label="Previous"
+                th:href="@{/facilities/list/all/hospital/{page}(page=${Pagination.previousStartPage}, city=${Params.city != null ? Params.city : ''}, county=${Params.county != null ? Params.county : ''}, kind=${Params.kind != null ? Params.kind : ''}, search=${Params.search != null ? Params.search : ''})}"
+                th:unless="${Params.search == null}">이전</a>
+         </li>
+         
+         <!-- 페이징 번호 출력 입니다.
+             게시글 리스트가 없을경우, 해당 번호는 출력되지 않습니다-->
+         <th:block th:if="${#lists.size(hospitalList) != 0}"
+                 th:each="number : ${#numbers.sequence(Pagination.startPage, Pagination.endPage)}">
+            <!-- 현재 페이지와 요청 페이지가 일치할경우, 버튼이 비활성화됩니다 -->
+            <th:block th:if="${number == Params.requestPage}">
+               <li class="cld  page-item active">
+               <a class="page-link"
+                  th:text="${number}" 
+                  style="background-color: #d8a899; border: 1px solid #d8a899;">1</a>
+               </li>
+            </th:block>
+            
+            <!-- 현재 페이지와 요청 페이지가 일치하지 않을경우, 이동링크가 활성화됩니다 -->
+            <th:block th:if="${number != Params.requestPage}">
+               <li class="cld  page-item ">
+                  <!-- 검색값이 없을경우 단순 번호로 링크가 입력됩니다 -->
+                  <a class="page-link"
+                     th:if="${Params.search == null}"
+                     th:href="@{/facilities/listpage/hospital/{page}(page=${number})}"
+                     th:text="${number}">번호</a>
+                  <!--  검색값이 있을경우 검색값을 포함한 번호로 링크가 입력됩니다-->
+                  <a class="page-link"
+                     th:unless="${Params.search == null}"
+                     th:href="@{/facilities/list/all/hospital/{page}(page=${number}, city=${Params.city != null ? Params.city : ''}, county=${Params.county != null ? Params.county : ''}, kind=${Params.kind != null ? Params.kind : ''},search=${Params.search != null ? Params.search : ''})}"
+                     th:text="${number}">번호</a>
+                  </li>
+            </th:block>
+         </th:block>
+         
+         
+         
+         <!-- 번호 다음으로 돌리기 -->
+         <li class="cld page-item" th:if="${Pagination.showNext}">
+            <!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+            <a class="cld page-link" 
+               th:href="@{/facilities/listpage/hospital/{page}(page =${Pagination.nextStartPage})}" 
+               aria-label="Previous"
+               th:if="${Params.search == null}">다음</a>
+             <!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->  
+             <a class="cld page-link" 
+                th:href="@{/facilities/list/all/hospital/{page}(page=${Pagination.nextStartPage}, city=${Params.city != null ? Params.city : ''}, county=${Params.county != null ? Params.county : ''}, kind=${Params.kind != null ? Params.kind : ''},search=${Params.search != null ? Params.search : ''})}"
+                aria-label="Previous"
+                th:unless="${Params.search == null}">다음</a>
+         </li>
+         
+         <!-- 끝으로 출력 -->
+         <li class="cld page-item" th:if="${Pagination.showLast}">
+            <!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+            <a class="cld page-link" 
+               th:href="@{/facilities/listpage/hospital/{page}(page = ${Pagination.totalPages})}" 
+               aria-label="Previous"
+               th:if="${Params.search == null}">끝으로 </a>
+            <!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->
+            <a class="cld page-link" 
+               th:href="@{/facilities/list/all/hospital/{page}(page=${Pagination.totalPages}, city=${Params.city != null ? Params.city : ''}, county=${Params.county != null ? Params.county : ''}, kind=${Params.kind != null ? Params.kind : ''}, search=${Params.search != null ? Params.search : ''})}"
+               aria-label="Previous"
+               th:unless="${Params.search == null}">끝으로 </a>
+         </li>
+      </ul>
+   </nav>
+      </div>
+
+
+
+
+<!-- Modal -->
+    <div class="modal fade login" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="padding-bottom:50px;">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <form method="post" action="/pet/login" id="login-form">
+            <div class="login-wrapper">
+              <h2><img src="assets/img/logo.png"></h2>
+              <input type="text" class="userName" name="id" placeholder="Email">
+              <input type="password" name="password" placeholder="Password"><br>
+              <input type="submit" value="Login"><br><br>
+              <label for="remember-check">
+                <input type="checkbox" id="remember-check">아이디 저장하기
+              </label><br>
+
+              <a href="#">아이디 찾기</a> |
+              <a href="#">비밀번호 찾기</a> |
+              <a href="#">회원가입</a><br><br>
+              <p>SNS계정으로 간편 로그인</p>
+              <img src="/assets/img/naver.png" onclick="javascript:naverLogin();" id="naverIdLogin_loginButton">
+              <img src="/assets/img/kakao.png" onclick="javascript:kakaoLogin();" id="kakaoLogin">
+              <img src="/assets/img/facebook.png">
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+    <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+        class="bi bi-arrow-up-short"></i></a>
+        
+
+      <!-- login JS File-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+    <!--카카오톡-->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script src="kakaoAPI.js"></script>
+    <!--네이버-->
+    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    <script src="naverAPI.js"></script>
+    <!--구글-->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="googleAPI.js"></script>
+        
+</body>
+</html>
+
+
+

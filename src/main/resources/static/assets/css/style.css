@@ -662,6 +662,8 @@ margin: 15px auto 35px auto;
 }
 
 
+
+
 .why-us-content ul li {
   width: 20%;
   list-style:none;
@@ -1134,11 +1136,173 @@ margin: 15px auto 35px auto;
     height: 50%;
   }
   
-  /* login modal css*/
-.login{
-  cursor: pointer;
+
+/*푸터 디자인*/
+#footer .copyright {
+  text-align: center;
+  padding-top: 30px;
+  color: #535074;
+  font-size: 15px;
 }
 
+
+#footer .credits {
+  text-align: center;
+  font-size: 14px;
+  padding-top: 4px;
+  color: #8582a8;
+}
+
+#footer .credits a {
+  color: #1bb1dc;
+}
+
+#footer .credits a:hover {
+  color: #0a98c0;
+}
+
+.footer-list>li{
+  margin-top: 1.5em;
+}
+
+.footer-title{
+  font-weight: bold;
+}
+
+.foot li a:hover{
+  color: gray;
+  font-weight: bold;
+}
+
+/*카드섹션 디자인*/
+.card-title{
+  margin-bottom: 5%;
+}
+.card-title a{
+  color :  #a2c2b9;
+}
+
+.card-title a:hover{
+  color :  #5d7f75;
+}
+
+.swiper-wrapper .card{
+  width:30%;
+}
+
+/*카테고리 공통 속성*/
+.community-main{
+  width:100%;
+  overflow:hidden;
+}
+
+.community-main>div{
+  float: left;
+}
+
+
+.category{
+  width: 15%;
+  height: 100%;
+  margin-right: 1%;
+  margin-left: 40px;
+  background-color:#FFFACD;
+ 
+
+}
+
+.ctg-title{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 70px;
+  padding-left: 20px;
+  color: #d8a899;
+}
+.ctg-body a{
+  font-size: 14px;
+  line-height: 30px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+  color: gray;
+  text-decoration:none;
+}
+
+
+.ctg-body img{
+  width:28px;
+  margin-left: 5px;
+}
+
+
+/*게시글 클릭해서 상세보기 속성*/
+.post_box{
+  width: 70%;
+  padding: 20px;
+  border: 1px solid gray;
+  color:gray;
+ 
+}
+.post_category{
+  font-size: 10px;
+  color: #d8a899;
+  font-weight: bold;
+}
+.post_title{
+  font-size: 30px;
+}
+
+.post_date{
+  font-size: 14px;
+}
+
+.com{
+  border-bottom:1px solid gray;
+  justify-content: space-between;
+  overflow:hidden;
+}
+
+.com>span{
+  line-height: 10px;
+}
+
+/*댓글 쓰기 칸*/
+.comment{
+  width: 660px;
+  height:150px;
+  padding: 20px;
+  border: 1px solid gray;
+}
+
+.comment>input{
+  padding: 10px;
+  width: 600px;
+  border: none;
+}
+
+
+button{
+  border:none;
+  background-color: gray;
+  color:white;
+  padding:3px;
+  float:right;
+  border-radius:3px;
+}
+
+.empty{
+  width: 15%;
+  margin-right: 1%;
+  margin-left: 40px;
+  border:1px solid transparent;
+}
+
+.bottom-button{
+  width:70%;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+/* login modal css*/
 .login-wrapper body{
   font-size: 14px;
 }
@@ -1195,30 +1359,16 @@ margin: 15px auto 35px auto;
 }
 
 #login-form input[type="checkbox"]{
-  display: none;
+  width: 20px;
+  height: 12px;
 }
 
 #login-form label{ /*아이디저장*/
   color: gray;
-}
-
-#login-form input[type="checkbox"] + label{
-  cursor: pointer;
-  padding-left: 26px;
-  background-image: url("checkbox.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-#login-form input[type="checkbox"]:checked + label{
-  background-image: url("checkbox-active.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  color:white;
+  height: 1px;
 }
 
 .login #remember-check{
-  padding-top: 20px;
   accent-color: #d8a899;
 }
 
@@ -1254,55 +1404,3 @@ margin: 15px auto 35px auto;
   background-color: white;
 }
 
-/*푸터 디자인*/
-#footer .copyright {
-  text-align: center;
-  padding-top: 30px;
-  color: #535074;
-  font-size: 15px;
-}
-
-
-#footer .credits {
-  text-align: center;
-  font-size: 14px;
-  padding-top: 4px;
-  color: #8582a8;
-}
-
-#footer .credits a {
-  color: #1bb1dc;
-}
-
-#footer .credits a:hover {
-  color: #0a98c0;
-}
-
-.footer-list>li{
-  margin-top: 1.5em;
-}
-
-.footer-title{
-  font-weight: bold;
-}
-
-.foot li a:hover{
-  color: gray;
-  font-weight: bold;
-}
-
-/*카드섹션 디자인*/
-.card-title{
-  margin-bottom: 5%;
-}
-.card-title a{
-  color :  #a2c2b9;
-}
-
-.card-title a:hover{
-  color :  #5d7f75;
-}
-
-.swiper-wrapper .card{
-  width:30%;
-}

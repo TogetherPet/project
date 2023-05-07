@@ -29,5 +29,4 @@ public class Facilities {
 	   private String categories; 
 	   private String surcharge; 
 	   private int facNum;
-
 }

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	.findId{
+		width: 60%;
+		margin: 0 auto;
+		text-align: center;
+		margin-top: 170px;
+		}
+
+	input:focus {
+		outline:none;
+		}
+
+	.serchId input[type="text"]{
+		outline: none;
+		width: 40%;
+		height: 40px;
+		margin-bottom: 20px;
+		border-radius: 6px;
+		border-color: #9999;
+		padding: 0px 7px;
+		}
+
+	.serchId input[type="submit"]{
+		width: 42%;
+		height: 40px;
+		border-radius: 6px;
+		background-color: #d8a899;
+		border: none;
+		cursor: pointer;
+		color: white;
+		font-weight: bold;
+	}
+	
+	.findId span{
+		margin-top: 200px;
+		color: #d8a899;
+	}
+	
+	.findId button{		
+		width: 30%;
+		height: 40px;
+		border-radius: 6px;
+		background-color: #d8a899;
+		cursor: pointer;
+		border: none;
+		}
+		
+	.findId a{
+		color: white;
+		font-weight: bold;
+		text-decoration: none; 
+		}
+</style>
+<body>
+<div class="findId">
+<th:block th:if="${id==null}">
+<form action="/pet/findIdByName" method="post">
+		<div class="serchId">
+				<h1>아이디찾기</h1>
+				<p>아이디는 가입시 입력하신 이메일을 통해 찾을 수 있습니다.</p>
+			<div class="find-name">
+				<input type="text" name="member_name" class="btn-name" placeholder="이름"><br>
+				<input type="text" name="email" class="btn-phone" placeholder="이메일"><br>
+				<input type="submit" name="enter" value="찾기">
+			</div>
+ 		</div>
+ </form>
+ </th:block>
+ <th:block th:if="${id!=null}">
+ 	<h1>아이디찾기</h1>
+ 	<p>고객님의 아이디는 <span th:text="${id}"></span> 입니다.</p>
+ 	<button><a href="/pet">메인 페이지</a></button>
+ </th:block>
+ </div>
+</body>
+</html>

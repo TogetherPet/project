@@ -26,21 +26,18 @@
 <!--font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Gothic+A1&display=swap" rel="stylesheet">
 
 
 <!-- Template Main CSS File -->
 <!--헤더 제어 -->
-<link href="/assets/vendor/bootstrap/css/bootstrap.min.css"
-	rel="stylesheet">
-<link href="/assets/css/community-list-detail.css" rel="stylesheet">
+<link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <link href="/assets/css/style.css" rel="stylesheet">
 
+<link href="/assets/css/community-list-detail.css" rel="stylesheet">
 
 <style>
-
 /* 슬라이드 사이즈 */
 .carousel-inner img {
 	width: 100%;
@@ -50,7 +47,6 @@
 </head>
 
 <body>
-
 	<!-- ======= Header ======= -->
 	<header id="header"
 		class="fixed-top d-flex align-items-center header-transparent">
@@ -60,21 +56,47 @@
 					alt="" class="logo-img"> </a>
 			</h1>
 			<!-- Uncomment below if you prefer to use an image logo -->
-			<!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+			 <!--  <a href="index.html" class="logo me-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
 			<nav id="navbar" class="navbar order-last order-lg-0">
 				<ul>
-					<li><a class="nav-link scrollto" href="#about">소개</a></li>
-					<li><a class="nav-link scrollto " href="#why-us">커뮤니티</a></li>
-					<li class="dropdown scrollto"><a href="#"><span>시설</span>
+				
+					<li class="dropdown scrollto"><a href="#features"><span>병원</span>
 							<i class="bi bi-chevron-down"></i></a>
 						<ul>
-							<li><a href="#">식당</a></li>
-							<li><a href="#">카페</a></li>
-							<li><a href="#">쇼핑</a></li>
-							<li><a href="#">숙박시설</a></li>
-							<li><a href="#">관광시설</a></li>
-							<li><a href="#">캠핑장</a></li>
+							<li><a href="/facilities/listpage/hospital/1">병원/약국 전체보기</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
+						</ul></li>
+					
+					
+					
+					
+					<li class="dropdown scrollto"><a href="#why-us"><span>커뮤니티</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+						
+							<li><a href="/board/1">최신글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=인기글">인기글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
+						</ul></li>
+					
+					<li class="dropdown scrollto"><a href="#services"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/1">시설 전체보기</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
 						</ul></li>
 
 					<th:block th:if="${session.member == null}">
@@ -85,12 +107,13 @@
 
 					<th:block th:if="${session.member != null}">
 						<li><a class="nav-link scrollto desc-left"
+						href="/pet/mypage"
 							th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
 						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
 					</th:block>
 
 					<!-- 오류시 스크립트 창 출력 -->
-					<th:block th:if="${err != null}">
+					 <th:block th:if="${err != null}">
 						<input type="hidden" th:value="${err}" id="err">
 						<script>
 							let err = document.querySelector("#err").value
@@ -100,7 +123,7 @@
 				</ul>
 				<i class="bi bi-list mobile-nav-toggle"></i>
 			</nav>
-			<!-- .navbar -->
+		
 
 		</div>
 	</header>
@@ -122,34 +145,40 @@
 			<!-- The slideshow -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="assets/img/banner3.jpeg" alt="Los Angeles" width="100%"
+				<a th:href="@{/board/detail/{postNum}(postNum=${notice[0].postNum})}">
+					<img src="/assets/img/banner3.jpeg" alt="Los Angeles" width="100%"
 						height="300px;">
 					<div class="carousel-caption d-none d-md-block"
 						style="line-height: 100px; color: black;">
-						<h5>First slide label</h5>
-						<p>Some representative placeholder content for the first
+						<h5 th:text="${notice[0].postType}">First slide label</h5>
+						<p th:text="${notice[0].postTitle}">Some representative placeholder content for the first
 							slide.</p>
 					</div>
+				</a>
 				</div>
 				<div class="carousel-item">
-					<img src="assets/img/banner3.jpeg" alt="Chicago" width="100%"
+				<a th:href="@{/board/detail/{postNum}(postNum=${notice[1].postNum})}">
+					<img src="/assets/img/banner3.jpeg" alt="Chicago" width="100%"
 						height="300px;">
 					<div class="carousel-caption d-none d-md-block"
 						style="color: black; line-height: 100px;">
-						<h5>First slide label</h5>
-						<p>Some representative placeholder content for the first
+						<h5 th:text="${notice[1].postType}">First slide label</h5>
+						<p th:text="${notice[1].postTitle}">Some representative placeholder content for the first
 							slide.</p>
 					</div>
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="assets/img/banner3.jpeg" alt="New York" width="100%"
+					<a th:href="@{/board/detail/{postNum}(postNum=${notice[2].postNum})}">
+					<img src="/assets/img/banner3.jpeg" alt="New York" width="100%"
 						height="300px; ">
 					<div class="carousel-caption d-none d-md-block"
 						style="color: black; line-height: 100px;">
-						<h5>First slide label</h5>
-						<p>Some representative placeholder content for the first
+						<h5 th:text="${notice[2].postType}">First slide label</h5>
+						<p th:text="${notice[2].postTitle}">Some representative placeholder content for the first
 							slide.</p>
 					</div>
+					</a>
 				</div>
 			</div>
 			<!-- Left and right controls -->
@@ -160,112 +189,218 @@
 			</a>
 		</div>
 	</div>
-
-	<!--시작-->
+	<!-- 베너 슬라이드 종료 -->
+	<!--메인 시작-->
 	<div class="community-main">
 
-
+		<!-- 사이드 카테고리 -->
 		<div class="category">
 			<ul class="ctg-title">
 				<li>카테고리
 					<ul class="ctg-body">
-						<li><img src="/assets/img/category2.png"><a
-							class="ctg-body1" href="#">예시</a></li>
-						<li><img src="/assets/img/category2.png"><a
-							class="ctg-body2" href="#">예시</a></li>
 						<li><img src="/assets/img/category3.png"><a
-							class="ctg-body3" href="#">예시</a></li>
+							class="ctg-body2" href="/board/1" th:text="최신글">예시</a></li>
 						<li><img src="/assets/img/category2.png"><a
-							class="ctg-body4" href="#">예시</a></li>
+							class="ctg-body1" th:href="@{/board/post/search/{page}(page=1 ,day=findallday,type=postType , search=인기글)}" th:text="인기글">예시</a></li>
 						<li><img src="/assets/img/category2.png"><a
-							class="ctg-body5" href="#">예시</a></li>
+							class="ctg-body1" th:href="@{/board/post/search/{page}(page=1 ,day=findallday,type=postType , search=자유게시판)}" th:text="자유게시판">예시</a></li>
 						<li><img src="/assets/img/category3.png"><a
-							class="ctg-body6" href="#">예시</a></li>
+							class="ctg-body2" th:href="@{/board/post/search/{page}(page=1 ,day=findallday,type=postType , search=꿀팁공유)}" th:text="꿀팁공유">예시</a></li>
 						<li><img src="/assets/img/category2.png"><a
-							class="ctg-body7" href="#">예시</a></li>
-
+							class="ctg-body2" th:href="@{/board/post/search/{page}(page=1 ,day=findallday,type=postType , search=꿀팁요청)}" th:text="꿀팁요청">예시</a></li>
+						<li><img src="/assets/img/category3.png"><a
+							class="ctg-body2" th:href="@{/board/post/search/{page}(page=1 ,day=findallday,type=postType , search=자랑)}" th:text="자랑">예시</a></li>
+						<li><img src="/assets/img/category2.png"><a
+							class="ctg-body2" th:href="@{/board/post/search/{page}(page=1 ,day=findallday,type=postType , search=공지사항)}" th:text="공지사항">예시</a></li>
+						<li th:if="${session.member != null} and ${#strings.equals(session.member.admin,'관리자')}"><img src="/assets/img/category2.png"><a
+							class="ctg-body2" href="/board/report/view" >관리자 페이지로 이동</a></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
+		<!-- 사이드 카테고리 종료 -->
 
-
+		
+		
+		<!-- 게시글 리스트 -->
 		<div class="why-us-content">
-
-			<h4>최신글</h4>
-			<label class="forBotton">
+			<!-- 게시글 타입을 출력합니다. 기본적으로 최신글을 출력하며, 
+				 사이드 카테고리가 선택된경우 해당 내용으로 변경되어 출력됩니다 -->
+			<h4 th:if="${postType != null}" th:text="${postType}"></h4>
+			<h4 th:unless="${postType != null}">최신글</h4>
+			
+			<!-- 해당 영역에선 글쓰기버튼을 기본적으로 출력하고, 로그인 되이있지 않은상태에서 클릭시,
+			     로그인 후 이용 가능하다는 문구가 출력됩니다 -->
+			<label class="forBotton"> 
 				<button class="plus-view rounded-1">
-					<a href="community-list.html">글쓰기</a>
+					<a href="/board/write">글쓰기</a>
 				</button>
 			</label> 
+			
+			<!-- 게시글리스트 출력 -->
 			<label class="row">
 				<table>
 					<tr>
 						<th>글번호</th>
-						<th>글제목</th>
+						<th>카테고리</th>
+						<th style="width: 30%;">글제목</th>
 						<th>닉네임</th>
 						<th>작성일</th>
 						<th>조회수</th>
 					</tr>
+					<!-- 게시글 리스트 -->
 					<th:block th:each="list , loopStat : ${PostList}">
 						<tr>
-							<td><a th:text="${loopStat.index}+1"></a></td>
-							<td><a th:text="${list.postTitle}"
-								th:href="@{/post/detail/{postNum}(postNum=${list.postNum})}"></a></td>
-							<td><a th:text="${list.id}"></a></td>
-							<td><a th:text="${list.postDate}"></a></td>
-							<td><a th:text="${list.postViews}"></a></td>
+							<!-- 게시글의 번호를 출력합니다 -->
+							<td>
+							<a th:text="${loopStat.index}+1+(${Params.elementSize}*(${Params.requestPage}-1))">
+							게시글번호</a>
+							</td>
+							<td><a th:text="${list.postType}">카테고리</a></td>
+							<td><a th:text="${list.postTitle}" style="color: #d8a899;"
+								   th:href="@{/board/detail/{postNum}(postNum=${list.postNum})}">게시글 제목</a></td>
+							<td><a th:text="${list.id}">작성자 아이디</a></td>
+							<td><a th:text="${list.postDate}">작성 일자</a></td>
+							<td><a th:text="${list.postViews}">조회수</a></td>
 						</tr>
 					</th:block>
 				</table>
+				<!-- 리스트가 0일경우(검색결과가 없을경우) 해당 문구가 출력됩니다 -->
+				<h3 th:if="${#lists.size(PostList) == 0}" class="mt-5">검색 결과가 없습니다</h3>
 			</label>
-
 		</div>
 	</div>
 
-
+	<!-- 페이징처리 버튼 -->
 	<nav aria-label="cld Page navigation example">
 		<ul class="cld pagination justify-content-center">
-			<li class="cld page-item disabled"><a class="cld page-link">이전</a>
+		
+			<!-- 처음으로 버튼 출력 여부를 Pagination의 정보를 통해 결정합니다 -->
+			<li class="cld page-item" th:if="${Pagination.showFirst}">
+				<!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+				<a  class="cld page-link" 
+					aria-label="Previous"
+					th:href="@{/board/1}" 
+					th:if="${Params.search == null}"
+					>처음으로 </a>
+				<!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->
+				<a  class="cld page-link" 
+					aria-label="Previous"
+					th:href="@{/board/post/search/{page}(page=1, day=${Params.day != null ? Params.day : ''}, date=${Params.date != null ? Params.date : ''}, month=${Params.month != null ? Params.month : ''}, type=${Params.type != null ? Params.type : ''}, search=${Params.search != null ? Params.search : ''})}"
+					th:unless="${Params.search == null}"
+					>처음으로 </a>
 			</li>
-			<li class="cld  page-item"><a class="page-link" href="#">1</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">2</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">3</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">4</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">5</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">6</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">7</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">8</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">9</a></li>
-			<li class="cld page-item"><a class="page-link" href="#">10</a></li>
-			<li class="cld page-item"><a class="cld page-link" href="#">다음</a>
+			
+			<!-- 이전으로 버튼 출력 여부를 Pagination의 정보를 통해 결정합니다 -->
+			<li class="cld page-item" th:if="${Pagination.showPrevious}">
+				<!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+				<a class="cld page-link" 
+				   aria-label="Previous"
+				   th:href="@{/board/{page}(page = ${Pagination.previousStartPage})}" 
+				   th:if="${Params.search == null}">이전</a>
+		   		 <!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->
+				 <a class="cld page-link" 
+					aria-label="Previous"
+				    th:href="@{/board/post/search/{page}(page=${Pagination.previousStartPage}, day=${Params.day != null ? Params.day : ''}, date=${Params.date != null ? Params.date : ''}, month=${Params.month != null ? Params.month : ''}, type=${Params.type != null ? Params.type : ''}, search=${Params.search != null ? Params.search : ''})}"
+				    th:unless="${Params.search == null}">이전</a>
+			</li>
+			
+			<!-- 페이징 번호 출력 입니다.
+				 게시글 리스트가 없을경우, 해당 번호는 출력되지 않습니다-->
+			<th:block th:if="${#lists.size(PostList) != 0}"
+					  th:each="number : ${#numbers.sequence(Pagination.startPage, Pagination.endPage)}">
+				<!-- 현재 페이지와 요청 페이지가 일치할경우, 버튼이 비활성화됩니다 -->
+				<th:block th:if="${number == Params.requestPage}">
+					<li class="cld  page-item active">
+					<a class="page-link"
+						th:text="${number}" 
+						style="background-color: #d8a899; border: 1px solid #d8a899;">1</a>
+					</li>
+				</th:block>
+				
+				<!-- 현재 페이지와 요청 페이지가 일치하지 않을경우, 이동링크가 활성화됩니다 -->
+				<th:block th:if="${number != Params.requestPage}">
+					<li class="cld  page-item ">
+						<!-- 검색값이 없을경우 단순 번호로 링크가 입력됩니다 -->
+						<a class="page-link"
+						   th:if="${Params.search == null}"
+						   th:href="@{/board/{page}(page=${number})}"
+						   th:text="${number}">번호
+						</a>
+						<!-- 검색값이 있을경우 검색값을 포함한 번호로 링크가 입력됩니다-->
+						<a class="page-link"
+						   th:unless="${Params.search == null}"
+						   th:href="@{/board/post/search/{page}(page=${number}, day=${Params.day != null ? Params.day : ''}, date=${Params.date != null ? Params.date : ''}, month=${Params.month != null ? Params.month : ''}, type=${Params.type != null ? Params.type : ''}, search=${Params.search != null ? Params.search : ''})}"
+						   th:text="${number}">번호
+						</a>
+					</li>
+				</th:block>
+			</th:block>
+			
+			<!-- 번호 다음으로 돌리기 -->
+			<li class="cld page-item" th:if="${Pagination.showNext}">
+				<!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+				<a class="cld page-link" 
+				   th:href="@{/board/{page}(page =${Pagination.nextStartPage})}" 
+				   aria-label="Previous"
+				   th:if="${Params.search == null}">다음</a>
+				 <!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->  
+				 <a class="cld page-link" 
+				    th:href="@{/board/post/search/{page}(page=${Pagination.nextStartPage}, day=${Params.day != null ? Params.day : ''}, date=${Params.date != null ? Params.date : ''}, month=${Params.month != null ? Params.month : ''}, type=${Params.type != null ? Params.type : ''}, search=${Params.search != null ? Params.search : ''})}"
+				    aria-label="Previous"
+				    th:unless="${Params.search == null}">다음</a>
+			</li>
+			
+			<!-- 끝으로 출력 -->
+			<li class="cld page-item" th:if="${Pagination.showLast}">
+				<!-- 검색값이 없을경우 출력되는 페이징 버튼입니다-->
+				<a class="cld page-link" 
+				   th:href="@{/board/{page}(page = ${Pagination.totalPages})}" 
+				   aria-label="Previous"
+				   th:if="${Params.search == null}">끝으로 </a>
+				<!-- 검색값이 있을경우 출력되는 페이징 버튼입니다-->
+				<a class="cld page-link" 
+				   th:href="@{/board/post/search/{page}(page=${Pagination.totalPages}, day=${Params.day != null ? Params.day : ''}, date=${Params.date != null ? Params.date : ''}, month=${Params.month != null ? Params.month : ''}, type=${Params.type != null ? Params.type : ''}, search=${Params.search != null ? Params.search : ''})}"
+				   aria-label="Previous"
+				   th:unless="${Params.search == null}">끝으로 </a>
 			</li>
 		</ul>
-
 	</nav>
-
-	<form class="all-footer-menu">
-		<div class="dropdown">
-			<button class="dropbtn">전체기간</button>
-			<div class="dropdown-content">
-				<a href="#">1일</a> <a href="#">6개월</a> <a href="#">1년</a>
-			</div>
-		</div>
-
-		<div class="dropdown">
-			<button class="dropbtn">게시판+댓글</button>
-			<div class="dropdown-content">
-				<a href="#">글 작성자만</a> <a href="#">댓글 작성자</a> <a href="#">글+댓글</a>
-			</div>
-		</div>
-
-		<label for="inputsearch" class="visually-hidden">검색어</label> <input
-			type="text" class="form-control" id="inputsearch"
-			placeholder="검색어를 입력해주세요">
+	<!-- 페이징 버튼 종료 -->
+	
+	<!-- 검색창 
+	     선택한 값에 따라, 검색 결과가 달라집니다
+	     day : 선택된 value에 따라 n일 혹은 n달 검색을 실행합니다
+	     * 숫자 변경으로 검색 일자를 수정 가능하며, 쿼리문의 수정은 필요하지 않습니다*
+	     * findallday -> 모든 날짜를 검색합니다
+	     * day/7      -> /n일을 검색합니다. /뒤에 숫자를 변경하여 일자를 변경 가능합니다
+	     * month/6    -> /n달을 검색합니다. day 검색과 동일하게 작동합니다
+	     
+	     type : 선택된 value에 따라 검색 where절을 제어합니다
+	     *해당 겁색값을 변경, 추가하는경우 쿼리문의 수정이 필요합니다* -->
+	<form class="all-footer-menu" action="/board/post/search/1">
+		<select name="day" class="text-center mb-4 fw-bold">
+			<option value="findallday">전체기간</option>
+			<option value="day/7">7일</option>
+			<option value="month/6">6개월</option>
+			<option value="month/12">1년</option>
+		</select> 
+		<select name="type" class="text-center mb-4 fw-bold">
+			<option value="title">제목만</option>
+			<option value="title+content">제목+내용</option>
+			<option value="all">제목+내용+댓글</option>
+			<option value="id">아이디검색</option>
+		</select> 
+		<label> 
+		<input type="text" class="form-control"
+			   id="inputsearch" name="search" 
+			   placeholder="검색어를 입력해주세요">
 		<button type="submit" class="searchbutton rounded-1">검색</button>
+		</label>
 	</form>
+	<!-- 검색창 종료 -->
 
-	<!-- Modal -->
+	<!-- 로그인 모달 -->
 	<div class="modal fade login" id="loginModal" tabindex="-1"
 		role="dialog" aria-labelledby="loginModal" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -301,7 +436,7 @@
 			</div>
 		</div>
 	</div>
-
+	<!-- 로그인 모달 종료 -->
 	<a href="#"
 		class="back-to-top d-flex align-items-center justify-content-center"><i
 		class="bi bi-arrow-up-short"></i></a>

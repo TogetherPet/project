@@ -9,9 +9,9 @@ import lombok.Data;
  */
 @Data
 public class Reserve {
-	private int res_num  ;
-	private Date res_date ;
-	private int res_peoples ;
+	private int resNum  ;
+	private String resDate ;
+	private int resPeoples ;
 	private String id ;
-	private int fac_num ;
+	private int facNum ;
 }

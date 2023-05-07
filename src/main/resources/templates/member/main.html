@@ -28,7 +28,7 @@
   <!-- Template Main CSS File -->
   <link href="/assets/css/style.css" rel="stylesheet">
 
-
+<link href="/assets/css/community-list-detail.css" rel="stylesheet">
   <!--애견 동반 시설 섹션 아이콘 js-->
   <script src="https://kit.fontawesome.com/b836e111e4.js" crossorigin="anonymous"></script>
 
@@ -42,39 +42,87 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center header-transparent">
-    <div class="container d-flex align-items-center">
-      <h1 class="logo me-auto"> <a href="main.html"><img src="assets/img/TOGether_PEt_logo.png" alt="" class="logo-img">
-      </h1></a>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+	<!-- ======= Header ======= -->
+	<header id="header"
+		class="fixed-top d-flex align-items-center header-transparent">
+		<div class="container d-flex align-items-center">
+			<h1 class="logo me-auto">
+				<a href="/pet"><img src="/assets/img/TOGether_PEt_logo.png"
+					alt="" class="logo-img"> </a>
+			</h1>
+			<!-- Uncomment below if you prefer to use an image logo -->
+			 <!--  <a href="index.html" class="logo me-auto"><img src="/assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
-      <nav id="navbar" class="navbar order-last order-lg-0">
-        <ul>
-          <li><a class="nav-link scrollto" href="#about">소개</a></li>
-          <li><a class="nav-link scrollto " href="#why-us">커뮤니티</a></li>
-          <li class="dropdown scrollto"><a href="#"><span>시설</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">식당</a></li>
-              <li><a href="#">카페</a></li>
-              <li><a href="#">쇼핑</a></li>
-              <li><a href="#">숙박시설</a></li>
-              <li><a href="#">관광시설</a></li>
-              <li><a href="#">캠핑장</a></li>
-            </ul>
-          </li>
+			<nav id="navbar" class="navbar order-last order-lg-0">
+				<ul>
+				
+					<li class="dropdown scrollto"><a href="#features"><span>병원</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/hospital/1">병원/약국 전체보기</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+							<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
+						</ul></li>
+					
+					
+					
+					
+					<li class="dropdown scrollto"><a href="#why-us"><span>커뮤니티</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+						
+							<li><a href="/board/1">최신글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=인기글">인기글</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+							<li><a href="/board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+						    <li><a href="/board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
+						</ul></li>
+					
+					<li class="dropdown scrollto"><a href="#services"><span>시설</span>
+							<i class="bi bi-chevron-down"></i></a>
+						<ul>
+							<li><a href="/facilities/listpage/1">시설 전체보기</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+							<li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
+						</ul></li>
 
-          <li><a class="nav-link scrollto desc-left login" data-toggle="modal" data-target="#loginModal">로그인</a></li>
-          <li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+					<th:block th:if="${session.member == null}">
+						<li><a class="nav-link scrollto desc-left login"
+							data-toggle="modal" data-target="#loginModal">로그인</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/join">회원가입</a></li>
+					</th:block>
 
-    </div>
-    </ul>
-    <i class="bi bi-list mobile-nav-toggle"></i>
-    </nav><!-- .navbar -->
+					<th:block th:if="${session.member != null}">
+						<li><a class="nav-link scrollto desc-left"
+							href="/pet/mypage"
+							th:text="|${session.member.name} 님 반갑습니다|">로그아웃</a></li>
+						<li><a class="nav-link scrollto desc-left" href="/pet/logout">로그아웃</a></li>
+					</th:block>
 
-    </div>
-  </header><!-- End Header -->
+					<!-- 오류시 스크립트 창 출력 -->
+					 <th:block th:if="${err != null}">
+						<input type="hidden" th:value="${err}" id="err">
+						<script>
+							let err = document.querySelector("#err").value
+							alert(err);
+						</script>
+					</th:block>
+				</ul>
+				<i class="bi bi-list mobile-nav-toggle"></i>
+			</nav>
+		
+
+		</div>
+	</header>
+	<!-- End Header -->
 
 
   <!-- ======= 메인창 섹션 ======= -->
@@ -111,16 +159,17 @@
 
           <div class="col-mr-6 col-lg-4 wow bounceInUp" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <h4 class="title"><a href="">식당 </a></h4>
+              <h4 class="title"><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당 </a></h4>
               <div class="icon" style="background: #fceef3;"><i class="fa-solid fa-utensils"
                   style="color: #ff689b;"></i>
               </div>
               <p>사랑하는 반려동물과<br> 함께 식사해요.</p>
             </div>
+            
           </div>
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
             <div class="box">
-              <h4 class="title"><a href="">카페 </a></h4>
+              <h4 class="title"><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></h4>
               <div class="icon" style="background: #fff0da;"><i class="fa-solid fa-mug-saucer"
                   style="color: #e98e06;"></i></div>
               <p>사랑하는 반려동물과<br> 함께 힐링하며 보내요.</p>
@@ -130,7 +179,7 @@
 
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
             <div class="box">
-              <h4 class="title"><a href="">숙박시설 </a></h4>
+              <h4 class="title"><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설 </a></h4>
               <div class="icon" style="background: #e6fdfc;"><i class="fa-solid fa-hotel" style="color: #3fcdc7;"></i>
               </div>
               <p>사랑하는 반려동물과<br> 함께 여가시간을 보내고 힐링해요</p>
@@ -138,7 +187,7 @@
           </div>
           <div class="col-md-6 col-lg-4 wow" data-aos="zoom-in" data-aos-delay="100">
             <div class="box">
-              <h4 class="title"><a href="">쇼핑 </a></h4>
+              <h4 class="title"><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑 </a></h4>
               <div class="icon" style="background: #eafde7;"><i class="fa-sharp fa-solid fa-bag-shopping"
                   style="color:#41cf2e;"></i>
               </div>
@@ -148,7 +197,7 @@
 
           <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
         <div class=" box">
-            <h4 class="title"><a href="">관광시설 </a></h4>
+            <h4 class="title"><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설 </a></h4>
             <div class="icon" style="background: #e1eeff;"><i class="fab fa-fort-awesome" style="color: #2282ff;"></i>
             </div>
             <p>사랑하는 반려동물과<br> 여행하고 추억을 쌓아요.</p>
@@ -157,7 +206,7 @@
 
         <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
           <div class="box">
-            <h4 class="title"><a href="">캠핑장 </a></h4>
+            <h4 class="title"><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용 </a></h4>
             <div class="icon" style="background: #ecebff;"><i class="fas fa-campground" style="color: #8660fe;"></i>
             </div>
             <p>24시간 중에 30분만 신나게 놀아준다면<br> 23시 30분 기다릴 수 있어요.</p>
@@ -183,98 +232,72 @@
         <div class="row">
 
           <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
-            <div class="why-us-content">
-
-              <h4>최신글</h4>
-              <button class="plus-view"><a href="new-community-list-detail.html">더보기</a></button>
-
-              <ul class="new-letter">
-                <li class="new-letter-list">글번호</li>
-                <li>글제목</li>
-                <li>닉네임</li>
-                <li>작성일</li>
-                <li>조회수</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">2</li>
-                <li>2</li>
-                <li>2</li>
-                <li>2</li>
-                <li>2</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">3 </li>
-                <li>3</li>
-                <li>3 </li>
-                <li>3</li>
-                <li>3</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">4 </li>
-                <li>4</li>
-                <li>4 </li>
-                <li>4</li>
-                <li>4</li>
-              </ul>
+            <div class="why-us-content w-100">
+            <h2>최신글</h2>
+				<label class="row">
+				<table>
+					<tr>
+						<th>글번호</th>
+						<th>카테고리</th>
+						<th style="width: 30%;">글제목</th>
+						<th>닉네임</th>
+						<th>작성일</th>
+						<th>조회수</th>
+					</tr>
+					<!-- 게시글 리스트 -->
+					<th:block th:each="list , loopStat : ${recnet}">
+						<tr>
+							<!-- 게시글의 번호를 출력합니다 -->
+							<td>
+							<a th:text="${loopStat.index}+1">
+							게시글번호</a>
+							</td>
+							<td><a th:text="${list.postType}">카테고리</a></td>
+							<td><a th:text="${list.postTitle}" style="color: #d8a899;"
+								   th:href="@{/board/detail/{postNum}(postNum=${list.postNum})}">게시글 제목</a></td>
+							<td><a th:text="${list.id}">작성자 아이디</a></td>
+							<td><a th:text="${list.postDate}">작성 일자</a></td>
+							<td><a th:text="${list.postViews}">조회수</a></td>
+						</tr>
+					</th:block>
+				</table>
+			</label>
+              
             </div>
           </div>
 
-          <div class="col-lg-6">
-            <div class="why-us-content">
-
-              <h4>인기글</h4>
-              <button class="plus-view"><a href="#">더보기</a></button>
-
-              <ul class="new-letter">
-                <li class="new-letter-list">글번호</li>
-                <li>글제목</li>
-                <li>닉네임</li>
-                <li>작성일</li>
-                <li>조회수</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-                <li>1</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">2</li>
-                <li>2</li>
-                <li>2</li>
-                <li>2</li>
-                <li>2</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">3 </li>
-                <li>3</li>
-                <li>3 </li>
-                <li>3</li>
-                <li>3</li>
-              </ul>
-
-              <ul>
-                <li class="new-letter-list">4 </li>
-                <li>4</li>
-                <li>4 </li>
-                <li>4</li>
-                <li>4</li>
-              </ul>
+          <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="why-us-content w-100">
+            <h2>인기글</h2>
+				<label class="row">
+				<table>
+					<tr>
+						<th>글번호</th>
+						<th>카테고리</th>
+						<th style="width: 30%;">글제목</th>
+						<th>닉네임</th>
+						<th>작성일</th>
+						<th>조회수</th>
+					</tr>
+					<!-- 게시글 리스트 -->
+					<th:block th:each="list , loopStat : ${popular}">
+						<tr>
+							<!-- 게시글의 번호를 출력합니다 -->
+							<td>
+							<a th:text="${loopStat.index}+1">
+							게시글번호</a>
+							</td>
+							<td><a th:text="${list.postType}">카테고리</a></td>
+							<td><a th:text="${list.postTitle}" style="color: #d8a899;"
+								   th:href="@{/board/detail/{postNum}(postNum=${list.postNum})}">게시글 제목</a></td>
+							<td><a th:text="${list.id}">작성자 아이디</a></td>
+							<td><a th:text="${list.postDate}">작성 일자</a></td>
+							<td><a th:text="${list.postViews}">조회수</a></td>
+						</tr>
+					</th:block>
+				</table>
+			</label>
+              
 
             </div>
 
@@ -290,12 +313,11 @@
         <h3>동물 병원 <i class="fa-solid fa-shield-dog"></i></h3>
         <p class="p-3">급할땐 당황하지 마세요, 24시간 운영중인 동물 병원들을 찾아보세요</p>
         <nav class="row site-header py-1 pb-4 m-auto">
-          <div class="container d-flex flex-column flex-md-row justify-content-between col-12 hospital">
-            <a class="ps-lg-5 py-1 d-none d-md-inline-block" href="#">응급동물병원</a>
-            <a class="py-1 d-none d-md-inline-block" href="#">특수동물 병원</a>
-            <a class="py-1 d-none d-md-inline-block" href="#">고양이 전문병원</a>
-            <a class="py-1 d-none d-md-inline-block" href="#">강아지 동물병원</a>
-            <a class="pe-lg-5 py-1 d-none d-md-inline-block" href="#">일반 동물병원</a>
+          <div class="container d-flex flex-column flex-md-row justify-content-between col-12 hospital" style="background:none;">
+            <a class="ps-lg-5 py-1 d-none d-md-inline-block" href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">응급동물병원</a>
+            <a class="py-1 d-none d-md-inline-block" href="/facilities/list/all/hospital/1?city=&county=&kind=특수&search=">특수동물 병원</a>
+            <a class="pe-lg-5 py-1 d-none d-md-inline-block" href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물병원</a>
+             <a class="pe-lg-5 py-1 d-none d-md-inline-block" href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a>
           </div>
         </nav>
       </header>
@@ -313,7 +335,7 @@
         </div>
         <!--테두리 박스-->
         <div class="carousel-inner">
-          <div class="carousel-item active">
+          <div class="carousel-item active" >
             <div class="row text-center mt-3" style="margin-left: 10%; text-align: center;">
               <!--이미지-->
               <div class="col-6">
@@ -325,12 +347,12 @@
               </div>
               <!--텍스트-->
               <div class="col-4 mt-3">
-                <div class="about-content" data-aos="fade-left" data-aos-delay="100">
-                  <h2>노원구</h2>
-                  <p class="mt-5">이름 : 테스트</p>
-                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
-                  <p class="mt-2">연락처 : 010-7721-7109</p>
-                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+                <div class="about-content"  data-aos="fade-left" data-aos-delay="100">
+                  <h2 th:text="${hospital[0].facCity}">노원구</h2>
+                  <p class="mt-5" th:text="${hospital[0].facName}">이름 : 테스트</p>
+                  <p class="mt-2" th:text="${hospital[0].addRoad}">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2" th:text="${hospital[0].facTel}">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2" style="margin-right: 155px;"><a th:href="@{/facilities/detail/hospital/{num}(num=${hospital[0].facNum})}">바로가기</a></button>
                 </div>
               </div>
             </div>
@@ -348,11 +370,11 @@
               <!--텍스트-->
               <div class="col-4 mt-3">
                 <div class="about-content" data-aos="fade-left" data-aos-delay="100">
-                  <h2>노원구</h2>
-                  <p class="mt-5">이름 : 테스트</p>
-                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
-                  <p class="mt-2">연락처 : 010-7721-7109</p>
-                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+                  <h2 th:text="${hospital[1].facCity}">노원구</h2>
+                  <p class="mt-5" th:text="${hospital[1].facName}">이름 : 테스트</p>
+                  <p class="mt-2" th:text="${hospital[1].addRoad}">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2" th:text="${hospital[1].facTel}">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2" style="margin-right: 155px;"><a th:href="@{/facilities/detail/hospital/{num}(num=${hospital[1].facNum})}">바로가기</a></button>
                 </div>
               </div>
             </div>
@@ -370,11 +392,11 @@
               <!--텍스트-->
               <div class="col-4 mt-3">
                 <div class="about-content" data-aos="fade-left" data-aos-delay="100">
-                  <h2>노원구</h2>
-                  <p class="mt-5">이름 : 테스트</p>
-                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
-                  <p class="mt-2">연락처 : 010-7721-7109</p>
-                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+                 <h2 th:text="${hospital[2].facCity}">노원구</h2>
+                  <p class="mt-5" th:text="${hospital[2].facName}">이름 : 테스트</p>
+                  <p class="mt-2" th:text="${hospital[2].addRoad}">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2" th:text="${hospital[2].facTel}">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2" style="margin-right: 155px;"><a th:href="@{/facilities/detail/hospital/{num}(num=${hospital[2].facNum})}">바로가기</a></button>
                 </div>
               </div>
             </div>
@@ -392,11 +414,11 @@
               <!--텍스트-->
               <div class="col-4 mt-3">
                 <div class="about-content" data-aos="fade-left" data-aos-delay="100">
-                  <h2>노원구</h2>
-                  <p class="mt-5">이름 : 테스트</p>
-                  <p class="mt-2">위치 : 서울시 노원구 상계동</p>
-                  <p class="mt-2">연락처 : 010-7721-7109</p>
-                  <button class="walk-mate-button align-bottom mt-2"><a href="#">바로가기</a></button>
+            <h2 th:text="${hospital[3].facCity}">노원구</h2>
+                  <p class="mt-5" th:text="${hospital[3].facName}">이름 : 테스트</p>
+                  <p class="mt-2" th:text="${hospital[3].addRoad}">위치 : 서울시 노원구 상계동</p>
+                  <p class="mt-2" th:text="${hospital[3].facTel}">연락처 : 010-7721-7109</p>
+                  <button class="walk-mate-button align-bottom mt-2" style="margin-right: 155px;"><a th:href="@{/facilities/detail/hospital/{num}(num=${hospital[3].facNum})}">바로가기</a></button>
                 </div>
               </div>
             </div>
@@ -526,36 +548,43 @@
           <div class="col-md mb-4  mt-5 mb-md-0">
             <h4 class="footer-title">커뮤니티</h4>
             <ul class="list-unstyled nav-links footer-list">
-              <li><a href="#">공지사항</a></li>
-              <li><a href="#">게시판</a></li>
-              <li><a href="#">문의하기</a></li>
+           	<li><a href="board/1">최신글</a></li>
+		    <li><a href="board/post/search/1?day=findallday&type=postType&search=자유게시판">자유게시판</a></li>
+			<li><a href="board/post/search/1?day=findallday&type=postType&search=꿀팁공유">꿀팁공유</a></li>
+			<li><a href="board/post/search/1?day=findallday&type=postType&search=꿀팁요청">꿀팁요청</a></li>
+			<li><a href="board/post/search/1?day=findallday&type=postType&search=자랑">자랑</a></li>
+		    <li><a href="board/post/search/1?day=findallday&type=postType&search=공지사항">공지사항</a></li>
             </ul>
           </div>
           <div class="col-md mb-4  mt-5 mb-md-0">
             <h4 class="footer-title">시설</h4>
             <ul class="list-unstyled nav-links footer-list">
-              <li><a href="#">식당</a></li>
-              <li><a href="#">카페</a></li>
-              <li><a href="#">숙박 시설</a></li>
-              <li><a href="#">쇼핑</a></li>
-              <li><a href="#">관광</a></li>
-              <li><a href="#">캠핑장</a></li>
+        	<li><a href="/facilities/list/all/1?city=&county=&kind=식당&search=">식당</a></li>
+			<li><a href="/facilities/list/all/1?city=&county=&kind=카페&search=">카페</a></li>
+			<li><a href="/facilities/list/all/1?city=&county=&kind=용품&search=">쇼핑</a></li>
+			<li><a href="/facilities/list/all/1?city=&county=&kind=펜션&search=">숙박시설</a></li>
+			<li><a href="/facilities/list/all/1?city=&county=&kind=여행&search=">관광시설</a></li>
+		    <li><a href="/facilities/list/all/1?city=&county=&kind=미용&search=">미용</a></li>
             </ul>
           </div>
           <div class="col-md mb-4 mt-5 mb-md-0">
-            <h4 class="footer-title">24시 운영지점</h4>
+            <h4 class="footer-title">병원</h4>
             <ul class="list-unstyled nav-links footer-list">
-              <li><a href="#">카페</a></li>
-              <li><a href="#">병원</a></li>
-              <li><a href="#">특수병원</a></li>
+          	<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=일반&search=">일반 동물 병원</a></li>
+			<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=축산&search=">특수 동물 병원</a></li>
+			<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=24&search=">24시간 동물 병원</a></li>
+			<li><a href="/facilities/list/all/hospital/1?city=&county=&kind=약국&search=">동물 약국</a></li>
             </ul>
           </div>
           <div class="col-md-4 mb-4 mt-5 mx-5 mb-md-0">
             <h4 style="color: #a2c2b9;" class="footer-title">시설을 검색해보세요.</h4>
             <p class="mb-4 mt-xxl-5">지금 리뷰와 함께 반려동물과 함께할 장소를 찾아보세요.</p>
-            <form action="#" class="subscribe">
-              <input type="text" class="form-control mt-xxl-5" placeholder="지금 장소를 찾아보세요">
-              <button class="walk-mate-button mt-5 rounded-2 float-end"><a href="#">바로가기</a></button>
+            <form action="/facilities/list/all/1" class="subscribe">
+              <input type="hidden" name="city"/>
+              <input type="hidden" name="county"/>
+              <input type="hidden" name="kind"/>
+              <input type="text" name="search" class="form-control mt-xxl-5" placeholder="지금 장소를 찾아보세요">
+              <button type="submit" class="walk-mate-button mt-5 rounded-2 float-end">바로가기</button>
             </form>
           </div>
         </div>
@@ -580,38 +609,42 @@
     </footer>
 
     <!-- Modal -->
-    <div class="modal fade login" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal"
-      aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content" style="padding-bottom:50px;">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <form method="post" action="서버의url" id="login-form">
-            <div class="login-wrapper">
-              <h2><img src="assets/img/logo.png"></h2>
-              <input type="text" class="userName" name="userName" placeholder="Email">
-              <input type="password" name="userPassword" placeholder="Password"><br>
-              <input type="submit" value="Login"><br><br>
-              <label for="remember-check">
-                <input type="checkbox" id="remember-check">아이디 저장하기
-              </label><br>
+      <div class="modal fade login" id="loginModal" tabindex="-1"
+         role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="padding-bottom: 50px;">
+               <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                  <button type="button" class="close" data-dismiss="modal"
+                     aria-label="Close">
+                     <span aria-hidden="true">&times;</span>
+                  </button>
+               </div>
+               <form method="post" action="/pet/login" id="login-form">
+                  <div class="login-wrapper">
+                     <h2>
+                        <img src="/assets/img/logo.png">
+                     </h2>
+                     <input type="text" class="userName" name="id" placeholder="id"
+                        th:value="${saveId}"> <input type="password"
+                        name="password" placeholder="Password"><br> <input
+                        type="submit" value="Login"><br> <br> <label
+                        for="remember-check"> <input type="checkbox"
+                        name="remember-check" id="remember-check" value="true">아이디
+                        저장하기
+                     </label><br> <a href="/pet/findId">아이디 찾기</a> | <a href="/pet/findPassword">비밀번호 찾기</a> | <a
+                        href="/pet/join">회원가입</a><br> <br>
+                     <p>SNS계정으로 간편 로그인</p>
+                     <img src="/assets/img/naver.png"
+                        onclick="javascript:naverLogin();" id="naverIdLogin_loginButton">
+                     <img src="/assets/img/kakao.png"
+                        onclick="javascript:kakaoLogin();" id="kakaoLogin"> <img
+                        src="/assets/img/facebook.png">
+               </form>
 
-              <a href="#">아이디 찾기</a> |
-              <a href="#">비밀번호 찾기</a> |
-              <a href="#">회원가입</a><br><br>
-              <p>SNS계정으로 간편 로그인</p>
-              <img src="assets/img/naver.png" onclick="javascript:naverLogin();" id="naverIdLogin_loginButton">
-              <img src="assets/img/kakao.png" onclick="javascript:kakaoLogin();" id="kakaoLogin">
-              <img src="assets/img/facebook.png">
-          </form>
-
-        </div>
+            </div>
+         </div>
       </div>
-    </div>
 
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
         class="bi bi-arrow-up-short"></i></a>
@@ -638,13 +671,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"></script>
-    <!--카카오톡-->
+    <!--  -->
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script src="kakaoAPI.js"></script>
-    <!--네이버-->
+    <!--  -->
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
     <script src="naverAPI.js"></script>
-    <!--구글-->
+    <!--  -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="googleAPI.js"></script>
 

@@ -61,12 +61,13 @@ a:visited{
 
 /* 즐겨찾기 */
 .favorite_box{
-  width: 50%;
+  width: 33.333%;
   float: left;
-  padding-bottom: 20px;
+  padding: 10px 20px;
+  text-align: center;
 }
 .favorite_img{
-  width: 80%;
+  width: 90%;
   border: 1px solid gray;
   margin: 10px auto;
 }
@@ -74,10 +75,21 @@ a:visited{
 .favorite_img>img{
   width: 100%;
 }
-
 .favorite_box>p{
   text-align: center;
   margin: 0; 
+}
+
+.favorite_box>a>div>p{
+	margin: 0 auto;
+	text-align: left;
+}
+
+.favorite_box>a>div>h3, .favorite_box>a>div>p{
+		width: 90%;
+		overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
 }
 
 
@@ -220,3 +232,4 @@ a:visited{
   background-color:#d8a899;
   border: none;
 }
+

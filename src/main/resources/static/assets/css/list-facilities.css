@@ -10,69 +10,321 @@ Author URI: http://bootstrapthemes.co
 
 body {
 	color: gray;
-	-webkit-font-smoothing: antialiased;
 	width: 100%;
 	font-size:15px;
-	font-family: 'Merriweather', serif;	
+	 font-family: 'Gothic A1', sans-serif;
+
 }
 
 
-/*==========================================
-PRE LOADER 
-==========================================*/
-
-.preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #e9d0c4;
-    z-index: 99999;
-    height: 100%;
-    width: 100%;
-    overflow: hidden !important;
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  background: #fff;
+  transition: all 0.5s;
+  z-index: 997;
+  height: 100px;
 }
 
-.loaded {
-    width: 60px;
-    height: 60px;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    background-image: url(../images/preloading.gif);
-    background-repeat: no-repeat;
-    background-position: center;
-    -moz-background-size: cover;
-    background-size: cover;
-    margin: -20px 0 0 -20px;
-}
-.top-margin {
-	margin-top: 96px;
-}
-.bottom-margin {
-	margin-bottom: 96px;
-}
-img{max-width:100%;}
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
-  outline: none;
+#header.header-transparent {
+  background: transparent;
 }
 
+#header.header-scrolled {
+  background: #fff;
+  height: 100px;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.3);
+}
+
+#header .logo {
+  font-size: 36px;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+
+#header .logo img {
+  max-height: 100px;
+}
+
+
+@media (max-width: 992px) {
+  #header .logo {
+    font-size: 28px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Back to top button
+--------------------------------------------------------------*/
+.back-to-top {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  right: 15px;
+  bottom: 15px;
+  z-index: 996;
+  background: #d8a899;
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  transition: all 0.4s;
+}
+
+.back-to-top i {
+  font-size: 28px;
+  color: #fff;
+  line-height: 0;
+}
+
+.back-to-top:hover {
+  background: gray;
+  color: #fff;
+}
+
+.back-to-top.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/**
+* Desktop Navigation 
+*/
+.navbar {
+  padding: 0;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar li {
+  position: relative;
+}
+
+.navbar a,
+.navbar a:focus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 24px;
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  color: #84a0ac;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navbar a i,
+.navbar a:focus i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+/*�몃� �ㅼ씠寃뚯씠�섎컮 湲��� �붿옄��*/
+.navbar a:hover,
+.navbar ,
+.navbar .active:focus,
+.navbar li:hover>a {
+  color: gray;
+}
+
+.navbar .dropdown ul {
+  display: block;
+  position: absolute;
+  left: 24px;
+  top: calc(100% + 30px);
+  margin: 0;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 0;
+  visibility: hidden;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+  transition: 0.3s;
+}
+
+.navbar .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar .dropdown ul a {
+  padding: 10px 20px;
+  text-transform: none;
+  font-weight: 400;
+}
+
+.navbar .dropdown ul a i {
+  font-size: 12px;
+}
+
+/*�대� �ㅼ씠寃뚯씠�섎컮 湲��� �붿옄��*/
+.navbar .dropdown ul a:hover,
+.navbar .dropdown ul .active:hover,
+.navbar .dropdown ul li:hover>a {
+  color: #84a0ac;
+}
+
+.navbar .dropdown:hover>ul {
+  opacity: 1;
+  top: 100%;
+  visibility: visible;
+}
+
+.navbar .dropdown .dropdown ul {
+  top: 0;
+  left: calc(100% - 30px);
+  visibility: hidden;
+}
+
+.navbar .dropdown .dropdown:hover>ul {
+  opacity: 1;
+  top: 0;
+  left: 100%;
+  visibility: visible;
+}
+
+@media (max-width: 1366px) {
+  .navbar .dropdown .dropdown ul {
+    left: -90%;
+  }
+
+  .navbar .dropdown .dropdown:hover>ul {
+    left: -100%;
+  }
+}
+
+/**
+* Mobile Navigation 
+*/
+.mobile-nav-toggle {
+  color: #84a0ac;
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: 0.5s;
+}
+
+.mobile-nav-toggle.bi-x {
+  color: #fff;
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+
+  .navbar ul {
+    display: none;
+  }
+}
+
+.navbar-mobile {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(45, 43, 70, 0.9);
+  transition: 0.3s;
+  z-index: 999;
+}
+
+.navbar-mobile .mobile-nav-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.navbar-mobile ul {
+  display: block;
+  position: absolute;
+  top: 55px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  padding: 10px 0;
+  background-color: #fff;
+  overflow-y: auto;
+  transition: 0.3s;
+}
+
+.navbar-mobile a,
+.navbar-mobile a:focus {
+  padding: 10px 20px;
+  font-size: 15px;
+  color: #84a0ac;
+}
+
+/*sns濡쒓퀬 hover �됱긽*/
+.navbar-mobile a:hover,
+.navbar-mobile .active,
+.navbar-mobile li:hover>a {
+  color: #84a0ac;
+}
+
+.navbar-mobile .getstarted,
+.navbar-mobile .getstarted:focus {
+  margin: 15px;
+}
+
+.navbar-mobile .dropdown ul,
+.navbar-mobile .dropdown .dropdown ul {
+  position: static;
+  display: none;
+  margin: 10px 20px;
+  padding: 10px 0;
+  z-index: 99;
+  opacity: 1;
+  visibility: visible;
+  background: #fff;
+  box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
+}
+
+.navbar-mobile .dropdown ul li,
+.navbar-mobile .dropdown .dropdown ul li {
+  min-width: 200px;
+}
+
+.navbar-mobile .dropdown ul a,
+.navbar-mobile .dropdown .dropdown ul a {
+  padding: 10px 20px;
+}
+
+.navbar-mobile .dropdown ul a i,
+.navbar-mobile .dropdown .dropdown ul a i {
+  font-size: 12px;
+}
+
+.navbar-mobile .dropdown ul a:hover,
+.navbar-mobile .dropdown ul .active:hover,
+.navbar-mobile .dropdown ul li:hover>a,
+.navbar-mobile .dropdown .dropdown ul a:hover,
+.navbar-mobile .dropdown .dropdown ul .active:hover,
+.navbar-mobile .dropdown .dropdown ul li:hover>a {
+  color: #1bb1dc;
+}
+
+.navbar-mobile .dropdown>.dropdown-active,
+.navbar-mobile .dropdown .dropdown>.dropdown-active {
+  display: block;
+}
 a{
 	color:gray;
 }
@@ -108,42 +360,7 @@ a:hover{
 
 /*동반 시설 상세 정보*/
 
-.col{
-	width:31.333%;
-	float:left;
-	position: relative;
-	margin:1%;
-}
 
-
-
-/*사진 오버레이*/
-
-.single_special_img:hover .single_special_overlay{
-  opacity:1;
-}
-
-.single_special_overlay{
-  background:rgba(221, 221, 221, 0.8);
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  transition:.6s;
-  opacity:0;
-}
-
-.single_special_overlay p{
-	width:100%;
-  margin-top:120px;
-	vertical-align: bottom;
-	border:none;
-}
-
-.h5-img{
-	width: 12px;
-}
 
 
 /* scrollup */
@@ -196,10 +413,202 @@ select{
 	background-color: #e9d0c4;
 }
 
-.card-body> param{
-	font-size: 35px;
+
+
+/*시설 내용*/
+/*시설 정보 */
+
+.fcl-info{
+  width:80%;
+  margin:0 auto;
 }
-.card-body>img{
-	width:15px;
-	margin-bottom: 7px;
+
+/*사진 오버레이*/
+
+.all:hover .overlay{
+  opacity:1;
+}
+
+
+.all{
+	position:relative;
+    box-sizing:border-box;
+    width:33.333%;
+    float:left;
+}
+
+.overlay{
+	content: "";
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    transition: all .3s;
+    background:rgba(221, 221, 221, 0.8);
+    opacity:0;
+
+}
+
+.overlay p{
+  margin:0 auto;
+  text-align:center;
+  margin-top:160px;
+}
+
+.fcl-body{
+	text-align:center;
+}
+
+.h5-img{
+	width: 12px;
+}
+
+
+
+
+.pagination{
+	width:100%;
+	margin-top:30px;
+}
+
+.pagination button{
+	background:white;
+	border:none;
+	border-radius: 3px;
+	padding:5px;
+}
+
+.pagination button:hover{
+	background:#d8a899;
+	border-radius: 3px;
+	padding:5px;
+	color:white;
+	
+}
+
+
+
+
+  /* login modal css*/
+.login{
+  cursor: pointer;
+}
+
+.login-wrapper body{
+  font-size: 14px;
+}
+
+.login-wrapper input:focus {
+  outline:none;
+}
+
+.login-wrapper{
+  width: 500px;
+  height: 400px;
+  box-sizing: border-box;
+  margin: 30px 0px;
+}
+
+.login-wrapper  h2{
+  text-align: center;
+}
+
+.login-wrapper  h2  img{ /*濡쒓퀬�ъ쭊 �ｊ린*/
+  width: 170px;
+}
+
+#login-form{
+  text-align: center;
+  padding-bottom: 50px;
+}  
+
+#login-form  input{ /*�꾩씠��, 鍮꾨�踰덊샇*/
+  width: 300PX;
+  height: 48px;
+  padding: 0 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  box-sizing: border-box;
+  border: 1px solid #999999;
+}
+
+.userName{
+  border-bottom: none;
+}
+
+#login-form input::placeholder{
+  color: #999999;
+}
+
+#login-form input[type="submit"]{ /*濡쒓렇�몃쾭��*/
+  border: none;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #d8a899;
+  margin-top: 10px;
+}
+
+#login-form input[type="checkbox"]{
+  display: none;
+}
+
+#login-form label{ /*�꾩씠�붿���*/
+  color: gray;
+}
+
+#login-form input[type="checkbox"] + label{
+  cursor: pointer;
+  padding-left: 26px;
+  background-image: url("checkbox.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#login-form input[type="checkbox"]:checked + label{
+  background-image: url("checkbox-active.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  color:white;
+}
+
+.login #remember-check{
+  padding-top: 20px;
+  accent-color: #d8a899;
+}
+
+.login-wrapper a:link {
+  text-decoration: none;
+  color: #999999; 
+}
+
+.login-wrapper a:visited{
+  text-decoration: none;
+  color: #999999; 
+}
+
+.login-wrapper a:hover{ 
+  text-decoration: none;
+  color: #d8a899;
+  font-weight: bold;
+}
+
+.login-wrapper a:active{
+  text-decoration: none;
+  color:#d8a899;
+}
+
+.login-wrapper img{
+  width: 35px;
+  margin: 0px 10px;
+  cursor: pointer;
+}
+
+.close{
+  border: none;
+  background-color: white;
 }
