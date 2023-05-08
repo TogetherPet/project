@@ -3,7 +3,7 @@
 
 <h2>📗 목차</h2>
 <li><a src="#introduce">📝 프로젝트 소개</a></li>
-<li>🛠<a href="#user-content-4-email-전송"> 기술 스택</a></li>
+<li>🛠<a href="#기술-스택"> 기술 스택</a></li>
 <li>🔗 스토리보드 및 DB모델링</li>
 <li>🔗 프로젝트 구조</li>
 <li>🔗 사이트맵</li>
@@ -17,7 +17,7 @@
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 41 44" src="https://user-images.githubusercontent.com/124863100/236715940-75e42a06-de07-4e5f-a435-197bdd5a0bfc.png">
 
 <h2>🛠 기술 스택</h2>
-<a id="user-content-4-email-전송" class="anchor" aria-hidden="true" href="#4-email-전송"></a>
+<a id="기술-스택" class="anchor" aria-hidden="true" href="#기술-스택"></a>
 
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 12" src="https://user-images.githubusercontent.com/124863100/236716213-e1de8a3c-d9a9-4b8b-a3fc-99bac5cbb4e6.png">
 
