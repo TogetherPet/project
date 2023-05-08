@@ -3,27 +3,24 @@
 
 <h2>📗 목차</h2>
 <li><a src="#introduce">📝 프로젝트 소개</a></li>
-<li>🛠 기술 스택</li>
+<li>🛠<a href="#user-content-4-email-전송"> 기술 스택</a></li>
 <li>🔗 스토리보드 및 DB모델링</li>
 <li>🔗 프로젝트 구조</li>
 <li>🔗 사이트맵</li>
 <li>🔗 스토리보드 및 DB모델링</li>
 <li>👨🏻‍💻 기능 구현</li>
 <li>🚀 프로젝트 소회</li>
-
-
----
-<h2 id="introduce">프로젝트 소개</a></h2>
+<br>
+<h2>📝 프로젝트 소개</h2>
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 41 57" src="https://user-images.githubusercontent.com/124863100/236715950-3c21b468-bf6c-4045-a442-4b4af2803924.png">
 
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 41 44" src="https://user-images.githubusercontent.com/124863100/236715940-75e42a06-de07-4e5f-a435-197bdd5a0bfc.png">
 
----
-<h2>기술 스택</h2>
+<h2>🛠 기술 스택</h2>
+<a id="user-content-4-email-전송" class="anchor" aria-hidden="true" href="#4-email-전송"></a>
 
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 12" src="https://user-images.githubusercontent.com/124863100/236716213-e1de8a3c-d9a9-4b8b-a3fc-99bac5cbb4e6.png">
 
----
 <h2>스토리보드 및 DB모델링</h2>
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 16" src="https://user-images.githubusercontent.com/124863100/236716434-b3925592-b751-4140-8be8-8f6900fc3b1e.png">
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 20" src="https://user-images.githubusercontent.com/124863100/236716439-fcdde4f5-c30e-4882-b18a-53ff0e38b9b4.png">
@@ -48,7 +45,10 @@
 
 
 <h2 id="main">메인창</h2>
-<img src="https://user-images.githubusercontent.com/124863100/236926483-a48a1002-6689-4e02-8e96-786906a5991d.gif"/>
+<img src="https://user-images.githubusercontent.com/124863100/236933037-2bd3368e-1f9f-46d7-9d80-6b3161a4ca02.gif"/>
+
+<img src="https://user-images.githubusercontent.com/124863100/236934266-412c0e82-eae3-45bb-8e3b-653a2c121e64.gif"/>
+<li>반응형 웹 디자인 구축</li>
 
 <li>공공데이터를 활용한 애견 동반 시설 카테고리 세분화</li>
 <li>최신글과 인기글로 나눠 커뮤니티 구성</li>
@@ -72,6 +72,12 @@
 <li>예약하기</li>
 <li>카카오 rest api를 이용한 시설 위치 데이터 가져오기</li>
 
+<img src="https://user-images.githubusercontent.com/124863100/236932361-65b7f7f2-c419-435c-8891-38fce71ac0bc.gif"/>
+<li>마이페이지에서 예약 수정,삭제</li>
+<li>회원 정보 수정 및 탈퇴</li>
+
+
+
 <h2>프로젝트 소회</h2>
 <p>한달여간 프로젝트를 진행하며 단시간에 많은 것을 머릿속에 넣다보니 때로는 과부하가 오기도 하고 포기하고 싶은 순간도 많았습니다. 
    그렇지만 성실한 팀원들을 만나 마침내 프로젝트 마침표를 찍을 수 있음에 감사합니다. <br>
@@ -86,9 +92,4 @@
 
 
 
-<h2> 코드 작성</h2>
 
-    <script></script>
-    <p></p>
-    
-<p>코드 작성 끝</p>
