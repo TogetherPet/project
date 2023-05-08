@@ -21,3 +21,9 @@
 <h2 id="main">메인창</h2>
 ![화면 기록 2023-05-08 오전 10 28 03](https://user-images.githubusercontent.com/124863100/236714868-b2ec104b-1ed7-4d08-bb35-3b1c6d438924.gif)
 
+<h2> 코드 작성</h2>
+
+    <script></script>
+    <p></p>
+    
+<p>코드 작성 끝</p>
