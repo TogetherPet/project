@@ -12,4 +12,4 @@
 
 
 <h3>프로젝트 소개</h3>
-<img src="./img/banner/jpeg"/>
+<img src="/Users/tan/Documents/GitHub/project 4/src/main/resources/static/assets/img/google.png"/>
