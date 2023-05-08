@@ -46,6 +46,15 @@
 <img width="1118" alt="스크린샷 2023-05-08 오전 11 00 49" src="https://user-images.githubusercontent.com/124863100/236719707-4d2b9ec4-65dd-4ece-87c1-b076dd14ee75.png">
 
 
+<h2 id="main">메인창</h2>
+<img src="https://user-images.githubusercontent.com/124863100/236714868-b2ec104b-1ed7-4d08-bb35-3b1c6d438924.gif"/>
+<li>공공데이터를 활용한 애견 동반 시설 카테고리 세분화</li>
+<li>최신글과 인기글로 나눠 커뮤니티 구성</li>
+<li>슬라이드를 이용해 병원 데이터 노출</li>
+<li>api를 이용해 유기 동물 공고 띄우기</li>
+
+
+
 <h2>프로젝트 소회</h2>
 <p>한달여간 프로젝트를 진행하며 단시간에 많은 것을 머릿속에 넣다보니 때로는 과부하가 오기도 하고 포기하고 싶은 순간도 많았습니다. 
    그렇지만 성실한 팀원들을 만나 마침내 프로젝트 마침표를 찍을 수 있음에 감사합니다. <br>
@@ -59,9 +68,6 @@
 </p>
 
 
-
-<h2 id="main">메인창</h2>
-<img src="https://user-images.githubusercontent.com/124863100/236714868-b2ec104b-1ed7-4d08-bb35-3b1c6d438924.gif"/>
 
 <h2> 코드 작성</h2>
 
