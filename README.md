@@ -1,5 +1,5 @@
 <h1>PET-TOGETHER PORTFORIO</h1>
-<p style="color:yellow;">김희원</p>
+<p>김희원</p>
 
 <h2>📗 목차</h2>
 <li><a src="#introduce">📝 프로젝트 소개</a></li>
