@@ -48,7 +48,8 @@
 
 
 <h2 id="main">메인창</h2>
-<img src="https://user-images.githubusercontent.com/124863100/236721389-84920c0d-e897-4068-89fc-a4abbdbb6d6a.gif"/>
+<img src="https://user-images.githubusercontent.com/124863100/236926483-a48a1002-6689-4e02-8e96-786906a5991d.gif"/>
+
 <li>공공데이터를 활용한 애견 동반 시설 카테고리 세분화</li>
 <li>최신글과 인기글로 나눠 커뮤니티 구성</li>
 <li>슬라이드를 이용해 병원 데이터 노출</li>
