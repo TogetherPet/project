@@ -53,13 +53,13 @@
 <a id="메인창" class="anchor" aria-hidden="true" href="#메인창"></a>
 <img src="https://user-images.githubusercontent.com/124863100/236933037-2bd3368e-1f9f-46d7-9d80-6b3161a4ca02.gif"/>
 
-<img src="https://user-images.githubusercontent.com/124863100/236934266-412c0e82-eae3-45bb-8e3b-653a2c121e64.gif"/>
-<li>반응형 웹 디자인 구축</li>
-
 <li>공공데이터를 활용한 애견 동반 시설 카테고리 세분화</li>
 <li>최신글과 인기글로 나눠 커뮤니티 구성</li>
 <li>슬라이드를 이용해 병원 데이터 노출</li>
 <li>api를 이용해 유기 동물 공고 띄우기</li>
+<br>
+<img src="https://user-images.githubusercontent.com/124863100/236934266-412c0e82-eae3-45bb-8e3b-653a2c121e64.gif"/>
+<li>반응형 웹 디자인 구축</li>
 
 <h2>로그인 후 검색 옵션별 애견 동반 시설 리스트 보여주기</h2>
 <img src="https://user-images.githubusercontent.com/124863100/236928018-cf8784e7-247d-4659-8f68-8e0f6ac19b60.gif"/>
@@ -69,15 +69,15 @@
 <img src="https://user-images.githubusercontent.com/124863100/236929688-53c32de7-42b2-4bd2-9c0d-57b739c5dd6f.gif"/>
 <li>즐겨찾기 기능 추가</li>
 <li>리뷰 작성</li>
-
+<br>
 <img src="https://user-images.githubusercontent.com/124863100/236930890-9a947cda-09bf-49ee-87a1-a700ad35c229.gif"/>
 <li>리뷰 수정 및 삭제</li>
-
+<br>
 <img src="https://user-images.githubusercontent.com/124863100/236931080-aae974ff-c20f-44d5-bc39-eb3065e2027b.gif"/>
 <li>예약이 안되는 시설 같은 경우에는 예약 아이콘 미노출</li>
 <li>예약하기</li>
 <li>카카오 rest api를 이용한 시설 위치 데이터 가져오기</li>
-
+<br>
 <img src="https://user-images.githubusercontent.com/124863100/236932361-65b7f7f2-c419-435c-8891-38fce71ac0bc.gif"/>
 <li>마이페이지에서 예약 수정,삭제</li>
 <li>회원 정보 수정 및 탈퇴</li>
