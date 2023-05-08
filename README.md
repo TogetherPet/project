@@ -2,26 +2,28 @@
 <p>김희원</p>
 
 <h2>📗 목차</h2>
-<li><a src="#introduce">📝 프로젝트 소개</a></li>
-<li>🛠<a href="#기술-스택"> 기술 스택</a></li>
-<li>🔗 스토리보드 및 DB모델링</li>
-<li>🔗 프로젝트 구조</li>
-<li>🔗 사이트맵</li>
-<li>🔗 스토리보드 및 DB모델링</li>
-<li>👨🏻‍💻 기능 구현</li>
-<li>🚀 프로젝트 소회</li>
+<li><a href="#프로젝트-소개">📝 프로젝트 소개</a></li>
+<li><a href="#기술-스택">🛠 기술 스택</a></li>
+<li><a href="#스토리보드">📃 스토리보드 및 DB모델링</a></li>
+<li><a href="#프로젝트-구조">🔗 프로젝트 구조</a></li>
+<li><a href="#사이트맵">🏷️ 사이트맵</a></li>
+<li><a href="#기능구현">👨🏻‍💻 기능 구현</a></li>
+<li><a href="#메인창">🏻‍💻 메인창</a></li>
+<li><a href="#프로젝트-소회">🖌️프로젝트 소회</a></li>
 <br>
-<h2>📝 프로젝트 소개</h2>
+<h2>프로젝트 소개</h2>
+<a id="프로젝트-소개" class="anchor" aria-hidden="true" href="#프로젝트-소개"></a>
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 41 57" src="https://user-images.githubusercontent.com/124863100/236715950-3c21b468-bf6c-4045-a442-4b4af2803924.png">
 
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 41 44" src="https://user-images.githubusercontent.com/124863100/236715940-75e42a06-de07-4e5f-a435-197bdd5a0bfc.png">
 
-<h2>🛠 기술 스택</h2>
+<h2> 기술 스택</h2>
 <a id="기술-스택" class="anchor" aria-hidden="true" href="#기술-스택"></a>
 
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 12" src="https://user-images.githubusercontent.com/124863100/236716213-e1de8a3c-d9a9-4b8b-a3fc-99bac5cbb4e6.png">
 
 <h2>스토리보드 및 DB모델링</h2>
+<a id="스토리보드" class="anchor" aria-hidden="true" href="#스토리보드"></a>
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 16" src="https://user-images.githubusercontent.com/124863100/236716434-b3925592-b751-4140-8be8-8f6900fc3b1e.png">
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 20" src="https://user-images.githubusercontent.com/124863100/236716439-fcdde4f5-c30e-4882-b18a-53ff0e38b9b4.png">
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 25" src="https://user-images.githubusercontent.com/124863100/236716441-718ce3f1-94ae-4fd1-9c57-687913bd081d.png">
@@ -32,12 +34,15 @@
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 37" src="https://user-images.githubusercontent.com/124863100/236716594-4dfd4f97-a37d-4f4e-adf5-a440c7f4151f.png">
 
 <h2>프로젝트 구조</h2>
+<a id="프로젝트-구조" class="anchor" aria-hidden="true" href="#프로젝트-구조"></a>
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 41" src="https://user-images.githubusercontent.com/124863100/236716781-20085dd5-ffb1-4009-b8e9-273e8e7777d8.png">
 
 <h2>사이트맵</h2>
+<a id="사이트맵" class="anchor" aria-hidden="true" href="#사이트맵"></a>
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 46" src="https://user-images.githubusercontent.com/124863100/236716868-3de3dcc3-0ab9-4a42-a1d6-d5b637ffb66f.png">
 
 <h2>기능 구현</h2>
+<a id="기능구현" class="anchor" aria-hidden="true" href="#기능구현"></a>
 <img width="1118" alt="스크린샷 2023-05-08 오전 11 01 02" src="https://user-images.githubusercontent.com/124863100/236719699-6ca0295a-8dca-4f16-82d8-6272995dd17e.png">
 <img width="1118" alt="스크린샷 2023-05-08 오전 11 00 59" src="https://user-images.githubusercontent.com/124863100/236719703-7f4ef086-2401-48ba-a8a8-f5725e8255f2.png">
 <img width="1118" alt="스크린샷 2023-05-08 오전 11 00 54" src="https://user-images.githubusercontent.com/124863100/236719706-dbbce3a7-fc4c-4781-9ef4-5e10c0edce5f.png">
@@ -45,6 +50,7 @@
 
 
 <h2 id="main">메인창</h2>
+<a id="메인창" class="anchor" aria-hidden="true" href="#메인창"></a>
 <img src="https://user-images.githubusercontent.com/124863100/236933037-2bd3368e-1f9f-46d7-9d80-6b3161a4ca02.gif"/>
 
 <img src="https://user-images.githubusercontent.com/124863100/236934266-412c0e82-eae3-45bb-8e3b-653a2c121e64.gif"/>
@@ -79,6 +85,7 @@
 
 
 <h2>프로젝트 소회</h2>
+<a id="프로젝트-소회" class="anchor" aria-hidden="true" href="#프로젝트-소회"></a>
 <p>한달여간 프로젝트를 진행하며 단시간에 많은 것을 머릿속에 넣다보니 때로는 과부하가 오기도 하고 포기하고 싶은 순간도 많았습니다. 
    그렇지만 성실한 팀원들을 만나 마침내 프로젝트 마침표를 찍을 수 있음에 감사합니다. <br>
    이용자 입장에서 웹사이트를 이용했을때 별 거 아니라고 생각했던 기능들도 많은 로직이 필요하구나 새삼 느끼게 되었습니다.<br>
