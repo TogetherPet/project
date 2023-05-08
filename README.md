@@ -8,8 +8,8 @@
 <li><a href="#프로젝트-구조">🔗 프로젝트 구조</a></li>
 <li><a href="#사이트맵">🏷️ 사이트맵</a></li>
 <li><a href="#기능구현">👨🏻‍💻 기능 구현</a></li>
-<li><a href="#메인창">🏻‍💻 메인창</a></li>
-<li><a href="#프로젝트-소회">🖌️프로젝트 소회</a></li>
+<li><a href="#메인창">💻 메인창</a></li>
+<li><a href="#프로젝트-소회">🖌️ 프로젝트 소회</a></li>
 <br>
 <h2>프로젝트 소개</h2>
 <a id="프로젝트-소개" class="anchor" aria-hidden="true" href="#프로젝트-소개"></a>
