@@ -39,6 +39,12 @@
 
 <img width="1118" alt="스크린샷 2023-05-08 오전 10 42 37" src="https://user-images.githubusercontent.com/124863100/236716594-4dfd4f97-a37d-4f4e-adf5-a440c7f4151f.png">
 
+<h2>프로젝트 구조</h2>
+<img width="1118" alt="스크린샷 2023-05-08 오전 10 42 41" src="https://user-images.githubusercontent.com/124863100/236716781-20085dd5-ffb1-4009-b8e9-273e8e7777d8.png">
+
+<h2>사이트맵</h2>
+<img width="1118" alt="스크린샷 2023-05-08 오전 10 42 46" src="https://user-images.githubusercontent.com/124863100/236716868-3de3dcc3-0ab9-4a42-a1d6-d5b637ffb66f.png">
+
 
 
 
