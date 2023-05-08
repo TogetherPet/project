@@ -58,6 +58,20 @@
 <h2>로그인 후 검색 옵션별 애견 동반 시설 리스트 보여주기</h2>
 <img src="https://user-images.githubusercontent.com/124863100/236928018-cf8784e7-247d-4659-8f68-8e0f6ac19b60.gif"/>
 
+<h2>애견 동반 시설 상세 페이지</h2>
+
+<img src="https://user-images.githubusercontent.com/124863100/236929688-53c32de7-42b2-4bd2-9c0d-57b739c5dd6f.gif"/>
+<li>즐겨찾기 기능 추가</li>
+<li>리뷰 작성</li>
+
+<img src="https://user-images.githubusercontent.com/124863100/236930890-9a947cda-09bf-49ee-87a1-a700ad35c229.gif"/>
+<li>리뷰 수정 및 삭제</li>
+
+<img src="https://user-images.githubusercontent.com/124863100/236931080-aae974ff-c20f-44d5-bc39-eb3065e2027b.gif"/>
+<li>예약이 안되는 시설 같은 경우에는 예약 아이콘 미노출</li>
+<li>예약하기</li>
+<li>카카오 rest api를 이용한 시설 위치 데이터 가져오기</li>
+
 <h2>프로젝트 소회</h2>
 <p>한달여간 프로젝트를 진행하며 단시간에 많은 것을 머릿속에 넣다보니 때로는 과부하가 오기도 하고 포기하고 싶은 순간도 많았습니다. 
    그렇지만 성실한 팀원들을 만나 마침내 프로젝트 마침표를 찍을 수 있음에 감사합니다. <br>
