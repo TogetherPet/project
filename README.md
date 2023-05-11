@@ -1,5 +1,8 @@
 <h1>PET-TOGETHER PORTFORIO</h1>
 <p>김희원</p>
+<p>김현아</p>
+<p>박찬울</p>
+<p>유선우</p>
 
 <h2>📗 목차</h2>
 <li><a href="#프로젝트-소개">📝 프로젝트 소개</a></li>
