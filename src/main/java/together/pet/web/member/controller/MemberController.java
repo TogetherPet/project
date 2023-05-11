@@ -1,8 +1,7 @@
 package together.pet.web.member.controller;
 
-
-
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,7 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,13 +44,13 @@ import together.pet.web.common.RequestParams;
 @RequestMapping("/pet")
 @Slf4j
 public class MemberController {
-	
+
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	BoardService boardService;
-	
+
 	@Autowired
 	FacilitiesService facilitiesService;
 
@@ -64,7 +64,7 @@ public class MemberController {
 		model.addAttribute("recnet", recnet);
 		model.addAttribute("popular", popular);
 		model.addAttribute("hospital", hospital);
- 		return "member/main";
+		return "member/main";
 	}
 
 	// 로그인 처리
@@ -96,7 +96,7 @@ public class MemberController {
 				model.addAttribute("err", err);
 			}
 		}
-		return "redirect:"+ request.getHeader("Referer");
+		return "redirect:" + request.getHeader("Referer");
 	}
 
 	// 로그아웃
@@ -127,16 +127,19 @@ public class MemberController {
 	}
 
 	// 회원아이디 중복체크
-	   @PostMapping("/idcheck")
-	   @ResponseBody
-	   public boolean idCheck(@RequestBody String id) {
-	      String real = id.substring(3);
-	      if(memberService.idcheck(real)) {
-	         return false;
-	      }else {
-	         return true;
+	      @PostMapping("/idcheck")
+	      @ResponseBody
+	      public boolean idCheck(@RequestBody String id) {
+	         String real = id.substring(3);
+	         System.out.println(real);
+	         System.out.println(memberService.idcheck(real));
+	         if(memberService.idcheck(real).equals("ok")) {
+	            System.out.println(memberService.idcheck(real));
+	            return false;
+	         }else {
+	            return true;
+	         }
 	      }
-	   }
 
 	// 회원가입
 	@PostMapping("/join")
@@ -157,12 +160,12 @@ public class MemberController {
 	// 회원 정보 수정 전 확인 창
 	@RequestMapping(value = "/mypageEdit", method = RequestMethod.POST)
 	@ResponseBody
-	public String mypageEdit(@RequestParam String id, @RequestParam String pw, HttpSession session, HttpServletRequest request,
-			Model model) {
+	public String mypageEdit(@RequestParam String id, @RequestParam String pw, HttpSession session,
+			HttpServletRequest request, Model model) {
 		log.info("수정 아이디 : {}", id);
 		log.info("수정 비전 : {}", pw);
 		String referer = request.getHeader("referer");
-		Member member = (Member)session.getAttribute("member");
+		Member member = (Member) session.getAttribute("member");
 		if (member.getPassword().equals(pw)) {
 			session.setAttribute("member", member);
 			model.addAttribute("referer", referer);
@@ -174,12 +177,14 @@ public class MemberController {
 			return "false";
 		}
 	}
+
 	// 회원 정보 수정 처리
 	@PostMapping("/mypageUpdate")
 	public String mypageUpdate(@ModelAttribute Member member, HttpSession session) {
 
 		if (member.getId().equals(member.getId())) {
 			memberService.update(member);
+			System.out.println("테스트 : " + member);
 			Member newMember = memberService.login(member.getId());
 			session.setAttribute("member", newMember);
 			return "redirect:/pet/mypage";
@@ -240,19 +245,17 @@ public class MemberController {
 		model.addAttribute("review", review);
 		return review;
 	}
-	
-	
+
 	// 즐겨찾기
-	   @GetMapping("/myfavorite")
-	   @ResponseBody
-	   public List<Favorite> bookmark(HttpSession session, Model model) {
-	      Member member = (Member) session.getAttribute("member");
-	      String id = member.getId();
-	      List<Favorite> favorite = memberService.bookmark(id);
-	      model.addAttribute("review", favorite);
-	      return favorite;
-	   }
-	
+	@GetMapping("/myfavorite")
+	@ResponseBody
+	public List<Favorite> bookmark(HttpSession session, Model model) {
+		Member member = (Member) session.getAttribute("member");
+		String id = member.getId();
+		List<Favorite> favorite = memberService.bookmark(id);
+		model.addAttribute("review", favorite);
+		return favorite;
+	}
 
 	// 아이디 찾기
 	@GetMapping("/findId")
@@ -357,8 +360,7 @@ public class MemberController {
 		String referer = request.getHeader("Referer");
 		return "redirect:" + referer;
 	}
-	
-	
+
 //	// 페이징 처리
 //	@GetMapping
 //	public String a(HttpServletRequest request) {
@@ -403,10 +405,17 @@ public class MemberController {
 //			
 //			return "/pet/mypage";
 //		}
-		
-	
 
 //	}
 }
 
-
+class User {
+	   private final String id;
+	    User(String id) {
+	      this.id = id;
+	   }
+	    
+	    public String getId() {
+	       return id;
+	    }
+	}

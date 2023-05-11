@@ -240,11 +240,13 @@
 			</div>
 				<!-- 게시글 수정 버튼 -->
 			<a th:if="${session.member != null} and ${#strings.equals(postDetail.id, session.member.id)}"
-			   class="report_btn"
+			   class="report_btn mb-5"
 			   th:href="@{/board/update/getpost/{postNum}(postNum=${postDetail.postNum})}"
 			   >게시글 수정하기</a>
 			<div>
-				<p th:utext="${postDetail.postContent}">게시글 내용</p>
+			<!-- utext 이용해 태그 출력 방지 -->
+				<p th:utext="${postDetail.postContent}" >게시글 내용</p>
+			<hr>
 			</div>
 			
 			<a class="post_category col-4"
@@ -272,21 +274,24 @@
 			<button id="reportPost" class="report-btn rounded-2 mr-3" 
 					data-bs-toggle="modal" data-bs-target="#reportModal"
 					th:onclick="'openReportModal(`post`, ' + ${postDetail.postNum} + ')'"
-				    >게시글 신고</button>
+				    >신고</button>
 			</label>
 			<hr>
 
 			<!-- 댓글 리스트 -->
 			<p th:text="|댓글 ${#lists.size(postReply)} 개|">댓글 (5)</p>
+			<hr>
 			<th:block th:each="list : ${postReply}">
-				<div class="mt-3">
+				<div>
 					<p th:text="${list.id}" style="font-weight: bold;" class="mb-3">탄이123</p>
 					<p th:text="${list.commentContent}" class="mb-3">잘 봤습니다.</p>
 					<label id="forButton"> 
 						<span th:text="${list.commentDate}">작성날짜</span>
 						
-						<!-- 댓글 신고 버튼. 게시글 신고와 동일하게 동작합니다 -->
-						<button id="reportReply" class="report-btn rounded-2" style="margin-left: 10px;"
+						<!-- 댓글 신고 버튼. 게시글 신고와 동일하게 동작합니다 / 로그인 후 이용 가능하며, 세션 아이디와 다를경우 생성이 안됨-->
+						<button 
+						id="reportReply" class="report-btn rounded-2" style="margin-left: 10px;"
+						th:if="${session.member != null} and ${!#strings.equals(list.id, session.member.id)}"
 						data-bs-toggle="modal" data-bs-target="#reportModal"
 						th:onclick="'openReportModal(`reply`, ' + ${list.commentNum} + ')'"
 						>신고</button>
@@ -315,6 +320,7 @@
 							</form>
 						</div>
 				</div>
+				<hr>
 			</th:block>
 			<!-- 댓글이 없을경우 출력되는 문구입니다 -->
 			<p th:if="${#lists.size(postReply) == 0}">등록된 댓글이 없습니다</p>
@@ -335,10 +341,10 @@
 		<!-- 하단 버튼 -->
 		<div class="empty"></div>
 		<div class="bottom-button">
-			<button onclick="location.href='/board'">글목록</button>
+			<button onclick="location.href='/board'" class="rounded-2">글목록</button>
 			<button style="margin-right: 3px;"
 					onclick="location.href='/board/write'"
-					th:if="${session.member != null}">글쓰기</button>
+					th:if="${session.member != null}" class="rounded-2">글쓰기</button>
 		</div>
 		<!-- 하단 버튼 종료-->
 	</div>

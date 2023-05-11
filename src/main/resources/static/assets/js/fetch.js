@@ -16,6 +16,7 @@ function sendId(id) {
       },
       body: `id=${id}`
    };
+  
 
    fetch("/pet/idcheck", option)
       .then(respose => respose.json())
@@ -25,9 +26,9 @@ function sendId(id) {
 
 function showIdResultMessage(usable) {
    let messageDiv = document.getElementById("id-message");
-   if (usable) {
+   if (usable == true) {
       messageDiv.innerHTML = "<span style='color:blue'>사용 가능한 아이디입니다.</span>";
-   } else {
+   } else if(usable == false){
       messageDiv.innerHTML = "<span style='color:red'>사용하실 수 없는 아이디입니다.</span>";
    }
 }

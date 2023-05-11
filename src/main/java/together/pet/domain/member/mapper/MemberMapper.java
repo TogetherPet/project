@@ -24,7 +24,7 @@ public interface MemberMapper {
 	public void join(Member member);
 
 	// 아이디 중복체크
-	public int idcheck(String id);
+	public String idcheck(String id);
 
 	// 회원수정
 	public void update(Member member);

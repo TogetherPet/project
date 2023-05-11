@@ -32,8 +32,12 @@ public class MemberServicempl implements MemberService {
 	}
 
 	@Override
-	public boolean idcheck(String id) {
-		return false;
+	public String idcheck(String id) {
+		if (memberMapper.idcheck(id) != null) {
+			return "ok";
+		} else {
+			return "fail";
+		}
 	}
 
 	@Override
